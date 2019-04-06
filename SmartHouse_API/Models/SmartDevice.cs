@@ -7,10 +7,10 @@ namespace SmartHouse_API.Models
     {
         [BsonId]
         public ObjectId Id { get; set; }
-        public string Type { get; set; }
+        public Type Type { get; set; }
         public string Name { get; set; }
-        public string State { get; set; }
-        public string Localization { get; set; }
+        public State State{ get; set; }
+        public Localization Localization { get; set; }
         public bool Disabled { get; set; }
     }
 }
