@@ -28,8 +28,22 @@ namespace SmartHouse_API.DAL
 
         public IEnumerable<SmartDevice> GetSmartDevicesCollection()
         {
-            _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
-            return _smartDevices.AsQueryable().ToList();
+            GetSmartDevicesMongoCollection();
+            return _smartDevices.AsQueryable<SmartDevice>().ToList();
+        }
+
+        private IMongoCollection<SmartDevice> GetSmartDevicesMongoCollection()
+        {
+            return _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+        }
+
+        public void ChangeSmartDeviceState(SmartDevice device, State state)
+        {
+            GetSmartDevicesMongoCollection();
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
+            device.State = state;
+            _smartDevices.ReplaceOne(filter, device);
         }
     }
 }
