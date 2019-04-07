@@ -3,11 +3,11 @@ using SmartHouse_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace SmartHouse_API.Controllers
 {
-    public class SmartDevicesController : Controller
+    public class SmartDevicesController : ApiController
     {
         private IDbOperative _context;
 
@@ -17,6 +17,7 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetAllSmartDevices")]
         public List<SmartDevice> GetAllSmartDevices()
         {
             List<SmartDevice> SmartDevicesList = _context.GetSmartDevicesCollection().ToList();
@@ -24,19 +25,18 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpPost]
+        [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
         {
             SmartDevice sd = new SmartDevice
             {
-                Type = (Models.Type)Enum.Parse(typeof(Models.Type), type),
+                Type = type,
                 Name = name,
-                State = (Models.State)Enum.Parse(typeof(Models.State), state),
-                Localization = (Models.Localization)Enum.Parse(typeof(Models.Localization), localization),
+                State = state,
+                Localization = localization,
                 Disabled = disabled
             };
-
             _context.AddSmartDeviceToCollection(sd);
         }
-
     }
 }
