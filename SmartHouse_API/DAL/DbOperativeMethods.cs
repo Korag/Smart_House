@@ -22,8 +22,8 @@ namespace SmartHouse_API.DAL
 
         public void AddSmartDeviceToCollection(SmartDevice device)
         {
-            List<SmartDevice> devices = GetSmartDevicesCollection().ToList();
-            devices.Add(device);
+            _smartDevices = GetSmartDevicesMongoCollection();
+            _smartDevices.InsertOne(device);
         }
 
         public IEnumerable<SmartDevice> GetSmartDevicesCollection()
@@ -37,7 +37,7 @@ namespace SmartHouse_API.DAL
             return _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
         }
 
-        public void ChangeSmartDeviceState(SmartDevice device, State state)
+        public void ChangeSmartDeviceState(SmartDevice device, string state)
         {
             GetSmartDevicesMongoCollection();
 

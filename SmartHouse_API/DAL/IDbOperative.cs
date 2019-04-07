@@ -7,7 +7,7 @@ namespace SmartHouse_API.DAL
     {
         IEnumerable<SmartDevice> GetSmartDevicesCollection();
         void AddSmartDeviceToCollection(SmartDevice device);
-        void ChangeSmartDeviceState(SmartDevice device, State state);
+        void ChangeSmartDeviceState(SmartDevice device, string state);
 
     }
 }
