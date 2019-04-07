@@ -16,7 +16,7 @@ public class ApiConnection : MonoBehaviour
 
     private IEnumerator GetDevices()
     {
-        string getmartDevicesApiUrl = "Api_url_here";
+        string getmartDevicesApiUrl = "http://localhost:61635/api/GetAllSmartDevices";
         using (UnityWebRequest www = UnityWebRequest.Get(getmartDevicesApiUrl))
         {
             //www.chunkedTransfer = false;
