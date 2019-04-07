@@ -1,4 +1,5 @@
-﻿public class DeviceModel
+﻿[System.Serializable]
+public class DeviceModel
 {
     public int Id { get; set; }
     public string Type { get; set; }
