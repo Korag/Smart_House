@@ -254,6 +254,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SmartDevicesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\DbContext.cs" />
     <Compile Include="DAL\DbOperativeMethods.cs" />
@@ -334,6 +335,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SmartDevices\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
