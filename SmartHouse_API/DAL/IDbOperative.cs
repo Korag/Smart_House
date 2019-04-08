@@ -11,5 +11,6 @@ namespace SmartHouse_API.DAL
         void AddSmartDeviceToCollection(SmartDevice device);
         void ChangeSmartDeviceState(SmartDevice device, string state);
         SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
     }
 }
