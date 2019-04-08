@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class JsonHelper
 {
@@ -9,7 +10,7 @@ public class JsonHelper
         return wrapper.array;
     }
 
-    [System.Serializable]
+    [Serializable]
     private class Wrapper<T>
     {
         public T[] array;
