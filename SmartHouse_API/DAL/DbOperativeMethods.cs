@@ -49,11 +49,16 @@ namespace SmartHouse_API.DAL
 
         public SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id)
         {
-            GetSmartDevicesMongoCollection();
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, id);
-
-            SmartDevice sd = _smartDevices.Find<SmartDevice>(filter).FirstOrDefault();
+            SmartDevice sd = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).FirstOrDefault();
             return sd;
+        }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Name, name);
+            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            return smartDevices;
         }
     }
 }

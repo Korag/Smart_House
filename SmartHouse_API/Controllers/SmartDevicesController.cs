@@ -26,12 +26,20 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
-        [Route("api/GetAllSmartDevices/{id}")]
+        [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
         {
             ObjectId _id = ObjectId.Parse(id);
             SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
             return sd;
+        }
+
+        [HttpGet]
+        [Route("api/GetAllSmartDevicesWithSameName")]
+        public List<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        {
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameName(name).ToList();
+            return SmartDevicesList;
         }
 
         [HttpPost]

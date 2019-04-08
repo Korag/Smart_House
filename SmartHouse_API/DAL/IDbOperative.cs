@@ -7,6 +7,7 @@ namespace SmartHouse_API.DAL
     public interface IDbOperative
     {
         IEnumerable<SmartDevice> GetSmartDevicesCollection();
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name);
         void AddSmartDeviceToCollection(SmartDevice device);
         void ChangeSmartDeviceState(SmartDevice device, string state);
         SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id);
