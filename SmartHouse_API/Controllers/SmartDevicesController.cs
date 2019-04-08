@@ -1,4 +1,5 @@
-﻿using SmartHouse_API.DAL;
+﻿using MongoDB.Bson;
+using SmartHouse_API.DAL;
 using SmartHouse_API.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,15 @@ namespace SmartHouse_API.Controllers
         {
             List<SmartDevice> SmartDevicesList = _context.GetSmartDevicesCollection().ToList();
             return SmartDevicesList;
+        }
+
+        [HttpGet]
+        [Route("api/GetAllSmartDevices/{id}")]
+        public SmartDevice GetSingleSmartDevice(string id)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+            return sd;
         }
 
         [HttpPost]

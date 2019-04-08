@@ -1,4 +1,5 @@
 ﻿using Certification_System.DAL;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartHouse_API.Models;
 using System;
@@ -44,6 +45,15 @@ namespace SmartHouse_API.DAL
             var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
             device.State = state;
             _smartDevices.ReplaceOne(filter, device);
+        }
+
+        public SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id)
+        {
+            GetSmartDevicesMongoCollection();
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, id);
+
+            SmartDevice sd = _smartDevices.Find<SmartDevice>(filter).FirstOrDefault();
+            return sd;
         }
     }
 }
