@@ -1,4 +1,5 @@
 ﻿using Certification_System.DAL;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartHouse_API.Models;
 using System;
@@ -22,8 +23,8 @@ namespace SmartHouse_API.DAL
 
         public void AddSmartDeviceToCollection(SmartDevice device)
         {
-            List<SmartDevice> devices = GetSmartDevicesCollection().ToList();
-            devices.Add(device);
+            _smartDevices = GetSmartDevicesMongoCollection();
+            _smartDevices.InsertOne(device);
         }
 
         public IEnumerable<SmartDevice> GetSmartDevicesCollection()
@@ -37,13 +38,27 @@ namespace SmartHouse_API.DAL
             return _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
         }
 
-        public void ChangeSmartDeviceState(SmartDevice device, State state)
+        public void ChangeSmartDeviceState(SmartDevice device, string state)
         {
             GetSmartDevicesMongoCollection();
 
             var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
             device.State = state;
             _smartDevices.ReplaceOne(filter, device);
+        }
+
+        public SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id)
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, id);
+            SmartDevice sd = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).FirstOrDefault();
+            return sd;
+        }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Name, name);
+            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            return smartDevices;
         }
     }
 }

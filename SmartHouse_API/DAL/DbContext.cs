@@ -10,7 +10,7 @@ namespace Certification_System.DAL
         public DbContext()
         {
             string _user = "Admin";
-            string _password = "************";
+            string _password = "SxJtm8xGu4bd5de";
             string _database = "smarthouse";
 
             string _connectionstring = $"mongodb://{_user}:{_password}@ds040309.mlab.com:40309/{_database}";
