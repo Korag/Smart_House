@@ -67,5 +67,12 @@ namespace SmartHouse_API.DAL
             List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
             return smartDevices;
         }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization)
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Localization, localization);
+            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            return smartDevices;
+        }
     }
 }
