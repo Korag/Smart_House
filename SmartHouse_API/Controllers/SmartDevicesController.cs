@@ -1,7 +1,6 @@
 ﻿using MongoDB.Bson;
 using SmartHouse_API.DAL;
 using SmartHouse_API.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -12,9 +11,9 @@ namespace SmartHouse_API.Controllers
     {
         private IDbOperative _context;
 
-        public SmartDevicesController()
+        public SmartDevicesController(IDbOperative context)
         {
-            _context = new DbOperativeMethods();
+            _context = context;
         }
 
         [HttpGet]
