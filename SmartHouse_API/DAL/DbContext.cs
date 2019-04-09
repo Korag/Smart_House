@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace Certification_System.DAL
+namespace SmartHouse_API.DAL
 {
     public class DbContext
     {

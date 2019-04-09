@@ -1,5 +1,4 @@
-﻿using Certification_System.DAL;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartHouse_API.Models;
 using System;
@@ -16,9 +15,9 @@ namespace SmartHouse_API.DAL
 
         private IMongoCollection<SmartDevice> _smartDevices { get; set; }
 
-        public DbOperativeMethods()
+        public DbOperativeMethods(DbContext context)
         {
-            _context = new DbContext();
+            _context = context;
         }
 
         public void AddSmartDeviceToCollection(SmartDevice device)

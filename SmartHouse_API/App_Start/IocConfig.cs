@@ -13,6 +13,7 @@ namespace SmartHouse_API.App_Start
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<DbOperativeMethods>().As<IDbOperative>().InstancePerRequest();
+            builder.RegisterType<DbContext>().AsSelf().InstancePerRequest();
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
