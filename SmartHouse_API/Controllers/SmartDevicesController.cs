@@ -58,6 +58,14 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        [HttpGet]
+        [Route("api/GetAllSmartDevicesWhichAreDisabled")]
+        public List<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
+        {
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWhichAreDisabled().ToList();
+            return SmartDevicesList;
+        }
+
         [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)

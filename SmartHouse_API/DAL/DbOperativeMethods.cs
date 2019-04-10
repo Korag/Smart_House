@@ -73,5 +73,12 @@ namespace SmartHouse_API.DAL
             List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
             return smartDevices;
         }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
+            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            return smartDevices;
+        }
     }
 }
