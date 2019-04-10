@@ -13,8 +13,6 @@ namespace SmartHouse_API.DAL
         private DbContext _context;
         private string _smartDeviceCollName = "SmartDevices";
 
-        private IMongoCollection<SmartDevice> _smartDevices { get; set; }
-
         public DbOperativeMethods(DbContext context)
         {
             _context = context;
@@ -22,13 +20,13 @@ namespace SmartHouse_API.DAL
 
         public void AddSmartDeviceToCollection(SmartDevice device)
         {
-            _smartDevices = GetSmartDevicesMongoCollection();
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             _smartDevices.InsertOne(device);
         }
 
         public IEnumerable<SmartDevice> GetSmartDevicesCollection()
         {
-            GetSmartDevicesMongoCollection();
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             return _smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
@@ -40,7 +38,7 @@ namespace SmartHouse_API.DAL
 
         public void ChangeSmartDeviceState(SmartDevice device, string state)
         {
-            GetSmartDevicesMongoCollection();
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
 
             var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
             device.State = state;
