@@ -66,6 +66,15 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        [HttpGet]
+        [Route("api/CheckIfSingleSmartDeviceIsDisabled")]
+        public bool CheckIfSingleSmartDeviceIsDisabled(string id)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+            return sd.Disabled;
+        }
+
         [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
