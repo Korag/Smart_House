@@ -15,5 +15,6 @@ namespace SmartHouse_API.DAL
         IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);
         IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
         void SmartDeviceSwitchOne(SmartDevice sd);
+        void DeleteSmartDeviceFromCollection(ObjectId id);
     }
 }

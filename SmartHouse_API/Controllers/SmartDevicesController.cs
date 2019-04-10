@@ -101,5 +101,13 @@ namespace SmartHouse_API.Controllers
             };
             _context.AddSmartDeviceToCollection(sd);
         }
+
+        [HttpPost]
+        [Route("api/DeleteSmartDeviceFromCollection")]
+        public void DeleteSmartDevice(string id)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            _context.DeleteSmartDeviceFromCollection(_id);
+        }
     }
 }
