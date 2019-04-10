@@ -34,7 +34,8 @@ namespace SmartHouse_API.DAL
 
         private IMongoCollection<SmartDevice> GetSmartDevicesMongoCollection()
         {
-            return _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            return _smartDevices;
         }
 
         public void ChangeSmartDeviceState(SmartDevice device, string state)
@@ -79,6 +80,15 @@ namespace SmartHouse_API.DAL
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
             List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
             return smartDevices;
+        }
+
+        public void SmartDeviceSwitchOne(SmartDevice sd)
+        {
+            sd.Disabled = false;
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            _smartDevices.ReplaceOne(filter, sd);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace SmartHouse_API.DAL
         IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
         IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);
         IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
+        void SmartDeviceSwitchOne(SmartDevice sd);
     }
 }
