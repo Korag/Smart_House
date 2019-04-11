@@ -110,5 +110,13 @@ namespace SmartHouse_API.DAL
             sd.Localization = localization;
             _smartDevices.ReplaceOne(filter, sd);
         }
+
+        public void SetTypeOfSingleSmartDevice(SmartDevice sd, string type)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.Type = type;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
     }
 }
