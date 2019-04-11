@@ -17,5 +17,6 @@ namespace SmartHouse_API.DAL
         void SmartDeviceSwitchOne(SmartDevice sd);
         void DeleteSmartDeviceFromCollection(ObjectId id);
         void SetStateOfSingleSmartDevice(SmartDevice sd, string state);
+        void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization);
     }
 }
