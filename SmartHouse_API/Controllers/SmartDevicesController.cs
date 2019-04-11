@@ -76,6 +76,15 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetStateOfSingleSmartDevice")]
+        public string GetStateOfSingleSmartDevice(string id)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+            return sd.State;
+        }
+
+        [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabledAndSwitchOn")]
         public void CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(string id)
         {
