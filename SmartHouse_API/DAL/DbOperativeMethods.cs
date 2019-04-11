@@ -118,5 +118,13 @@ namespace SmartHouse_API.DAL
             sd.Type = type;
             _smartDevices.ReplaceOne(filter, sd);
         }
+
+        public void SetNameOfSingleSmartDevice(SmartDevice sd, string name)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.Name = name;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
     }
 }
