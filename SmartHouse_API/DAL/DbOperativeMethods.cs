@@ -94,5 +94,13 @@ namespace SmartHouse_API.DAL
             IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
             _smartDevices.DeleteOne<SmartDevice>(x => x.Id == id);
         }
+
+        public void SetStateOfSingleSmartDevice(SmartDevice sd, string state)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.State = state;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
     }
 }

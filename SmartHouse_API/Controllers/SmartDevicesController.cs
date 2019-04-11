@@ -97,6 +97,15 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpPost]
+        [Route("api/SetStateOfSingleSmartDevice")]
+        public void SetStateOfSingleSmartDevice(string id, string state)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+            _context.SetStateOfSingleSmartDevice(sd, state);
+        }
+
+        [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
         {

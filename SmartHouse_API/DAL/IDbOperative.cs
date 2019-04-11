@@ -16,5 +16,6 @@ namespace SmartHouse_API.DAL
         IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
         void SmartDeviceSwitchOne(SmartDevice sd);
         void DeleteSmartDeviceFromCollection(ObjectId id);
+        void SetStateOfSingleSmartDevice(SmartDevice sd, string state);
     }
 }
