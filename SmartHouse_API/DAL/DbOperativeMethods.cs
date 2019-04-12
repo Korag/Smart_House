@@ -76,11 +76,32 @@ namespace SmartHouse_API.DAL
 
         #region CollectionOfDevices
 
-        public IEnumerable<SmartDevice> GetSmartDevicesCollection()
+        public IEnumerable<SmartDevice> GetSmartDevicesCollection(string propertyName)
         {
-            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
-            return _smartDevices.AsQueryable<SmartDevice>().ToList();
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(x => true).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
+            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            return smartDevices;
+        }
+
+        public IEnumerable<SmartDevice> OrderSmartDevices(IEnumerable<SmartDevice> collection, string propertyName)
+        {
+            //IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
+
+            return collection.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
+        }
+
+        #endregion
+
+
+        #region DepreciatedGetters
 
         public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name)
         {
@@ -102,29 +123,12 @@ namespace SmartHouse_API.DAL
             List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
             return smartDevices;
         }
-
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
-        {
-            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
-        }
-
-        public IEnumerable<SmartDevice> OrderSmartDevices(string propertyName)
-        {
-            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
-            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
-
-            return _smartDevices.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
-        }
-
         #endregion
-
 
         #region DepreciatedSetters
         public void SetStateOfSingleSmartDevice(SmartDevice sd, string state)
         {
-            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
             sd.State = state;
             _smartDevices.ReplaceOne(filter, sd);
@@ -132,7 +136,7 @@ namespace SmartHouse_API.DAL
 
         public void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization)
         {
-            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
             sd.Localization = localization;
             _smartDevices.ReplaceOne(filter, sd);
@@ -140,7 +144,7 @@ namespace SmartHouse_API.DAL
 
         public void SetTypeOfSingleSmartDevice(SmartDevice sd, string type)
         {
-            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
             sd.Type = type;
             _smartDevices.ReplaceOne(filter, sd);
@@ -148,7 +152,7 @@ namespace SmartHouse_API.DAL
 
         public void SetNameOfSingleSmartDevice(SmartDevice sd, string name)
         {
-            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
             sd.Name = name;
             _smartDevices.ReplaceOne(filter, sd);

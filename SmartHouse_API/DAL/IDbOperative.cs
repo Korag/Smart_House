@@ -6,16 +6,18 @@ namespace SmartHouse_API.DAL
 {
     public interface IDbOperative
     {
-        IEnumerable<SmartDevice> GetSmartDevicesCollection();
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name);
+        IEnumerable<SmartDevice> GetSmartDevicesCollection(string propertyName);
         void AddSmartDeviceToCollection(SmartDevice device);
         void ChangeSmartDeviceState(SmartDevice device, string state);
         SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
         void SmartDeviceSwitchOne(SmartDevice sd);
         void DeleteSmartDeviceFromCollection(ObjectId id);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
+        #region DepreciatedGetters
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name);
+        #endregion
         #region DepreciatedSetters
         void SetStateOfSingleSmartDevice(SmartDevice sd, string state);
         void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization);
@@ -24,6 +26,5 @@ namespace SmartHouse_API.DAL
 
         #endregion
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
-        IEnumerable<SmartDevice> OrderSmartDevices(string propertyName);
     }
 }
