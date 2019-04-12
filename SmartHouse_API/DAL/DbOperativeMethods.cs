@@ -83,11 +83,12 @@ namespace SmartHouse_API.DAL
             return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
         public IEnumerable<SmartDevice> OrderSmartDevices(IEnumerable<SmartDevice> collection, string propertyName)

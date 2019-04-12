@@ -12,7 +12,7 @@ namespace SmartHouse_API.DAL
         SmartDevice GetSingleSmartDeviceFromCollection(ObjectId id);
         void SmartDeviceSwitchOne(SmartDevice sd);
         void DeleteSmartDeviceFromCollection(ObjectId id);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
+        IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName);
         #region DepreciatedGetters
         IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
         IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);

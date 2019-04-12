@@ -104,9 +104,9 @@ namespace SmartHouse_API.Controllers
 
         [HttpGet]
         [Route("api/GetAllSmartDevicesWhichAreDisabled")]
-        public List<SmartDevice> GetAllSmartDevicesWhichAreDisabled()
+        public List<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName)
         {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWhichAreDisabled().ToList();
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWhichAreDisabled(propertyName).ToList();
             return SmartDevicesList;
         }
 
