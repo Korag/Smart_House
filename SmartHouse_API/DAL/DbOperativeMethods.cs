@@ -136,12 +136,12 @@ namespace SmartHouse_API.DAL
 
             _smartDevices.ReplaceOne(filter, sd);
         }
-        public IEnumerable<SmartDevice> OrderSmartDevices(SmartDevice sd, string propertyName)
+        public IEnumerable<SmartDevice> OrderSmartDevices(string propertyName)
         {
             IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
             PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(SmartDevice)).Find(propertyName, true);
 
-            return _smartDevices.AsQueryable<SmartDevice>().OrderBy(x => prop.GetValue(x));
+            return _smartDevices.AsQueryable().OrderBy(x => prop.GetValue(x));
 
         }
     }
