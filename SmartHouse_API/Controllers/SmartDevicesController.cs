@@ -110,11 +110,19 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        [HttpGet]
+        [Route("api/GetCollectionOfSmartDevicesWithSameProperty")]
+        public List<SmartDevice> GetCollectionOfSingleSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder)
+        {
+            List<SmartDevice> SmartDevicesList = _context.GetCollectionOfSmartDevicesWithSameProperty(propertyName, propertyValue, propertyOrder).ToList();
+            return SmartDevicesList;
+        }
+
         #endregion
 
         #region DepreciatedGetteresOfCollection
 
-        [HttpGet]
+       [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameName")]
         public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {

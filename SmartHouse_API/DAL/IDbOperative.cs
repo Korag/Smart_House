@@ -26,5 +26,6 @@ namespace SmartHouse_API.DAL
 
         #endregion
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
+        IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder);
     }
 }

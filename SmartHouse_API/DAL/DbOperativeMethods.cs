@@ -99,6 +99,15 @@ namespace SmartHouse_API.DAL
             return collection.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
         }
 
+        public IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder)
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(propertyName, propertyValue);
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyOrder);
+
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
+        }
+
         #endregion
 
 
