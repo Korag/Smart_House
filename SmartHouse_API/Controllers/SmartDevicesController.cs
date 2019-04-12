@@ -133,6 +133,29 @@ namespace SmartHouse_API.Controllers
             _context.SetNameOfSingleSmartDevice(sd, name);
         }
 
+
+        [HttpPost]
+        [Route("api/SetSpecificPropertyOfSingleSmartDevice")]
+        public void SetSpecificPropertyOfSingleSmartDevice(string id, string propertyName, string propertyValue)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+
+            _context.SetPropertyOfSingleSmartDevice(sd, propertyName, propertyValue);
+        }
+
+
+        [HttpPost]
+        [Route("api/OrderSmartDevicesBySpecificProperty")]
+        public IEnumerable<SmartDevice> OrderSmartDevicesBySpecificProperty(string id, string propertyName)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+
+            return _context.OrderSmartDevices(sd, propertyName);
+        }
+
+
         [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)

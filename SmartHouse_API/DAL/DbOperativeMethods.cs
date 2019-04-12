@@ -1,10 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartHouse_API.Models;
-using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Web;
 
 namespace SmartHouse_API.DAL
 {
@@ -40,7 +39,7 @@ namespace SmartHouse_API.DAL
         {
             IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
 
-            var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, device.Id);
             device.State = state;
             _smartDevices.ReplaceOne(filter, device);
         }
@@ -125,6 +124,25 @@ namespace SmartHouse_API.DAL
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
             sd.Name = name;
             _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        public void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+
+            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(SmartDevice)).Find(propertyName, true);
+            prop.SetValue(sd, propertyValue);
+
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+        public IEnumerable<SmartDevice> OrderSmartDevices(SmartDevice sd, string propertyName)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(SmartDevice)).Find(propertyName, true);
+
+            return _smartDevices.AsQueryable<SmartDevice>().OrderBy(x => prop.GetValue(x));
+
         }
     }
 }

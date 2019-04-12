@@ -20,5 +20,7 @@ namespace SmartHouse_API.DAL
         void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization);
         void SetTypeOfSingleSmartDevice(SmartDevice sd, string type);
         void SetNameOfSingleSmartDevice(SmartDevice sd, string name);
+        void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
+        IEnumerable<SmartDevice> OrderSmartDevices(SmartDevice sd, string propertyName);
     }
 }
