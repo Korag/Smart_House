@@ -104,25 +104,28 @@ namespace SmartHouse_API.DAL
 
         #region DepreciatedGetters
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Name, name);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Type, type);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Localization, localization);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
         #endregion
 

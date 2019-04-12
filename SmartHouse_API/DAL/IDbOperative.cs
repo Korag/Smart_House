@@ -14,9 +14,9 @@ namespace SmartHouse_API.DAL
         void DeleteSmartDeviceFromCollection(ObjectId id);
         IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName);
         #region DepreciatedGetters
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization);
-        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName);
+        IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName);
         #endregion
         #region DepreciatedSetters
         void SetStateOfSingleSmartDevice(SmartDevice sd, string state);

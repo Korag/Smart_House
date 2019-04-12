@@ -116,25 +116,25 @@ namespace SmartHouse_API.Controllers
 
         [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameName")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameName(name).ToList();
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameName(name, propertyName).ToList();
             return SmartDevicesList;
         }
 
         [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameType")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameType(string type)
+        public List<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName)
         {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameType(type).ToList();
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameType(type, propertyName).ToList();
             return SmartDevicesList;
         }
 
         [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameLocalization")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization)
+        public List<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName)
         {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameLocalization(localization).ToList();
+            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameLocalization(localization, propertyName).ToList();
             return SmartDevicesList;
         }
 
