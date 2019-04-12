@@ -2,7 +2,6 @@
 using MongoDB.Driver;
 using SmartHouse_API.Models;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace SmartHouse_API.DAL
@@ -131,7 +130,7 @@ namespace SmartHouse_API.DAL
             IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
 
-            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(SmartDevice)).Find(propertyName, true);
+            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
             prop.SetValue(sd, propertyValue);
 
             _smartDevices.ReplaceOne(filter, sd);
@@ -139,9 +138,9 @@ namespace SmartHouse_API.DAL
         public IEnumerable<SmartDevice> OrderSmartDevices(string propertyName)
         {
             IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
-            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(SmartDevice)).Find(propertyName, true);
+            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
 
-            return _smartDevices.AsQueryable().OrderBy(x => prop.GetValue(x));
+            return _smartDevices.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
 
         }
     }

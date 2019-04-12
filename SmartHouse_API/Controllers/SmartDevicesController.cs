@@ -147,9 +147,9 @@ namespace SmartHouse_API.Controllers
 
         [HttpPost]
         [Route("api/OrderSmartDevicesBySpecificProperty")]
-        public IEnumerable<SmartDevice> OrderSmartDevicesBySpecificProperty(string propertyName)
+        public List<SmartDevice> OrderSmartDevicesBySpecificProperty(string propertyName)
         {
-            return _context.OrderSmartDevices(propertyName);
+            return _context.OrderSmartDevices(propertyName).ToList();
         }
 
 
