@@ -96,6 +96,8 @@ namespace SmartHouse_API.Controllers
             }
         }
 
+        #region DepreciatedPostSettersOfSingleProperty
+
         [HttpPost]
         [Route("api/SetStateOfSingleSmartDevice")]
         public void SetStateOfSingleSmartDevice(string id, string state)
@@ -133,6 +135,7 @@ namespace SmartHouse_API.Controllers
             _context.SetNameOfSingleSmartDevice(sd, name);
         }
 
+        #endregion
 
         [HttpPost]
         [Route("api/SetSpecificPropertyOfSingleSmartDevice")]
@@ -151,7 +154,6 @@ namespace SmartHouse_API.Controllers
         {
             return _context.OrderSmartDevices(propertyName).ToList();
         }
-
 
         [HttpPost]
         [Route("api/AddSmartDevice")]

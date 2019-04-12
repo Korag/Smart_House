@@ -16,10 +16,13 @@ namespace SmartHouse_API.DAL
         IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled();
         void SmartDeviceSwitchOne(SmartDevice sd);
         void DeleteSmartDeviceFromCollection(ObjectId id);
+        #region DepreciatedSetters
         void SetStateOfSingleSmartDevice(SmartDevice sd, string state);
         void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization);
         void SetTypeOfSingleSmartDevice(SmartDevice sd, string type);
         void SetNameOfSingleSmartDevice(SmartDevice sd, string name);
+
+        #endregion
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
         IEnumerable<SmartDevice> OrderSmartDevices(string propertyName);
     }
