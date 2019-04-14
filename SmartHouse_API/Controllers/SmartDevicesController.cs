@@ -96,7 +96,7 @@ namespace SmartHouse_API.Controllers
 
         [HttpGet]
         [Route("api/GetAllSmartDevices")]
-        public List<SmartDevice> GetAllSmartDevices(string propertyName = "Id")
+        public List<SmartDevice> GetAllSmartDevices(string propertyName = "Type")
         {
             List<SmartDevice> SmartDevicesList = _context.GetSmartDevicesCollection(propertyName).ToList();
             return SmartDevicesList;
