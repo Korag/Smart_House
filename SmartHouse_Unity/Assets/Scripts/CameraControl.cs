@@ -3,6 +3,7 @@
 public class CameraControl : MonoBehaviour
 {
     public float speed = 5f;
+    public float boarderDistance = 10;
 
     // Start is called before the first frame update
     private void Start()
@@ -13,21 +14,24 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        Vector3 pos = transform.position;
+
+        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - boarderDistance)
         {
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+            pos.z += speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey("s") || Input.mousePosition.y <= boarderDistance)
         {
-            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+            pos.z -= speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey("a") || Input.mousePosition.x <= boarderDistance)
         {
-            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+            pos.x -= speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - boarderDistance)
         {
-            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+            pos.x += speed * Time.deltaTime;
         }
+        transform.position = pos;
     }
 }
