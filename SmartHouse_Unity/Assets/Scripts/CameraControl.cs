@@ -3,7 +3,7 @@
 public class CameraControl : MonoBehaviour
 {
     public float speed = 5f;
-    public float boarderDistance = 10;
+    public float borderDistance = 10;
 
     // Start is called before the first frame update
     private void Start()
@@ -16,19 +16,19 @@ public class CameraControl : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - boarderDistance)
+        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderDistance)
         {
             pos.z += speed * Time.deltaTime;
         }
-        if (Input.GetKey("s") || Input.mousePosition.y <= boarderDistance)
+        if (Input.GetKey("s") || Input.mousePosition.y <= borderDistance)
         {
             pos.z -= speed * Time.deltaTime;
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= boarderDistance)
+        if (Input.GetKey("a") || Input.mousePosition.x <= borderDistance)
         {
             pos.x -= speed * Time.deltaTime;
         }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - boarderDistance)
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderDistance)
         {
             pos.x += speed * Time.deltaTime;
         }
