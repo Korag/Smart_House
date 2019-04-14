@@ -96,7 +96,7 @@ namespace SmartHouse_API.Controllers
 
         [HttpGet]
         [Route("api/GetAllSmartDevices")]
-        public List<SmartDevice> GetAllSmartDevices(string propertyName)
+        public List<SmartDevice> GetAllSmartDevices(string propertyName = "Id")
         {
             List<SmartDevice> SmartDevicesList = _context.GetSmartDevicesCollection(propertyName).ToList();
             return SmartDevicesList;
@@ -122,7 +122,7 @@ namespace SmartHouse_API.Controllers
 
         #region DepreciatedGetteresOfCollection
 
-       [HttpGet]
+        [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameName")]
         public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {
