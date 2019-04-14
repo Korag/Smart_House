@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouse_API", "SmartHouse_API\SmartHouse_API.csproj", "{8F50BEC8-66A9-403C-8D6E-3CC2ED31FF32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouse_API.UnitTests", "SmartHouse_API.UnitTests\SmartHouse_API.UnitTests.csproj", "{779C816A-D610-4969-A3FA-0CC172D9B8C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8F50BEC8-66A9-403C-8D6E-3CC2ED31FF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F50BEC8-66A9-403C-8D6E-3CC2ED31FF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F50BEC8-66A9-403C-8D6E-3CC2ED31FF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779C816A-D610-4969-A3FA-0CC172D9B8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779C816A-D610-4969-A3FA-0CC172D9B8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779C816A-D610-4969-A3FA-0CC172D9B8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779C816A-D610-4969-A3FA-0CC172D9B8C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
