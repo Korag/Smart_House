@@ -6,21 +6,30 @@ using SmartHouse_API.DAL;
 
 namespace SmartHouse_API.UnitTests
 {
+
+
     [TestFixture]
     public class SmartDevicesControllerTests
     {
+        private SmartDevicesController _controller;
+        private Mock<IDbOperative> _contextDbMock;
+        private ObjectId _deviceId;
+        [SetUp]
+        public void SetUp()
+        {
+            _contextDbMock = new Mock<IDbOperative>();
+            _controller = new SmartDevicesController(_contextDbMock.Object);
+            //5caa438add8c6316e4b491cc is random Id
+            _deviceId = ObjectId.Parse("5caa438add8c6316e4b491cc");
+        }
+
         [Test]
         public void CheckIfSingleSmartDeviceIsDisabled_WhenThereIsADisabledDevice_ReturnItsState()
         {
-            var deviceId = ObjectId.Parse("5caa438add8c6316e4b491cc");
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", Disabled = true });
 
-            var contextDbMock = new Mock<IDbOperative>();
-            contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(deviceId))
-                .Returns(new Models.SmartDevice { Id = deviceId, Name = "DeviceName", Disabled = true });
-
-            SmartDevicesController controller = new SmartDevicesController(contextDbMock.Object);
-
-            var result = controller.CheckIfSingleSmartDeviceIsDisabled(deviceId.ToString());
+            var result = _controller.CheckIfSingleSmartDeviceIsDisabled(_deviceId.ToString());
 
             Assert.That(result, Is.EqualTo(true));
         }
@@ -28,31 +37,23 @@ namespace SmartHouse_API.UnitTests
         [Test]
         public void CheckIfSingleSmartDeviceIsDisabled_WhenThereIsNotADisabledDevice_ReturnItsState()
         {
-            var deviceId = ObjectId.Parse("5caa438add8c6316e4b491cc");
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", Disabled = false });
 
-            var contextDbMock = new Mock<IDbOperative>();
-            contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(deviceId))
-                .Returns(new Models.SmartDevice { Id = deviceId, Name = "DeviceName", Disabled = false });
-
-            SmartDevicesController controller = new SmartDevicesController(contextDbMock.Object);
-
-            var result = controller.CheckIfSingleSmartDeviceIsDisabled(deviceId.ToString());
+            var result = _controller.CheckIfSingleSmartDeviceIsDisabled(_deviceId.ToString());
 
             Assert.That(result, Is.EqualTo(false));
         }
 
         [Test]
-        public void CheckIfSingleSmartDeviceIsDisabled_WhenIdIsWrong_ThrowException()
+        public void CheckIfSingleSmartDeviceIsDisabled_WhenIdIsWrong_ThrowNullReferenceExceptionException()
         {
-            var deviceId = ObjectId.Parse("5caa438add8c6316e4b491cd");
+            string wrongId = "5dda438add8c6316e4b491cc";
 
-            var contextDbMock = new Mock<IDbOperative>();
-            contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(new ObjectId("5dda438add8c6316e4b491cc")))
-                .Returns(new Models.SmartDevice { Id = new ObjectId("5dda438add8c6316e4b491cc"), Name = "DeviceName", Disabled = true });
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", Disabled = true });
 
-            SmartDevicesController controller = new SmartDevicesController(contextDbMock.Object);
-
-            Assert.That(() => controller.CheckIfSingleSmartDeviceIsDisabled(deviceId.ToString()),
+            Assert.That(() => _controller.CheckIfSingleSmartDeviceIsDisabled(wrongId),
                 Throws.TypeOf<System.NullReferenceException>());
         }
     }
