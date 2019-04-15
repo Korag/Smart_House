@@ -1279,6 +1279,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705951123}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
+=======
 --- !u!114 &1705951128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7520c720a99994fa85193780120f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devices: {fileID: 0}
+>>>>>>> e6852f0f761e3435324bc11b9fefd4a81b743beb
 --- !u!1 &1738331249
 GameObject:
   m_ObjectHideFlags: 0

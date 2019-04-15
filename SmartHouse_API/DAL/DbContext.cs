@@ -1,16 +1,16 @@
 ﻿using MongoDB.Driver;
 
-namespace Certification_System.DAL
+namespace SmartHouse_API.DAL
 {
     public class DbContext
-    { 
+    {
         private MongoClient _mongoClient;
         public IMongoDatabase db;
 
         public DbContext()
         {
             string _user = "Admin";
-            string _password = "nB645MmKdHKc9CH";
+            string _password = "vg8Jj6GPhnqS8Kf";
             string _database = "smarthouse";
 
             string _connectionstring = $"mongodb://{_user}:{_password}@ds040309.mlab.com:40309/{_database}";

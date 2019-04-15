@@ -1,11 +1,8 @@
-﻿using Certification_System.DAL;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartHouse_API.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace SmartHouse_API.DAL
 {
@@ -14,35 +11,30 @@ namespace SmartHouse_API.DAL
         private DbContext _context;
         private string _smartDeviceCollName = "SmartDevices";
 
-        private IMongoCollection<SmartDevice> _smartDevices { get; set; }
-
-        public DbOperativeMethods()
+        public DbOperativeMethods(DbContext context)
         {
-            _context = new DbContext();
-        }
-
-        public void AddSmartDeviceToCollection(SmartDevice device)
-        {
-            _smartDevices = GetSmartDevicesMongoCollection();
-            _smartDevices.InsertOne(device);
-        }
-
-        public IEnumerable<SmartDevice> GetSmartDevicesCollection()
-        {
-            GetSmartDevicesMongoCollection();
-            return _smartDevices.AsQueryable<SmartDevice>().ToList();
+            _context = context;
         }
 
         private IMongoCollection<SmartDevice> GetSmartDevicesMongoCollection()
         {
-            return _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            return _smartDevices;
+        }
+
+        #region SingleDevice
+
+        public void AddSmartDeviceToCollection(SmartDevice device)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+            _smartDevices.InsertOne(device);
         }
 
         public void ChangeSmartDeviceState(SmartDevice device, string state)
         {
-            GetSmartDevicesMongoCollection();
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
 
-            var filter = Builders<SmartDevice>.Filter.Eq(x=> x.Id, device.Id);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, device.Id);
             device.State = state;
             _smartDevices.ReplaceOne(filter, device);
         }
@@ -54,25 +46,131 @@ namespace SmartHouse_API.DAL
             return sd;
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name)
+        public void SmartDeviceSwitchOne(SmartDevice sd)
+        {
+            sd.Disabled = false;
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        public void DeleteSmartDeviceFromCollection(ObjectId id)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            _smartDevices.DeleteOne<SmartDevice>(x => x.Id == id);
+        }
+
+        public void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+
+            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
+            prop.SetValue(sd, propertyValue);
+
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        #endregion
+
+        #region CollectionOfDevices
+
+        public IEnumerable<SmartDevice> GetSmartDevicesCollection(string propertyName = "Name")
+        {
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(x => true).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
+        }
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName = "Name")
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
+        }
+
+        public IEnumerable<SmartDevice> OrderSmartDevices(IEnumerable<SmartDevice> collection, string propertyName = "Name")
+        {
+            //IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
+            System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
+
+            return collection.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
+        }
+
+        public IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder = "Name")
+        {
+            var filter = Builders<SmartDevice>.Filter.Eq(propertyName, propertyValue);
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyOrder);
+
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
+        }
+
+        #endregion
+
+
+        #region DepreciatedGetters
+
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Name, name);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Type, type);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName)
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Localization, localization);
-            List<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
-            return smartDevices;
+            IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
+            smartDevices = OrderSmartDevices(smartDevices, propertyName);
+            return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
+        #endregion
+
+        #region DepreciatedSetters
+        public void SetStateOfSingleSmartDevice(SmartDevice sd, string state)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.State = state;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        public void SetLocalizationOfSingleSmartDevice(SmartDevice sd, string localization)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.Localization = localization;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        public void SetTypeOfSingleSmartDevice(SmartDevice sd, string type)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.Type = type;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+
+        public void SetNameOfSingleSmartDevice(SmartDevice sd, string name)
+        {
+            IMongoCollection<SmartDevice> _smartDevices = GetSmartDevicesMongoCollection();
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, sd.Id);
+            sd.Name = name;
+            _smartDevices.ReplaceOne(filter, sd);
+        }
+        #endregion
+
     }
 }
