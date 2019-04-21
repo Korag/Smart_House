@@ -3,42 +3,45 @@
 public class CameraController : MonoBehaviour
 {
 
-    public float speed = 20f;
-    public float borderPosMouse = 10f;
+    public float speed = 5f;
+    public float borderDistance = 10;
     public Vector2 panLimit;
 
     public float scrollSpeed = 20f;
     public float minY = 20f;
     public float maxY = 120f;
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         Vector3 pos = transform.position;
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderPosMouse)
+        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderDistance)
         {
             pos.z += speed * Time.deltaTime;
         }
-        if (Input.GetKey("s") || Input.mousePosition.y <= borderPosMouse)
+        if (Input.GetKey("s") || Input.mousePosition.y <= borderDistance)
         {
             pos.z -= speed * Time.deltaTime;
         }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderPosMouse)
-        {
-            pos.x += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("a") || Input.mousePosition.x <= borderPosMouse)
+        if (Input.GetKey("a") || Input.mousePosition.x <= borderDistance)
         {
             pos.x -= speed * Time.deltaTime;
         }
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderDistance)
+        {
+            pos.x += speed * Time.deltaTime;
+        }
 
-       float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y -= scroll * scrollSpeed * 100* Time.deltaTime;
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        pos.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
 
         pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
+
 
         transform.position = pos;
     }
