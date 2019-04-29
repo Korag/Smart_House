@@ -26,6 +26,7 @@ public class ActionSelector : MonoBehaviour
     private void OnMouseDown()
     {
         DisplayListOfActions();
+        print("click");
 
         if (isMenuActive)
         {
