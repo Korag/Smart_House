@@ -109,6 +109,13 @@ namespace SmartHouse_API.Controllers
         }
         #endregion
 
+        [HttpPost]
+        [Route("api/DeleteAvailableActionsFromSmartDevice")]
+        public void DeleteAvailableActionsFromSmartDevice(string id, [FromUri] ICollection<string> actionsToDelete)
+        {
+            _context.DeleteAvailableActionsFromSmartDevice(id, actionsToDelete);
+        }
+
         #region CollectionOfSmartDevices
 
         [HttpGet]
