@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 180003237}
   - component: {fileID: 180003236}
   m_Layer: 0
-  m_Name: CameraRotator
+  m_Name: CameraRotatorX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,10 +213,7 @@ MonoBehaviour:
   speed: 20
   rotationSpeed: 40
   borderDistance: 10
-  panLimit: {x: 1000, y: 1000}
   scrollSpeed: 20
-  minY: -100
-  maxY: 1000
   speedH: 2
   speedV: 2
 --- !u!4 &180003237
@@ -227,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180003235}
   m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534669905}
@@ -288,6 +285,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -327,7 +325,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 93.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -359,6 +357,23 @@ Transform:
   m_Father: {fileID: 180003237}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 32.528, y: 219.088, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c407635e5c3b8b844b556db781da007c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minY: 0
+  maxY: 1000
+  panLimit: {x: 1000, y: 1000}
+  ground: {fileID: 180003237}
+  scrollSpeed: 20
 --- !u!1 &758629690
 GameObject:
   m_ObjectHideFlags: 0
