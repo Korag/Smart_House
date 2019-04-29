@@ -7,7 +7,7 @@ public class CameraYRotation : MonoBehaviour
     {
 
     }
-    public float speedV = 2.0f;
+    public float verticalRotationSpeed = 2.0f;
 
     //camera rotation by Y axis
     private void Update()
@@ -17,7 +17,7 @@ public class CameraYRotation : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            XRotation = transform.eulerAngles.x + speedV * Input.GetAxis("Mouse Y");
+            XRotation = transform.eulerAngles.x + verticalRotationSpeed * Input.GetAxis("Mouse Y");
 
             transform.eulerAngles = new Vector3(XRotation, yRotation, 0.0f);
         }
