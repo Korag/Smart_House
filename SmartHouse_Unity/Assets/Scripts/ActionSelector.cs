@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ActionSelector : MonoBehaviour
+public class ActionSelector2 : MonoBehaviour
 {
     // Start is called before the first frame update
     private void Start()
@@ -11,25 +11,16 @@ public class ActionSelector : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit = new RaycastHit();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
 
-                if (hit.transform != null)
-                {
-                    DisplayListOfActions(hit.transform.gameObject);
-
-                }
-
-            }
-        }
     }
 
-    private void DisplayListOfActions(GameObject device)
+    private void OnMouseDown()
     {
-        print(device.name);
+        print(transform.gameObject.name);
+    }
+
+    private void DisplayListOfActions()
+    {
+
     }
 }
