@@ -59,15 +59,17 @@ namespace SmartHouse_API.Controllers
 
         [HttpPost]
         [Route("api/AddSmartDevice")]
-        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
+        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled, [FromUri]ICollection<string> availableActions)
         {
             SmartDevice sd = new SmartDevice
             {
                 Type = type,
                 Name = name,
-                State = state,
                 Localization = localization,
-                Disabled = disabled
+                Disabled = disabled,
+
+                State = state,
+                AvailableActions = availableActions
             };
             _context.AddSmartDeviceToCollection(sd);
         }
