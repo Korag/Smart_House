@@ -38,7 +38,7 @@ public class ApiConnection : MonoBehaviour
                     Debug.Log(jsonResult);
 
                     devices.AddOptions(
-                        devicesFromDatabase.Select(x =>x.Name).ToList()
+                        devicesFromDatabase.Select(x => x.Name).ToList()
                     );
 
                     devices.value = 0;
@@ -46,6 +46,15 @@ public class ApiConnection : MonoBehaviour
             }
         }
     }
+
+    public List<string> GetDeviceActions()
+    {
+        List<string> actions = new List<string>() { "Turn on", "Turn off", "Action3", "Action4" };
+
+
+        return actions;
+    }
+
     private void Update()
     {
 
