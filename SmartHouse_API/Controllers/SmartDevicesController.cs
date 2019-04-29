@@ -92,16 +92,21 @@ namespace SmartHouse_API.Controllers
             _context.SetPropertyOfSingleSmartDevice(sd, propertyName, propertyValue);
         }
 
-
         [HttpGet]
-        [Route("api/AddNewAvailableActionToSmartDevice")]
-        public ICollection<string> AddNewAvailableActionToSmartDevice(string id)
+        [Route("api/GetAllAvailableActionsToSmartDevice")]
+        public ICollection<string> GetAllAvailableActionsToSmartDevice(string id)
         {
             ObjectId _id = ObjectId.Parse(id);
             List<string> availableActions = _context.GetSingleSmartDeviceFromCollection(_id).AvailableActions.ToList();
             return availableActions;
         }
 
+        [HttpPost]
+        [Route("api/AddNewAvailableActionsToSmartDevice")]
+        public void AddNewAvailableActionsToSmartDevice(string id, [FromUri] ICollection<string> newAvailableActions)
+        {
+            _context.AddNewAvailableActionsToSmartDevice(id, newAvailableActions);
+        }
         #endregion
 
         #region CollectionOfSmartDevices
