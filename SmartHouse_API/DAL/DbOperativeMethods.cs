@@ -86,6 +86,20 @@ namespace SmartHouse_API.DAL
             _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).UpdateOne(filter, update);
         }
 
+        public void DeleteAvailableActionsFromSmartDevice(string id, ICollection<string> actionsToDelete)
+        {
+            SmartDevice smartDevice = GetSingleSmartDeviceFromCollection(ObjectId.Parse(id));
+
+            foreach (var availableAction in actionsToDelete)
+            {
+                smartDevice.AvailableActions.Remove(availableAction);
+            }
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, smartDevice.Id);
+            var update = Builders<SmartDevice>.Update.Set(x => x.AvailableActions, smartDevice.AvailableActions);
+            _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).UpdateOne(filter, update);
+        }
+
         #endregion
 
         #region CollectionOfDevices

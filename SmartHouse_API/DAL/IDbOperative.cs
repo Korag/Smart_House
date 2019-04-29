@@ -28,5 +28,6 @@ namespace SmartHouse_API.DAL
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
         IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder);
         void AddNewAvailableActionsToSmartDevice(string id, ICollection<string> newAvailableActions);
+        void DeleteAvailableActionsFromSmartDevice(string id, ICollection<string> actionsToDelete);
     }
 }
