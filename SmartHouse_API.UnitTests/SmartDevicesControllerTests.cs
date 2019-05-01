@@ -89,5 +89,25 @@ namespace SmartHouse_API.UnitTests
             Assert.That(() => _controller.GetStateOfSingleSmartDevice(wrongId),
                            Throws.TypeOf<System.NullReferenceException>());
         }
+
+        [Test]
+        public void CheckIfSingleSmartDeviceIsDisabledAndSwitchOn_WhenDeviceIsDisabled_DoesNotThrowNullReferenceExceptionException()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", Disabled = true });
+
+            Assert.DoesNotThrow(() => _controller.CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(_deviceId.ToString()));
+        }
+
+        [Test]
+        public void CheckIfSingleSmartDeviceIsDisabledAndSwitchOn_WhenDisabledPropertyIsNull_DoesNotThrowNullReferenceExceptionException()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName"});
+
+            Assert.DoesNotThrow(() => _controller.CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(_deviceId.ToString()));
+        }
+
+
     }
 }
