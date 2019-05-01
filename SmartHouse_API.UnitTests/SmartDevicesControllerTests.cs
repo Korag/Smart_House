@@ -56,5 +56,38 @@ namespace SmartHouse_API.UnitTests
             Assert.That(() => _controller.CheckIfSingleSmartDeviceIsDisabled(wrongId),
                 Throws.TypeOf<System.NullReferenceException>());
         }
+
+        [Test]
+        public void GetStateOfSingleSmartDevice_WhenStateIsNull_DoesNotThrowNullReferenceExceptionException()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", State=null });
+
+
+            Assert.DoesNotThrow(() => _controller.GetStateOfSingleSmartDevice(_deviceId.ToString()));
+        }
+
+        [Test]
+        public void GetStateOfSingleSmartDevice_WhenStateIsNotNull_ReturnItsState()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", State = "TEST" });
+
+            var result = _controller.GetStateOfSingleSmartDevice(_deviceId.ToString());
+
+            Assert.That(result, Is.EqualTo("TEST"));
+        }
+
+        [Test]
+        public void GetStateOfSingleSmartDevice_WhenObjectWithSuchIdDoesNotExists_ThrowNullReferenceExceptionException()
+        {
+            string wrongId = "5dda438add8c6316e4b491cc";
+
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceId))
+                .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName"});
+
+            Assert.That(() => _controller.GetStateOfSingleSmartDevice(wrongId),
+                           Throws.TypeOf<System.NullReferenceException>());
+        }
     }
 }
