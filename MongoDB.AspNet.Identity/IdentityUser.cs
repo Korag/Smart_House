@@ -55,7 +55,7 @@ namespace MongoDB.AspNet.Identity
         /// <summary>
         /// Gets the phone number
         /// </summary>
-        public virtual string PhoneNumber { get; set; }
+        //public virtual string PhoneNumber { get; set; }
 
         /// <summary>
         /// Gets Email address

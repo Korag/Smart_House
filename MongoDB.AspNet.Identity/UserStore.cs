@@ -41,7 +41,7 @@ namespace MongoDB.AspNet.Identity
         /// <summary>
         /// The AspNetUsers collection name
         /// </summary>
-        private const string collectionName = "AspNetUsers";
+        private const string collectionName = "Identity";
 
         /// <summary>
         ///     Gets the database from connection string.
