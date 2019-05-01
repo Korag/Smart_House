@@ -18,6 +18,7 @@ namespace SmartHouse_API.Controllers
 
         #region SingleDevice
 
+        [System.Web.Mvc.Authorize]
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabled")]
         public bool CheckIfSingleSmartDeviceIsDisabled(string id)
