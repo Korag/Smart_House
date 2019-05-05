@@ -20,8 +20,15 @@ public class DeviceState : MonoBehaviour
 
         SetDeviceState();
 
-        InvokeRepeating("UpdateDeviceState", 0f, 5f);  //1s delay, repeat every 1s
+        //InvokeRepeating("UpdateDeviceState", 0f, 5f);  //1s delay, repeat every 1s
         //InvokeRepeating("SetDeviceState", 1f, 1f);  //1s delay, repeat every 1s
+    }
+
+
+    public void ChangeDeviceStateOnDemand(string state)
+    {
+        CurrentState = state;
+        ChangeDeviceState();
     }
 
     private void UpdateDeviceState()
