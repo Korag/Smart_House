@@ -18,6 +18,7 @@ namespace SmartHouse_API.Controllers
 
         #region SingleDevice
 
+        [System.Web.Mvc.Authorize]
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabled")]
         public bool CheckIfSingleSmartDeviceIsDisabled(string id)
@@ -59,15 +60,17 @@ namespace SmartHouse_API.Controllers
 
         [HttpPost]
         [Route("api/AddSmartDevice")]
-        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
+        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled, [FromUri]ICollection<string> availableActions)
         {
             SmartDevice sd = new SmartDevice
             {
                 Type = type,
                 Name = name,
-                State = state,
                 Localization = localization,
-                Disabled = disabled
+                Disabled = disabled,
+
+                State = state,
+                AvailableActions = availableActions
             };
             _context.AddSmartDeviceToCollection(sd);
         }
@@ -90,13 +93,35 @@ namespace SmartHouse_API.Controllers
             _context.SetPropertyOfSingleSmartDevice(sd, propertyName, propertyValue);
         }
 
+        [HttpGet]
+        [Route("api/GetAllAvailableActionsToSmartDevice")]
+        public ICollection<string> GetAllAvailableActionsToSmartDevice(string id)
+        {
+            ObjectId _id = ObjectId.Parse(id);
+            List<string> availableActions = _context.GetSingleSmartDeviceFromCollection(_id).AvailableActions.ToList();
+            return availableActions;
+        }
+
+        [HttpPost]
+        [Route("api/AddNewAvailableActionsToSmartDevice")]
+        public void AddNewAvailableActionsToSmartDevice(string id, [FromUri] ICollection<string> newAvailableActions)
+        {
+            _context.AddNewAvailableActionsToSmartDevice(id, newAvailableActions);
+        }
         #endregion
+
+        [HttpPost]
+        [Route("api/DeleteAvailableActionsFromSmartDevice")]
+        public void DeleteAvailableActionsFromSmartDevice(string id, [FromUri] ICollection<string> actionsToDelete)
+        {
+            _context.DeleteAvailableActionsFromSmartDevice(id, actionsToDelete);
+        }
 
         #region CollectionOfSmartDevices
 
         [HttpGet]
         [Route("api/GetAllSmartDevices")]
-        public List<SmartDevice> GetAllSmartDevices(string propertyName)
+        public List<SmartDevice> GetAllSmartDevices(string propertyName = "Type")
         {
             List<SmartDevice> SmartDevicesList = _context.GetSmartDevicesCollection(propertyName).ToList();
             return SmartDevicesList;
@@ -122,7 +147,7 @@ namespace SmartHouse_API.Controllers
 
         #region DepreciatedGetteresOfCollection
 
-       [HttpGet]
+        [HttpGet]
         [Route("api/GetAllSmartDevicesWithSameName")]
         public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
         {

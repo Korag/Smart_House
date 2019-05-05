@@ -72,18 +72,46 @@ namespace SmartHouse_API.DAL
             _smartDevices.ReplaceOne(filter, sd);
         }
 
+        public void AddNewAvailableActionsToSmartDevice(string id, ICollection<string> newAvailableActions)
+        {
+            SmartDevice smartDevice = GetSingleSmartDeviceFromCollection(ObjectId.Parse(id));
+
+            foreach (var availableAction in newAvailableActions)
+            {
+                smartDevice.AvailableActions.Add(availableAction);
+            }
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, smartDevice.Id);
+            var update = Builders<SmartDevice>.Update.Set(x=> x.AvailableActions, smartDevice.AvailableActions);
+            _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).UpdateOne(filter, update);
+        }
+
+        public void DeleteAvailableActionsFromSmartDevice(string id, ICollection<string> actionsToDelete)
+        {
+            SmartDevice smartDevice = GetSingleSmartDeviceFromCollection(ObjectId.Parse(id));
+
+            foreach (var availableAction in actionsToDelete)
+            {
+                smartDevice.AvailableActions.Remove(availableAction);
+            }
+
+            var filter = Builders<SmartDevice>.Filter.Eq(x => x.Id, smartDevice.Id);
+            var update = Builders<SmartDevice>.Update.Set(x => x.AvailableActions, smartDevice.AvailableActions);
+            _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).UpdateOne(filter, update);
+        }
+
         #endregion
 
         #region CollectionOfDevices
 
-        public IEnumerable<SmartDevice> GetSmartDevicesCollection(string propertyName)
+        public IEnumerable<SmartDevice> GetSmartDevicesCollection(string propertyName = "Name")
         {
             IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(x => true).ToList();
             smartDevices = OrderSmartDevices(smartDevices, propertyName);
             return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName)
+        public IEnumerable<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName = "Name")
         {
             var filter = Builders<SmartDevice>.Filter.Eq(x => x.Disabled, true);
             IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
@@ -91,7 +119,7 @@ namespace SmartHouse_API.DAL
             return smartDevices.AsQueryable<SmartDevice>().ToList();
         }
 
-        public IEnumerable<SmartDevice> OrderSmartDevices(IEnumerable<SmartDevice> collection, string propertyName)
+        public IEnumerable<SmartDevice> OrderSmartDevices(IEnumerable<SmartDevice> collection, string propertyName = "Name")
         {
             //IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
             System.Reflection.PropertyInfo prop = typeof(SmartDevice).GetProperty(propertyName);
@@ -99,7 +127,7 @@ namespace SmartHouse_API.DAL
             return collection.AsQueryable().ToList().OrderBy(x => prop.GetValue(x));
         }
 
-        public IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder)
+        public IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder = "Name")
         {
             var filter = Builders<SmartDevice>.Filter.Eq(propertyName, propertyValue);
             IEnumerable<SmartDevice> smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName).Find<SmartDevice>(filter).ToList();
