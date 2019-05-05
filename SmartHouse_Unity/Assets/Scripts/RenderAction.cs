@@ -5,12 +5,16 @@ using UnityEngine.UI;
 public class RenderAction : MonoBehaviour
 {
     public GameObject prefabButton;
-    public List<string> actions;
+
+    private List<string> actions;
     private GameObject panelWithActions;
+    private ApiConnection api;
     // Start is called before the first frame update
     private void Start()
     {
         panelWithActions = GameObject.Find("PanelWithActions");
+        api = new ApiConnection();
+        actions = new List<string>();
     }
 
     // Update is called once per frame
@@ -18,12 +22,13 @@ public class RenderAction : MonoBehaviour
     {
     }
 
-    public void SetUpList()
+    public void SetUpList(string deviceName)
     {
-        print(actions.Count);
-        print(panelWithActions.name);
+        actions = api.GetDeviceActions(deviceName);
+
         for (int i = 0; i < actions.Count; i++)
         {
+
             GameObject goButton = (GameObject)Instantiate(prefabButton);
             goButton.transform.SetParent(panelWithActions.transform, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);

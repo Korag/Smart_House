@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 188232654}
   - component: {fileID: 188232658}
   m_Layer: 5
-  m_Name: ExtraMenu
+  m_Name: ActionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,8 +387,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 465392278}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &226566242
-SphereCollider:
+--- !u!65 &226566242
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -398,7 +398,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &226566244
 MonoBehaviour:
@@ -421,7 +421,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: 04958a6d3bfed97428516b8f5c2dfb86, type: 3}
       propertyPath: m_Name
-      value: freezer
+      value: "Lod\xF3wka"
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 04958a6d3bfed97428516b8f5c2dfb86, type: 3}
       propertyPath: m_LocalPosition.x
