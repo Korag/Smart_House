@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ActionSelector : MonoBehaviour
 {
     private GameObject menu;
     private RenderAction menuScript;
-    private List<string> actions;
     private bool isMenuActive;
     // Start is called before the first frame update
     private void Start()
     {
-        menuScript = GameObject.Find("ExtraMenu").GetComponent<RenderAction>();
-        menu = GameObject.Find("ExtraMenu");
+
+        menuScript = GameObject.Find("ActionMenu").GetComponent<RenderAction>();
+        menu = GameObject.Find("ActionMenu");
         isMenuActive = false;
         menu.SetActive(isMenuActive);
     }
@@ -25,31 +24,11 @@ public class ActionSelector : MonoBehaviour
 
     private void OnMouseDown()
     {
-        DisplayListOfActions();
-        print("click");
-
-        if (isMenuActive)
-        {
-            SeedListWithActions();
-            menuScript.SetUpList();
-
-
-
-            print(transform.gameObject.name);
-        }
-
+        DisplayMenu();
+        menuScript.SetUpList(name);
     }
 
-
-    private void SeedListWithActions()
-    {
-        ApiConnection api = new ApiConnection();
-        menuScript.actions = api.GetDeviceActions();
-
-
-    }
-
-    private void DisplayListOfActions()
+    private void DisplayMenu()
     {
         if (!isMenuActive)
         {

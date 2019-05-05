@@ -5,12 +5,18 @@ using UnityEngine.UI;
 public class RenderAction : MonoBehaviour
 {
     public GameObject prefabButton;
-    public List<string> actions;
+
+    private List<string> actions;
     private GameObject panelWithActions;
+    private DeviceState deviceState;
+    private ApiConnection api;
+    private string deviceN;
     // Start is called before the first frame update
     private void Start()
     {
         panelWithActions = GameObject.Find("PanelWithActions");
+        api = new ApiConnection();
+        actions = new List<string>();
     }
 
     // Update is called once per frame
@@ -18,10 +24,10 @@ public class RenderAction : MonoBehaviour
     {
     }
 
-    public void SetUpList()
+    public void SetUpList(string deviceName)
     {
-        print(actions.Count);
-        print(panelWithActions.name);
+        actions = api.GetDeviceActions(deviceName);
+        deviceN = deviceName;
         for (int i = 0; i < actions.Count; i++)
         {
             GameObject goButton = (GameObject)Instantiate(prefabButton);
@@ -29,9 +35,16 @@ public class RenderAction : MonoBehaviour
             goButton.transform.localScale = new Vector3(1, 1, 1);
             goButton.GetComponentInChildren<Text>().text = actions[i];
             Button tempButton = goButton.GetComponent<Button>();
-            int tempInt = i;
-            //tempButton.onClick.AddListener(() => ButtonClicked(tempInt));
+            string action = actions[i];
+            tempButton.onClick.AddListener(() => DeviceAction(action));
         }
+    }
+
+    private void DeviceAction(string actionName)
+    {
+        deviceState = GameObject.Find(deviceN).GetComponent<DeviceState>();
+        deviceState.ChangeDeviceStateOnDemand(actionName);
+        print(actionName);
     }
 
 }
