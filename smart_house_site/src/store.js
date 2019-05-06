@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VueResource from 'vue-resource';
 
 Vue.use(Vuex);
+Vue.use(VueResource);
 
 export const store = new Vuex.Store({
     state:{
@@ -17,6 +19,20 @@ export const store = new Vuex.Store({
     getters:{
         menuOptions(state){
             return state.menu;
+        }
+    },
+    mutations:{
+        loadDevices(state, listOfNewDevices){
+            state.listOfDevices = listOfNewDevices;
+        }
+    },
+    actions:{
+        getDevices(context){
+            Vue.http.get('http://localhost:61635/api/GetAllSmartDevices').then(response => {
+                context.commit('loadDevices',response.body);
+            }, response =>{
+                console.log(response);
+            });
         }
     }
 });

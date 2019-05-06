@@ -1,6 +1,6 @@
 <template>
     <div id="menu">
-        <div class="menu" v-for="option in menu" v-bind:key="option.id">
+        <div v-on:click="test" class="menu" v-for="option in menu" v-bind:key="option.id">
             <img :src=option.image>
             <div class="menuText">{{option.name}}</div>
         </div>
@@ -12,6 +12,11 @@ export default {
     computed:{
         menu(){
             return this.$store.getters.menuOptions;
+        }
+    },
+    methods:{
+        test: function(){
+            this.$store.dispatch('getDevices');
         }
     }
 }
