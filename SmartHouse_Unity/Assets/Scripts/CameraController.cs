@@ -3,42 +3,53 @@
 public class CameraController : MonoBehaviour
 {
 
-    public float speed = 20f;
-    public float borderPosMouse = 10f;
-    public Vector2 panLimit;
-
+    public float movementSpeed = 3f;
     public float scrollSpeed = 20f;
-    public float minY = 20f;
-    public float maxY = 120f;
-    // Update is called once per frame
-    void Update()
+    public float horizontalRotationSpeed = 2.0f;
+    private float yRotation;
+    private float xRotation;
+    private void start()
     {
+        yRotation = transform.eulerAngles.y;
+        xRotation = transform.eulerAngles.x;
 
+    }
+    private void Update()
+    {
         Vector3 pos = transform.position;
+        //camera movement using keyes
+        if (Input.GetKey("w"))
+        {
+            pos += transform.forward * (movementSpeed * 10 * Time.deltaTime);
+        }
+        if (Input.GetKey("s"))
+        {
+            pos -= transform.forward * (movementSpeed * 10 * Time.deltaTime);
+        }
+        if (Input.GetKey("a"))
+        {
+            pos -= transform.right * (movementSpeed * 10 * Time.deltaTime);
+        }
+        if (Input.GetKey("d"))
+        {
+            pos += transform.right * (movementSpeed * 10 * Time.deltaTime);
+        }
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - borderPosMouse)
+
+        //camera movement using mpuse
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            pos.z += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("s") || Input.mousePosition.y <= borderPosMouse)
-        {
-            pos.z -= speed * Time.deltaTime;
-        }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - borderPosMouse)
-        {
-            pos.x += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("a") || Input.mousePosition.x <= borderPosMouse)
-        {
-            pos.x -= speed * Time.deltaTime;
+            pos -= transform.right * (movementSpeed * Input.GetAxis("Mouse X"));
+            pos -= transform.forward * (movementSpeed * Input.GetAxis("Mouse Y"));
         }
 
-       float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y -= scroll * scrollSpeed * 100* Time.deltaTime;
+        //camera rotation by X axis
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            yRotation = transform.eulerAngles.y + horizontalRotationSpeed * Input.GetAxis("Mouse X");
 
-        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
-        pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
+            transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
+        }
 
         transform.position = pos;
     }
