@@ -19,6 +19,9 @@ export const store = new Vuex.Store({
     getters:{
         menuOptions(state){
             return state.menu;
+        },
+        getListOfDevices(state){
+            return state.listOfDevices;
         }
     },
     mutations:{
@@ -30,8 +33,6 @@ export const store = new Vuex.Store({
         getDevices(context){
             Vue.http.get('http://localhost:61635/api/GetAllSmartDevices').then(response => {
                 context.commit('loadDevices',response.body);
-            }, response =>{
-                console.log(response);
             });
         }
     }
