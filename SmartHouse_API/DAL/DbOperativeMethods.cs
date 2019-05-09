@@ -10,6 +10,7 @@ namespace SmartHouse_API.DAL
     {
         private DbContext _context;
         private string _smartDeviceCollName = "SmartDevices";
+        private string _localizationsCollName = "Localizations";
 
         public DbOperativeMethods(DbContext context)
         {
@@ -20,6 +21,21 @@ namespace SmartHouse_API.DAL
         {
             IMongoCollection<SmartDevice> _smartDevices = _context.db.GetCollection<SmartDevice>(_smartDeviceCollName);
             return _smartDevices;
+        }
+
+        public ICollection<string> GetLocalizations()
+        {
+            return _context.db.GetCollection<Localization>(_localizationsCollName).AsQueryable().Select(z=> z.Name).ToList();
+        }
+
+        public void AddNewLocalization(string name)
+        {
+            Localization localization = new Localization
+            {
+                Name = name
+            };
+
+            _context.db.GetCollection<Localization>(_localizationsCollName).InsertOne(localization);
         }
 
         #region SingleDevice
