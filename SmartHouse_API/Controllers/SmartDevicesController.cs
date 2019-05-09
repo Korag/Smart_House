@@ -65,6 +65,22 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetTypesOfSmartDevicesWithAvailableActions")]
+        public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
+        {
+            var TypesOfSmartDevicesWithActions = _context.GetTypesOfSmartDevicesWithAvailableActions();
+            return TypesOfSmartDevicesWithActions;
+        }
+
+        [HttpGet]
+        [Route("api/GetAvailableActionsOfSingleTypeSmartDevice")]
+        public ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
+        {
+            var AvailableActions = _context.GetAvailableActionsOfSingleTypeSmartDevice(type);
+            return AvailableActions;
+        }
+
+        [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
         {
