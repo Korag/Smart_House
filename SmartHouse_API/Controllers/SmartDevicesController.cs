@@ -50,6 +50,21 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetAvailableLocalizations")]
+        public ICollection<string> GetAvailableLocalizations()
+        {
+            var Localizations = _context.GetLocalizations();
+            return Localizations;
+        }
+
+        [HttpPost]
+        [Route("api/AddNewLocalization")]
+        public void AddNewLocalization(string name)
+        {
+            _context.AddNewLocalization(name);
+        }
+
+        [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
         {
