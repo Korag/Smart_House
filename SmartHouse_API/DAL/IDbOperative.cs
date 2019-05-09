@@ -31,5 +31,7 @@ namespace SmartHouse_API.DAL
         void DeleteAvailableActionsFromSmartDevice(string id, ICollection<string> actionsToDelete);
         ICollection<string> GetLocalizations();
         void AddNewLocalization(string name);
+        ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions();
+        ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type);
     }
 }
