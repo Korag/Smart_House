@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SmartHouse_API.Controllers;
 using SmartHouse_API.DAL;
+using SmartHouse_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,5 +64,38 @@ namespace SmartHouse_API.UnitTests
         {
             Assert.DoesNotThrow(() => _context.GetAvailableActionsOfSingleTypeSmartDevice("TEST"));
         }
+
+        [Test]
+        public void AddNewPairTypeAvailableActions_WhenAvailableActionsArrayIsNull_CheckIfPairTypeAvailableActionsIsAddedToDatabase()
+        {
+            string type = "TEST";
+
+            _context.AddNewPairTypeAvailableActions(type,null);
+            var result = _context.GetTypes();
+
+            Assert.That(() => result.Contains(type));
+
+            _context.DeletePairTypeAvailableActions(type);
+        }
+
+        [Test]
+        public void AddSmartDeviceToCollection__CheckIfSmartDeviceIsAddedToDatabase()
+        {
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = ObjectId.Parse("5cab1c95187378a2581069cf"),
+                Name = "TEST"
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+            var result = _context.GetSmartDevicesCollection("Name");
+            var addedSmartDevice = result.Where(z => z.Id == smartDevice.Id).FirstOrDefault();
+
+            Assert.That(() => addedSmartDevice != null);
+
+            _context.DeleteSmartDeviceFromCollection(smartDevice.Id);
+        }
+
+        //the same as here but in situation where we create a duplicate of Id
     }
 }
