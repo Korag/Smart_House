@@ -61,7 +61,11 @@ namespace SmartHouse_API.DAL
             _context.db.GetCollection<TypeActions>(_typesActionsCollName).InsertOne(newTypeActions);
         }
 
-     
+        public ICollection<string> GetTypes()
+        {
+            return _context.db.GetCollection<TypeActions>(_typesActionsCollName).AsQueryable().Select(z => z.Type).ToList();
+        }
+
         #region SingleDevice
 
         public void AddSmartDeviceToCollection(SmartDevice device)
