@@ -14,6 +14,5 @@ namespace SmartHouse_API.Models
         public bool Disabled { get; set; }
 
         public string State { get; set; }
-        public ICollection<string> AvailableActions { get; set; }
     }
 }
