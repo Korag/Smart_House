@@ -80,6 +80,13 @@ namespace SmartHouse_API.Controllers
             return AvailableActions;
         }
 
+        [HttpPost]
+        [Route("api/AddNewPairTypeAvailableActions")]
+        public void AddNewPairTypeAvailableActions(string type, [FromUri]ICollection<string> availableActions)
+        {
+            _context.AddNewPairTypeAvailableActions(type, availableActions);
+        }
+
         [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
