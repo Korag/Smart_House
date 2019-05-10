@@ -9,9 +9,8 @@ using System.Collections.Generic;
 namespace SmartHouse_API.UnitTests
 {
 
-
     [TestFixture]
-    public class SmartDevicesControllerTests
+    public class SmartDevicesControllerUnitTests
     {
         private SmartDevicesController _controller;
         private Mock<IDbOperative> _contextDbMock;
