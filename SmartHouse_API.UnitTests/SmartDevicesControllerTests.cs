@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using SmartHouse_API.Controllers;
 using SmartHouse_API.DAL;
+using SmartHouse_API.Models;
 using System.Collections.Generic;
 
 namespace SmartHouse_API.UnitTests
@@ -137,6 +138,23 @@ namespace SmartHouse_API.UnitTests
             Assert.IsEmpty(_controller.GetAvailableLocalizations());
         }
 
-  
+
+        [Test]
+        public void GetTypesOfSmartDevicesWithAvailableActions_WhenDbContainsTypesWithActions_ResultIsNotNull()
+        {
+            _contextDbMock.Setup(x => x.GetTypesOfSmartDevicesWithAvailableActions())
+                .Returns(new List<TypeActions> { new TypeActions {Id= _deviceId, Type="TestType"} });
+
+            Assert.IsNotNull(_controller.GetTypesOfSmartDevicesWithAvailableActions());
+        }
+
+        [Test]
+        public void GetTypesOfSmartDevicesWithAvailableActions_WhenDbDoesntContainsLocalizations_ResultIsEmpty()
+        {
+            _contextDbMock.Setup(x => x.GetTypesOfSmartDevicesWithAvailableActions())
+                .Returns(new List<TypeActions>());
+
+            Assert.IsEmpty(_controller.GetTypesOfSmartDevicesWithAvailableActions());
+        }
     }
 }
