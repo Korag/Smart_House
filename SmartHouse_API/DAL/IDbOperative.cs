@@ -33,5 +33,6 @@ namespace SmartHouse_API.DAL
         void AddNewLocalization(string name);
         ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions();
         ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type);
+        void AddNewPairTypeAvailableActions(string type, ICollection<string> availableActions);
     }
 }

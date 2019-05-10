@@ -11,7 +11,7 @@ namespace SmartHouse_API.DAL
         private DbContext _context;
         private string _smartDeviceCollName = "SmartDevices";
         private string _localizationsCollName = "Localizations";
-        private string _typesActionsCollName = "ListOfTypesWithWithAvailableActions ";
+        private string _typesActionsCollName = "ListOfTypesWithAvailableActions ";
 
 
         public DbOperativeMethods(DbContext context)
@@ -40,15 +40,27 @@ namespace SmartHouse_API.DAL
             _context.db.GetCollection<Localization>(_localizationsCollName).InsertOne(localization);
         }
 
-        ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
+        public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
         {
             return _context.db.GetCollection<TypeActions>(_typesActionsCollName).AsQueryable().ToList();
         }
 
-        ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
+        public ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
         {
             return _context.db.GetCollection<TypeActions>(_typesActionsCollName).AsQueryable().Where(z=> z.Type == type).Select(z => z.AvailableActions).FirstOrDefault();
         }
+
+        public void AddNewPairTypeAvailableActions(string type, ICollection<string> availableActions)
+        {
+            TypeActions newTypeActions = new TypeActions
+            {
+                Type = type,
+                AvailableActions = availableActions
+            };
+
+            _context.db.GetCollection<TypeActions>(_typesActionsCollName).InsertOne(newTypeActions);
+        }
+
 
         #region SingleDevice
 
