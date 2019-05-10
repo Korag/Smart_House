@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using SmartHouse_API.Controllers;
 using SmartHouse_API.DAL;
+using System.Collections.Generic;
 
 namespace SmartHouse_API.UnitTests
 {
@@ -108,6 +109,34 @@ namespace SmartHouse_API.UnitTests
             Assert.DoesNotThrow(() => _controller.CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(_deviceId.ToString()));
         }
 
+        [Test]
+        public void GetAvailableLocalizations_WhenDbContainsLocalizations_DoesNotThrowException()
+        {
+            _contextDbMock.Setup(x => x.GetLocalizations())
+                .Returns(new List<string> { "Localization1","Localization2","Localization3" });
 
+            Assert.DoesNotThrow(() => _controller.GetAvailableLocalizations());
+        }
+
+        [Test]
+        public void GetAvailableLocalizations_WhenDbContainsLocalizations_ResultIsNotEmpty()
+        {
+            _contextDbMock.Setup(x => x.GetLocalizations())
+                .Returns(new List<string> { "Localization1", "Localization2", "Localization3" });
+
+            Assert.IsNotEmpty(_controller.GetAvailableLocalizations());
+        }
+
+
+        [Test]
+        public void GetAvailableLocalizations_WhenDbDoesntContainsLocalizations_ResultIsEmpty()
+        {
+            _contextDbMock.Setup(x => x.GetLocalizations())
+                .Returns(new List<string> { });
+
+            Assert.IsEmpty(_controller.GetAvailableLocalizations());
+        }
+
+  
     }
 }
