@@ -46,5 +46,22 @@ namespace SmartHouse_API.UnitTests
             _context.DeleteLocalization(name);
         }
 
+        [Test]
+        public void GetTypesOfSmartDevicesWithAvailableActions_DoesNotThrowException()
+        {
+            Assert.DoesNotThrow(() => _context.GetTypesOfSmartDevicesWithAvailableActions());
+        }
+
+        [Test]
+        public void GetAvailableActionsOfSingleTypeSmartDevice_ResultIsEmptyWhenTypeIsEmptyString()
+        {
+            Assert.IsNull(_context.GetAvailableActionsOfSingleTypeSmartDevice(""));
+        }
+
+        [Test]
+        public void GetAvailableActionsOfSingleTypeSmartDevice_WhenTypeArgumentDoesntExistInDatabase_DoesNotThrowException()
+        {
+            Assert.DoesNotThrow(() => _context.GetAvailableActionsOfSingleTypeSmartDevice("TEST"));
+        }
     }
 }
