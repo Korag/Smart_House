@@ -27,12 +27,11 @@ namespace SmartHouse_API.DAL
         #endregion
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
         IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder);
-        void AddNewAvailableActionsToSmartDevice(string id, ICollection<string> newAvailableActions);
-        void DeleteAvailableActionsFromSmartDevice(string id, ICollection<string> actionsToDelete);
         ICollection<string> GetLocalizations();
         void AddNewLocalization(string name);
         ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions();
         ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type);
         void AddNewPairTypeAvailableActions(string type, ICollection<string> availableActions);
+        ICollection<string> GetTypes();
     }
 }
