@@ -64,6 +64,13 @@ namespace SmartHouse_API.Controllers
             _context.AddNewLocalization(name);
         }
 
+        [HttpPost]
+        [Route("api/DeleteLocalization")]
+        public void DeleteLocalization(string name)
+        {
+            _context.DeleteLocalization(name);
+        }
+
         [HttpGet]
         [Route("api/GetTypesOfSmartDevicesWithAvailableActions")]
         public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
@@ -86,6 +93,13 @@ namespace SmartHouse_API.Controllers
         {
             var Type = _context.GetTypes();
             return Type;
+        }
+
+        [HttpPost]
+        [Route("api/DeletePairTypeAvailableActions")]
+        public void DeletePairTypeAvailableActions(string type)
+        {
+            _context.DeletePairTypeAvailableActions(type);
         }
 
         [HttpPost]
