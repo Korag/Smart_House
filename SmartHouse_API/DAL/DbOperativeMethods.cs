@@ -40,6 +40,11 @@ namespace SmartHouse_API.DAL
             _context.db.GetCollection<Localization>(_localizationsCollName).InsertOne(localization);
         }
 
+        public void DeleteLocalization(string name)
+        {
+            _context.db.GetCollection<Localization>(_localizationsCollName).DeleteOne<Localization>(x => x.Name == name);
+        }
+
         public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
         {
             return _context.db.GetCollection<TypeActions>(_typesActionsCollName).AsQueryable().ToList();
@@ -64,6 +69,11 @@ namespace SmartHouse_API.DAL
         public ICollection<string> GetTypes()
         {
             return _context.db.GetCollection<TypeActions>(_typesActionsCollName).AsQueryable().Select(z => z.Type).ToList();
+        }
+
+        public void DeletePairTypeAvailableActions(string type)
+        {
+            _context.db.GetCollection<TypeActions>(_typesActionsCollName).DeleteOne<TypeActions>(x => x.Type == type);
         }
 
         #region SingleDevice
