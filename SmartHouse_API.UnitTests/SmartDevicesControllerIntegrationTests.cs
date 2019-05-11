@@ -231,9 +231,9 @@ namespace SmartHouse_API.UnitTests
 
 
         [Test]
-        public void DeleteSmartsDeviceFromCollection_WhenToDeleteSmartDeviceExistInDatabase_DoesNotThrow()
+        public void SetSpecificPropertyOfSingleSmartDevice_WhenPropertIsUnset_ResultIsAsExpected()
         {
-            ObjectId newId = ObjectId.Parse("5cab1c94117778a2581069cf");
+            ObjectId newId = ObjectId.Parse("5cab1c94117728a2581069cf");
 
             SmartDevice smartDevice = new SmartDevice
             {
@@ -243,7 +243,34 @@ namespace SmartHouse_API.UnitTests
 
             _context.AddSmartDeviceToCollection(smartDevice);
 
-            Assert.DoesNotThrow(() => _context.DeleteSmartDeviceFromCollection(newId));
+            _context.SetPropertyOfSingleSmartDevice(smartDevice, "Type", "TestType");
+
+            string newType = _context.GetSingleSmartDeviceFromCollection(newId).Type;
+            Assert.AreEqual(newType, "TestType");
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
+
+        [Test]
+        public void SetSpecificPropertyOfSingleSmartDevice_WhenPropertyIsNull_ResultIsAsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5cac1c94117728a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+                Type = null
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SetPropertyOfSingleSmartDevice(smartDevice, "Type", "TestType");
+
+            string newType = _context.GetSingleSmartDeviceFromCollection(newId).Type;
+            Assert.AreEqual(newType, "TestType");
+
+            _context.DeleteSmartDeviceFromCollection(newId);
         }
     }
 }
