@@ -11,21 +11,22 @@ public class ActionSelector : MonoBehaviour
 
         menuScript = GameObject.Find("ActionMenu").GetComponent<RenderAction>();
         menu = GameObject.Find("ActionMenu");
+
         isMenuActive = false;
         menu.SetActive(isMenuActive);
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
-
-
     private void OnMouseDown()
     {
-        DisplayMenu();
-        menuScript.SetUpList(name);
+        print("click");
+        if (!isMenuActive)
+        {
+            print("double click");
+            DisplayMenu();
+            menuScript.SetUpList(name);
+            isMenuActive = true;
+        }
+
     }
 
     private void DisplayMenu()

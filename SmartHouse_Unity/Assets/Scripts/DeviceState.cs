@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class DeviceState : MonoBehaviour
 {
-    public string CurrentState = "On";
+    public string CurrentState = "Enabled";
+    public string DeviceName;
+    public string DeviceId;
+
+
     public List<GameObject> StateIcons;
 
     private GameObject ActiveDeviceState;
@@ -20,43 +24,43 @@ public class DeviceState : MonoBehaviour
 
         SetDeviceState();
 
-        //InvokeRepeating("UpdateDeviceState", 0f, 5f);  //1s delay, repeat every 1s
-        //InvokeRepeating("SetDeviceState", 1f, 1f);  //1s delay, repeat every 1s
+        InvokeRepeating("UpdateDeviceState", 0f, 5f);  //1s delay, repeat every 1s
     }
 
 
     public void ChangeDeviceStateOnDemand(string state)
     {
+        print("Update from button");
         CurrentState = state;
+        api.ChangeDeviceState(DeviceId, state);
         ChangeDeviceState();
     }
 
     private void UpdateDeviceState()
     {
-        CurrentState = api.GetDeviceState(transform.name);
+        print("Update from database");
+        CurrentState = api.GetDeviceState(DeviceName);
         ChangeDeviceState();
-        Debug.Log("Update");
-        Debug.Log(CurrentState);
+
     }
 
     private void ChangeDeviceState()
     {
+
         DestroyAllChildObjects();
-        if (ActiveDeviceState.transform.childCount == 0)
+
+        var stateFromList = StateIcons.Where(x => x.name == CurrentState).FirstOrDefault();
+        GameObject stateToRender;
+        if (stateFromList != null)
         {
-            var stateFromList = StateIcons.Where(x => x.name == CurrentState).FirstOrDefault();
-            GameObject stateToRender;
-            if (stateFromList != null)
-            {
-                stateToRender = stateFromList;
-            }
-            else
-            {
-                stateToRender = StateIcons[1];
-            }
-            var newObject = Instantiate(stateToRender);
-            newObject.transform.parent = ActiveDeviceState.transform;
+            stateToRender = stateFromList;
         }
+        else
+        {
+            stateToRender = StateIcons[1];
+        }
+        var newObject = Instantiate(stateToRender);
+        newObject.transform.parent = ActiveDeviceState.transform;
 
     }
 
@@ -89,7 +93,6 @@ public class DeviceState : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        print("Destroy");
     }
 
     // Update is called once per frame
