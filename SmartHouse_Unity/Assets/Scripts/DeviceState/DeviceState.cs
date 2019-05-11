@@ -11,7 +11,7 @@ public class DeviceState : MonoBehaviour
 
     public List<GameObject> StateIcons;
 
-    private GameObject ActiveDeviceState;
+    private Transform ActiveDeviceState;
     private GameObject newState;
 
 
@@ -20,7 +20,7 @@ public class DeviceState : MonoBehaviour
     private float deviceStatePositionY;
     private void Start()
     {
-        ActiveDeviceState = GameObject.Find("DeviceState");
+        ActiveDeviceState = transform.Find("DeviceState");
 
         SetDeviceState();
 
@@ -40,6 +40,7 @@ public class DeviceState : MonoBehaviour
     {
         print("Update from database");
         CurrentState = api.GetDeviceState(DeviceName);
+        print(name + " " + CurrentState);
         ChangeDeviceState();
 
     }
@@ -60,7 +61,7 @@ public class DeviceState : MonoBehaviour
             stateToRender = StateIcons[1];
         }
         var newObject = Instantiate(stateToRender);
-        newObject.transform.parent = ActiveDeviceState.transform;
+        newObject.transform.parent = ActiveDeviceState;
 
     }
 
@@ -83,7 +84,7 @@ public class DeviceState : MonoBehaviour
                 stateToRender = StateIcons[1];
             }
             var newObject = Instantiate(stateToRender);
-            newObject.transform.parent = ActiveDeviceState.transform;
+            newObject.transform.parent = ActiveDeviceState;
         }
     }
 

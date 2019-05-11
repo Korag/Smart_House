@@ -2,40 +2,39 @@
 
 public class ActionSelector : MonoBehaviour
 {
-    private GameObject menu;
+    public GameObject menu;
     private RenderAction menuScript;
     private bool isMenuActive;
     // Start is called before the first frame update
     private void Start()
     {
 
-        menuScript = GameObject.Find("ActionMenu").GetComponent<RenderAction>();
-        menu = GameObject.Find("ActionMenu");
+        //
 
-        isMenuActive = false;
-        menu.SetActive(isMenuActive);
     }
 
     private void OnMouseDown()
     {
+        menu.SetActive(true);
+        menuScript = GameObject.Find("ActionMenu").GetComponent<RenderAction>();
+        isMenuActive = menuScript.IsActive;
+
         print("click");
         if (!isMenuActive)
         {
             print("double click");
-            DisplayMenu();
+            // DisplayMenu();
             menuScript.SetUpList(name);
-            isMenuActive = true;
         }
 
-    }
+        //private void DisplayMenu()
+        //{
+        //    if (!isMenuActive)
+        //    {
+        //        isMenuActive = true;
+        //        menu.SetActive(isMenuActive);
+        //    }
 
-    private void DisplayMenu()
-    {
-        if (!isMenuActive)
-        {
-            isMenuActive = true;
-            menu.SetActive(isMenuActive);
-        }
-
+        //}
     }
 }

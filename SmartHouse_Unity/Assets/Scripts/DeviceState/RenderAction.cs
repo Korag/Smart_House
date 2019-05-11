@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class RenderAction : MonoBehaviour
 {
     public GameObject ButtonWithAction;
+    public bool IsActive = false;
+
 
     private List<string> actions;
     private GameObject panelWithActions;
@@ -13,12 +15,15 @@ public class RenderAction : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-
+        gameObject.SetActive(IsActive);
     }
 
 
     public void SetUpList(string deviceName)
     {
+        IsActive = true;
+        gameObject.SetActive(IsActive);
+
         panelWithActions = GameObject.Find("PanelWithActions");
         api = new ApiConnection();
         actions = api.GetDeviceActions(deviceName);
