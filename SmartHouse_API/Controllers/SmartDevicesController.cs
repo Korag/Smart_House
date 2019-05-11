@@ -50,6 +50,66 @@ namespace SmartHouse_API.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetAvailableLocalizations")]
+        public ICollection<string> GetAvailableLocalizations()
+        {
+            var Localizations = _context.GetLocalizations();
+            return Localizations;
+        }
+
+        [HttpPost]
+        [Route("api/AddNewLocalization")]
+        public void AddNewLocalization(string name)
+        {
+            _context.AddNewLocalization(name);
+        }
+
+        [HttpPost]
+        [Route("api/DeleteLocalization")]
+        public void DeleteLocalization(string name)
+        {
+            _context.DeleteLocalization(name);
+        }
+
+        [HttpGet]
+        [Route("api/GetTypesOfSmartDevicesWithAvailableActions")]
+        public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
+        {
+            var TypesOfSmartDevicesWithActions = _context.GetTypesOfSmartDevicesWithAvailableActions();
+            return TypesOfSmartDevicesWithActions;
+        }
+
+        [HttpGet]
+        [Route("api/GetAvailableActionsOfSingleTypeSmartDevice")]
+        public ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
+        {
+            var AvailableActions = _context.GetAvailableActionsOfSingleTypeSmartDevice(type);
+            return AvailableActions;
+        }
+
+        [HttpGet]
+        [Route("api/GetAvailableTypes")]
+        public ICollection<string> GetAvailableTypes()
+        {
+            var Type = _context.GetTypes();
+            return Type;
+        }
+
+        [HttpPost]
+        [Route("api/DeletePairTypeAvailableActions")]
+        public void DeletePairTypeAvailableActions(string type)
+        {
+            _context.DeletePairTypeAvailableActions(type);
+        }
+
+        [HttpPost]
+        [Route("api/AddNewPairTypeAvailableActions")]
+        public void AddNewPairTypeAvailableActions(string type, [FromUri]ICollection<string> availableActions)
+        {
+            _context.AddNewPairTypeAvailableActions(type, availableActions);
+        }
+
+        [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
         {
@@ -60,7 +120,7 @@ namespace SmartHouse_API.Controllers
 
         [HttpPost]
         [Route("api/AddSmartDevice")]
-        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled, [FromUri]ICollection<string> availableActions)
+        public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
         {
             SmartDevice sd = new SmartDevice
             {
@@ -70,7 +130,6 @@ namespace SmartHouse_API.Controllers
                 Disabled = disabled,
 
                 State = state,
-                AvailableActions = availableActions
             };
             _context.AddSmartDeviceToCollection(sd);
         }
@@ -93,29 +152,7 @@ namespace SmartHouse_API.Controllers
             _context.SetPropertyOfSingleSmartDevice(sd, propertyName, propertyValue);
         }
 
-        [HttpGet]
-        [Route("api/GetAllAvailableActionsToSmartDevice")]
-        public ICollection<string> GetAllAvailableActionsToSmartDevice(string id)
-        {
-            ObjectId _id = ObjectId.Parse(id);
-            List<string> availableActions = _context.GetSingleSmartDeviceFromCollection(_id).AvailableActions.ToList();
-            return availableActions;
-        }
-
-        [HttpPost]
-        [Route("api/AddNewAvailableActionsToSmartDevice")]
-        public void AddNewAvailableActionsToSmartDevice(string id, [FromUri] ICollection<string> newAvailableActions)
-        {
-            _context.AddNewAvailableActionsToSmartDevice(id, newAvailableActions);
-        }
         #endregion
-
-        [HttpPost]
-        [Route("api/DeleteAvailableActionsFromSmartDevice")]
-        public void DeleteAvailableActionsFromSmartDevice(string id, [FromUri] ICollection<string> actionsToDelete)
-        {
-            _context.DeleteAvailableActionsFromSmartDevice(id, actionsToDelete);
-        }
 
         #region CollectionOfSmartDevices
 
