@@ -184,70 +184,70 @@ namespace SmartHouse_API.Controllers
 
         #region DepreciatedGetteresOfCollection
 
-        [HttpGet]
-        [Route("api/GetAllSmartDevicesWithSameName")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
-        {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameName(name, propertyName).ToList();
-            return SmartDevicesList;
-        }
+        //[HttpGet]
+        //[Route("api/GetAllSmartDevicesWithSameName")]
+        //public List<SmartDevice> GetAllSmartDevicesWithSameName(string name, string propertyName)
+        //{
+        //    List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameName(name, propertyName).ToList();
+        //    return SmartDevicesList;
+        //}
 
-        [HttpGet]
-        [Route("api/GetAllSmartDevicesWithSameType")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName)
-        {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameType(type, propertyName).ToList();
-            return SmartDevicesList;
-        }
+        //[HttpGet]
+        //[Route("api/GetAllSmartDevicesWithSameType")]
+        //public List<SmartDevice> GetAllSmartDevicesWithSameType(string type, string propertyName)
+        //{
+        //    List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameType(type, propertyName).ToList();
+        //    return SmartDevicesList;
+        //}
 
-        [HttpGet]
-        [Route("api/GetAllSmartDevicesWithSameLocalization")]
-        public List<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName)
-        {
-            List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameLocalization(localization, propertyName).ToList();
-            return SmartDevicesList;
-        }
+        //[HttpGet]
+        //[Route("api/GetAllSmartDevicesWithSameLocalization")]
+        //public List<SmartDevice> GetAllSmartDevicesWithSameLocalization(string localization, string propertyName)
+        //{
+        //    List<SmartDevice> SmartDevicesList = _context.GetAllSmartDevicesWithSameLocalization(localization, propertyName).ToList();
+        //    return SmartDevicesList;
+        //}
 
         #endregion
 
         #region DepreciatedPostSettersOfSingleProperty
 
-        [HttpPost]
-        [Route("api/SetStateOfSingleSmartDevice")]
-        public void SetStateOfSingleSmartDevice(string id, string state)
-        {
-            ObjectId _id = ObjectId.Parse(id);
-            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
-            _context.SetStateOfSingleSmartDevice(sd, state);
-        }
+        //[HttpPost]
+        //[Route("api/SetStateOfSingleSmartDevice")]
+        //public void SetStateOfSingleSmartDevice(string id, string state)
+        //{
+        //    ObjectId _id = ObjectId.Parse(id);
+        //    SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+        //    _context.SetStateOfSingleSmartDevice(sd, state);
+        //}
 
-        [HttpPost]
-        [Route("api/SetLocalizationOfSingleSmartDevice")]
-        public void SetLocalizationOfSingleSmartDevice(string id, string localization)
-        {
-            ObjectId _id = ObjectId.Parse(id);
-            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
-            _context.SetLocalizationOfSingleSmartDevice(sd, localization);
-        }
+        //[HttpPost]
+        //[Route("api/SetLocalizationOfSingleSmartDevice")]
+        //public void SetLocalizationOfSingleSmartDevice(string id, string localization)
+        //{
+        //    ObjectId _id = ObjectId.Parse(id);
+        //    SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+        //    _context.SetLocalizationOfSingleSmartDevice(sd, localization);
+        //}
 
 
-        [HttpPost]
-        [Route("api/SetTypeOfSingleSmartDevice")]
-        public void SetTypeOfSingleSmartDevice(string id, string type)
-        {
-            ObjectId _id = ObjectId.Parse(id);
-            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
-            _context.SetTypeOfSingleSmartDevice(sd, type);
-        }
+        //[HttpPost]
+        //[Route("api/SetTypeOfSingleSmartDevice")]
+        //public void SetTypeOfSingleSmartDevice(string id, string type)
+        //{
+        //    ObjectId _id = ObjectId.Parse(id);
+        //    SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+        //    _context.SetTypeOfSingleSmartDevice(sd, type);
+        //}
 
-        [HttpPost]
-        [Route("api/SetNameOfSingleSmartDevice")]
-        public void SetNameOfSingleSmartDevice(string id, string name)
-        {
-            ObjectId _id = ObjectId.Parse(id);
-            SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
-            _context.SetNameOfSingleSmartDevice(sd, name);
-        }
+        //[HttpPost]
+        //[Route("api/SetNameOfSingleSmartDevice")]
+        //public void SetNameOfSingleSmartDevice(string id, string name)
+        //{
+        //    ObjectId _id = ObjectId.Parse(id);
+        //    SmartDevice sd = _context.GetSingleSmartDeviceFromCollection(_id);
+        //    _context.SetNameOfSingleSmartDevice(sd, name);
+        //}
 
         #endregion
     }

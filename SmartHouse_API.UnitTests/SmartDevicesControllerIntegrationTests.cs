@@ -18,7 +18,7 @@ namespace SmartHouse_API.UnitTests
         private DbContext _mongoConfig;
         private IDbOperative _context;
 
-        private ObjectId _existingDeviceId = ObjectId.Parse("5caa43bcdd8c6315382e2836");
+        private ObjectId _existingDeviceId = ObjectId.Parse("5caa623cdd8c6533985073bd");
 
         [SetUp]
         public void SetUp()
@@ -216,7 +216,32 @@ namespace SmartHouse_API.UnitTests
         [Test]
         public void DeleteSmartDeviceFromCollection_WhenToDeleteSmartDeviceExistInDatabase_DoesNotThrow()
         {
-            ObjectId newId = _existingDeviceId;
+            ObjectId newId = ObjectId.Parse("5cab1c94117778a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            Assert.DoesNotThrow(() => _context.DeleteSmartDeviceFromCollection(newId));
+        }
+
+
+        [Test]
+        public void DeleteSmartsDeviceFromCollection_WhenToDeleteSmartDeviceExistInDatabase_DoesNotThrow()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94117778a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
 
             Assert.DoesNotThrow(() => _context.DeleteSmartDeviceFromCollection(newId));
         }
