@@ -136,5 +136,53 @@ namespace SmartHouse_API.UnitTests
 
             _context.DeleteSmartDeviceFromCollection(newId);
         }
+
+        [Test]
+        public void ChangeSmartDeviceState_WhenDuringOperationsSmartDeviceWasDeleted_ResultIsEqual()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+                State = null
+            };
+
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+
+            Assert.DoesNotThrow(() => _context.ChangeSmartDeviceState(smartDevice, "TEST"));
+        }
+
+        [Test]
+        public void GetSingleSmartDeviceFromCollection_WhenSmartDeviceDoestExists_DoesNotThrow()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94187778a2581069cf");
+
+            Assert.DoesNotThrow(() => _context.GetSingleSmartDeviceFromCollection(newId));
+        }
+
+        [Test]
+        public void SmartDeviceSwitchOne_WhenDisabledPropertyIsNotDeclared_ResultIsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5aab1c94187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SmartDeviceSwitchOne(smartDevice);
+
+            Assert.AreEqual(smartDevice.Disabled, false);
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
     }
 }
