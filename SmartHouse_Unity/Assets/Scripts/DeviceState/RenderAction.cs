@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RenderAction : MonoBehaviour
 {
     public GameObject ButtonWithAction;
+    public Button CloseButton;
     public bool IsActive = false;
 
 
@@ -16,6 +17,7 @@ public class RenderAction : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(IsActive);
+        CloseButton.onClick.AddListener(CloseMenu);
     }
 
 
@@ -38,6 +40,18 @@ public class RenderAction : MonoBehaviour
             Button tempButton = goButton.GetComponent<Button>();
             string action = actions[i];
             tempButton.onClick.AddListener(() => DeviceAction(action, deviceName));
+        }
+    }
+
+
+    public void CloseMenu()
+    {
+        print("close");
+        IsActive = false;
+        gameObject.SetActive(IsActive);
+        foreach (Transform child in panelWithActions.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
