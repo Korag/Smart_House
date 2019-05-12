@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 public class RenderAction : MonoBehaviour
 {
+    [HideInInspector]
     public GameObject ButtonWithAction;
+    [HideInInspector]
     public Button CloseButton;
+    [HideInInspector]
     public bool IsActive = false;
 
 

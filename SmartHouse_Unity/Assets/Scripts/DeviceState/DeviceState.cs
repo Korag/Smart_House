@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DeviceState : MonoBehaviour
 {
-    public string CurrentState = "Enabled";
-    public string DeviceType;
+
     public string DeviceId;
+
+    [HideInInspector]
+    public string CurrentState = "Enabled";
+    [HideInInspector]
+    public string DeviceType;
+
 
 
     public List<GameObject> StateIcons;
