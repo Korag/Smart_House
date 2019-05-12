@@ -13,21 +13,6 @@ public class ApiConnection
         _getmartDevicesApiUrl = "http://localhost:61635/api";
     }
 
-    public string GetAllDevicesJson()
-    {
-
-        HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetAllSmartDevices");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
-
-        string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
-
-
-        return jsonResponse;
-    }
-
-
     public List<string> GetDeviceActions(string deviceName)
     {
         //GetAvailableActionsOfSingleTypeSmartDevice
