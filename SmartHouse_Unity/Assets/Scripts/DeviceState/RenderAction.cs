@@ -36,7 +36,6 @@ public class RenderAction : MonoBehaviour
         for (int i = 0; i < actions.Count; i++)
         {
             GameObject goButton = (GameObject)Instantiate(ButtonWithAction);
-            print(panelWithActions);
             goButton.transform.SetParent(panelWithActions.transform, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);
             goButton.GetComponentInChildren<Text>().text = actions[i];
@@ -49,7 +48,6 @@ public class RenderAction : MonoBehaviour
 
     public void CloseMenu()
     {
-        print("close");
         IsActive = false;
         gameObject.SetActive(IsActive);
         foreach (Transform child in panelWithActions.transform)

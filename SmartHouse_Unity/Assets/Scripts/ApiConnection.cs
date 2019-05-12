@@ -22,8 +22,7 @@ public class ApiConnection
         StreamReader reader = new StreamReader(response.GetResponseStream());
 
         string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
-        //var resultFromDataBase = JsonHelper.FromJson<DeviceModel>(jsonResponse);
-        //var devices = resultFromDataBase.ToList();
+
 
         return jsonResponse;
     }
@@ -56,19 +55,16 @@ public class ApiConnection
         return smartDevice.Type;
     }
 
-    public string GetDeviceState(string deviceName)
+    public string GetDeviceState(string id)
     {
 
         HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetAllSmartDevices");
+          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetStateOfSingleSmartDevice/?id={id}");
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
 
-        string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
-        var resultFromDataBase = JsonHelper.FromJson<DeviceModel>(jsonResponse);
-        var device = resultFromDataBase.Where(x => x.Type == deviceName).First();
-
-        return device.State;
+        var deviceState = reader.ReadToEnd();
+        return deviceState.Replace("\"", "");
     }
     public void ChangeDeviceState(string id, string deviceState)
     {
