@@ -3,12 +3,13 @@
 public class ActionSelector : MonoBehaviour
 {
     public GameObject menu;
+
+
     private RenderAction menuScript;
     private bool isMenuActive;
     // Start is called before the first frame update
     private void Start()
     {
-
 
     }
 

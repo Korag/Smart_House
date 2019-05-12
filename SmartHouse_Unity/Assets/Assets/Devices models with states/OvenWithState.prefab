@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5486086321891922232
+--- !u!1 &8095848268030093773
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5471475597382775658}
+  - component: {fileID: 8095848268030093774}
   m_Layer: 0
   m_Name: DeviceState
   m_TagString: Untagged
@@ -16,21 +16,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5471475597382775658
+--- !u!4 &8095848268030093774
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5486086321891922232}
+  m_GameObject: {fileID: 8095848268030093773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3772221000831634542}
+  m_Father: {fileID: 8095848269077789532}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7703800396406111256
+--- !u!1 &8095848269077789526
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,49 +38,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3772221000831634542}
-  - component: {fileID: 946888374559627535}
-  - component: {fileID: 4890052787047672266}
-  - component: {fileID: 5283583206819881296}
-  - component: {fileID: 9183031926930204933}
-  - component: {fileID: 6943609727843988802}
+  - component: {fileID: 8095848269077789532}
+  - component: {fileID: 8095848269077789523}
+  - component: {fileID: 8095848269077789522}
+  - component: {fileID: 8095848269077789521}
+  - component: {fileID: 8095848269077789520}
+  - component: {fileID: 8095848269077789527}
   m_Layer: 0
-  m_Name: OvenWithStates
+  m_Name: OvenWithState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3772221000831634542
+--- !u!4 &8095848269077789532
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.9, y: 0.8, z: 20.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
-  - {fileID: 5471475597382775658}
+  - {fileID: 8095848268030093774}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &946888374559627535
+--- !u!33 &8095848269077789523
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4890052787047672266
+--- !u!23 &8095848269077789522
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -111,48 +111,49 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5283583206819881296
+--- !u!65 &8095848269077789521
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9183031926930204933
+--- !u!114 &8095848269077789520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9922eaff18fe17746b9f2ae61a516759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: Enabled
-  DeviceName: Oven
-  DeviceId: 5cd4be35dd8c6343946c47f0
+  DeviceId: 5cd6e8bedd8c63152c42f683
   StateIcons:
   - {fileID: 8087735910367062914, guid: 2f528207095d76047bede9d32c3f4270, type: 3}
   - {fileID: 3361432486048783052, guid: 5b8eac923f7615d449991588e4007194, type: 3}
   - {fileID: 6311327857090417035, guid: db1eaabbfeea3624f81077e077714434, type: 3}
   - {fileID: 1595383125607718350, guid: c4a2691b513c26f47942af98e788ddbc, type: 3}
---- !u!114 &6943609727843988802
+  CurrentState: Enabled
+  DeviceType: Oven
+--- !u!114 &8095848269077789527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703800396406111256}
+  m_GameObject: {fileID: 8095848269077789526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed8b831f9c8747c418e7cde97fbb19ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 0}
