@@ -9,7 +9,6 @@ public class ActionSelector : MonoBehaviour
     private void Start()
     {
 
-        //
 
     }
 
@@ -19,22 +18,9 @@ public class ActionSelector : MonoBehaviour
         menuScript = GameObject.Find("ActionMenu").GetComponent<RenderAction>();
         isMenuActive = menuScript.IsActive;
 
-        print("click");
         if (!isMenuActive)
         {
-            print("double click");
-            // DisplayMenu();
             menuScript.SetUpList(name);
         }
-
-        //private void DisplayMenu()
-        //{
-        //    if (!isMenuActive)
-        //    {
-        //        isMenuActive = true;
-        //        menu.SetActive(isMenuActive);
-        //    }
-
-        //}
     }
 }

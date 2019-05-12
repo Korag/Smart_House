@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DeviceState : MonoBehaviour
 {
-    public string CurrentState = "Enabled";
-    public string DeviceName;
     public string DeviceId;
-
-
     public List<GameObject> StateIcons;
+
+
+    [HideInInspector]
+    public string CurrentState = "Enabled";
+    [HideInInspector]
+    public string DeviceType;
 
     private Transform ActiveDeviceState;
     private GameObject newState;
@@ -20,6 +22,8 @@ public class DeviceState : MonoBehaviour
     private float deviceStatePositionY;
     private void Start()
     {
+        DeviceType = api.GetDeviceTypeById(DeviceId);
+
         ActiveDeviceState = transform.Find("DeviceState");
 
         SetDeviceState();
@@ -39,8 +43,7 @@ public class DeviceState : MonoBehaviour
     private void UpdateDeviceState()
     {
         print("Update from database");
-        CurrentState = api.GetDeviceState(DeviceName);
-        print(name + " " + CurrentState);
+        CurrentState = api.GetDeviceState(DeviceId);
         ChangeDeviceState();
 
     }
@@ -70,10 +73,6 @@ public class DeviceState : MonoBehaviour
         if (ActiveDeviceState.transform.childCount == 0)
         {
             var stateFromList = StateIcons.Where(x => x.name == CurrentState).FirstOrDefault();
-            foreach (var item in StateIcons)
-            {
-                print(item.name);
-            }
             GameObject stateToRender;
             if (stateFromList != null)
             {

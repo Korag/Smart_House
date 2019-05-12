@@ -4,7 +4,11 @@ using UnityEngine.UI;
 
 public class RenderAction : MonoBehaviour
 {
+    [HideInInspector]
     public GameObject ButtonWithAction;
+    [HideInInspector]
+    public Button CloseButton;
+    [HideInInspector]
     public bool IsActive = false;
 
 
@@ -16,6 +20,7 @@ public class RenderAction : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(IsActive);
+        CloseButton.onClick.AddListener(CloseMenu);
     }
 
 
@@ -23,15 +28,14 @@ public class RenderAction : MonoBehaviour
     {
         IsActive = true;
         gameObject.SetActive(IsActive);
-
+        deviceState = GameObject.Find(deviceName).GetComponent<DeviceState>();
         panelWithActions = GameObject.Find("PanelWithActions");
         api = new ApiConnection();
-        actions = api.GetDeviceActions(deviceName);
+        actions = api.GetDeviceActions(deviceState.DeviceType);
 
         for (int i = 0; i < actions.Count; i++)
         {
             GameObject goButton = (GameObject)Instantiate(ButtonWithAction);
-            print(panelWithActions);
             goButton.transform.SetParent(panelWithActions.transform, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);
             goButton.GetComponentInChildren<Text>().text = actions[i];
@@ -41,9 +45,20 @@ public class RenderAction : MonoBehaviour
         }
     }
 
+
+    public void CloseMenu()
+    {
+        IsActive = false;
+        gameObject.SetActive(IsActive);
+        foreach (Transform child in panelWithActions.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     private void DeviceAction(string actionName, string deviceName)
     {
-        deviceState = GameObject.Find(deviceName).GetComponent<DeviceState>();
+
         deviceState.ChangeDeviceStateOnDemand(actionName);
         print(actionName);
     }
