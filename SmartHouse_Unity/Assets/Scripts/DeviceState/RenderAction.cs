@@ -26,7 +26,7 @@ public class RenderAction : MonoBehaviour
         deviceState = GameObject.Find(deviceName).GetComponent<DeviceState>();
         panelWithActions = GameObject.Find("PanelWithActions");
         api = new ApiConnection();
-        actions = api.GetDeviceActions(deviceState.DeviceName);
+        actions = api.GetDeviceActions(deviceState.DeviceType);
 
         for (int i = 0; i < actions.Count; i++)
         {

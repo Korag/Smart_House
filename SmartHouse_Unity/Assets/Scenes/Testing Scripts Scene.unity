@@ -4489,7 +4489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: Enabled
-  DeviceName: Light
+  DeviceType: Light
   DeviceId: 5cd6e7e0dd8c63152c42f680
   StateIcons:
   - {fileID: 6055263028759454603, guid: 796e4e29ee8665441aaad34f83e0f27c, type: 3}
@@ -5555,6 +5555,11 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 1169358816}
+    - target: {fileID: 5276331868846041836, guid: 5e18977bc8402a24cb92afc0dab9d1da,
+        type: 3}
+      propertyPath: DeviceType
+      value: Fridge
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e18977bc8402a24cb92afc0dab9d1da, type: 3}
 --- !u!1001 &1935513743
@@ -6345,7 +6350,7 @@ PrefabInstance:
     - target: {fileID: 7703800396406111256, guid: 4df393913faa590479a5ad4d7a18ab80,
         type: 3}
       propertyPath: m_Name
-      value: Oven
+      value: Oven1Test
       objectReference: {fileID: 0}
     - target: {fileID: 7703800396406111256, guid: 4df393913faa590479a5ad4d7a18ab80,
         type: 3}
@@ -6451,6 +6456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: DeviceId
       value: 5cd6e8bedd8c63152c42f683
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183031926930204933, guid: 4df393913faa590479a5ad4d7a18ab80,
+        type: 3}
+      propertyPath: DeviceType
+      value: Oven
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df393913faa590479a5ad4d7a18ab80, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeviceState : MonoBehaviour
 {
     public string CurrentState = "Enabled";
-    public string DeviceName;
+    public string DeviceType;
     public string DeviceId;
 
 
@@ -39,7 +39,7 @@ public class DeviceState : MonoBehaviour
     private void UpdateDeviceState()
     {
         print("Update from database");
-        CurrentState = api.GetDeviceState(DeviceName);
+        CurrentState = api.GetDeviceState(DeviceType);
         print(name + " " + CurrentState);
         ChangeDeviceState();
 
