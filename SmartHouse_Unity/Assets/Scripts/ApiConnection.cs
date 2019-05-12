@@ -2,8 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using UnityEngine;
-using UnityEngine.Networking;
 
 public class ApiConnection
 {
@@ -61,17 +59,25 @@ public class ApiConnection
     public void ChangeDeviceState(string id, string deviceState)
     {
 
-        WWWForm form = new WWWForm();
-        form.AddField("id", id);
-        form.AddField("propertyName", "State");
-        form.AddField("propertyValue", deviceState);
+        //WWWForm form = new WWWForm();
+        //form.AddField("id", id);
+        //form.AddField("propertyName", "State");
+        //form.AddField("propertyValue", deviceState);
 
-        UnityWebRequest unityWebRequest = UnityWebRequest
-            .Post
-            ($"{_getmartDevicesApiUrl}/SetSpecificPropertyOfSingleSmartDevice/",
-            $"?id={id}&propertyName=State&propertyValue={deviceState}");
-        unityWebRequest.SendWebRequest();
+        //UnityWebRequest unityWebRequest = UnityWebRequest
+        //    .Post
+        //    ($"{_getmartDevicesApiUrl}/SetSpecificPropertyOfSingleSmartDevice/",
+        //    $"?id={id}&propertyName=State&propertyValue={deviceState}");
+        //unityWebRequest.SendWebRequest();
 
+
+        WebClient wc = new WebClient();
+
+        wc.QueryString.Add("id", id);
+        wc.QueryString.Add("propertyName", "State");
+        wc.QueryString.Add("propertyValue", deviceState);
+
+        var data = wc.UploadValues($"{_getmartDevicesApiUrl}/SetSpecificPropertyOfSingleSmartDevice", "POST", wc.QueryString);
 
     }
 
