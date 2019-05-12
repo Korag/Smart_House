@@ -4490,7 +4490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentState: Enabled
   DeviceName: Light
-  DeviceId: fdgdf
+  DeviceId: 5cd6e7e0dd8c63152c42f680
   StateIcons:
   - {fileID: 6055263028759454603, guid: 796e4e29ee8665441aaad34f83e0f27c, type: 3}
   - {fileID: 1421636258349712255, guid: adeff0819d214d14185436acc45efa9c, type: 3}
@@ -6345,7 +6345,7 @@ PrefabInstance:
     - target: {fileID: 7703800396406111256, guid: 4df393913faa590479a5ad4d7a18ab80,
         type: 3}
       propertyPath: m_Name
-      value: OvenWithStates
+      value: Oven
       objectReference: {fileID: 0}
     - target: {fileID: 7703800396406111256, guid: 4df393913faa590479a5ad4d7a18ab80,
         type: 3}
@@ -6446,6 +6446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183031926930204933, guid: 4df393913faa590479a5ad4d7a18ab80,
+        type: 3}
+      propertyPath: DeviceId
+      value: 5cd6e8bedd8c63152c42f683
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df393913faa590479a5ad4d7a18ab80, type: 3}

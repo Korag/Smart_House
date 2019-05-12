@@ -23,10 +23,10 @@ public class RenderAction : MonoBehaviour
     {
         IsActive = true;
         gameObject.SetActive(IsActive);
-
+        deviceState = GameObject.Find(deviceName).GetComponent<DeviceState>();
         panelWithActions = GameObject.Find("PanelWithActions");
         api = new ApiConnection();
-        actions = api.GetDeviceActions(deviceName);
+        actions = api.GetDeviceActions(deviceState.DeviceName);
 
         for (int i = 0; i < actions.Count; i++)
         {
@@ -43,7 +43,7 @@ public class RenderAction : MonoBehaviour
 
     private void DeviceAction(string actionName, string deviceName)
     {
-        deviceState = GameObject.Find(deviceName).GetComponent<DeviceState>();
+
         deviceState.ChangeDeviceStateOnDemand(actionName);
         print(actionName);
     }
