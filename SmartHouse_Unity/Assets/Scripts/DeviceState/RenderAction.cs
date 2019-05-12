@@ -6,12 +6,11 @@ public class RenderAction : MonoBehaviour
 {
     [HideInInspector]
     public GameObject ButtonWithAction;
-    [HideInInspector]
-    public Button CloseButton;
+
     [HideInInspector]
     public bool IsActive = false;
 
-
+    public Button CloseButton;
     private List<string> actions;
     private GameObject panelWithActions;
     private DeviceState deviceState;

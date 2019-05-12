@@ -954,6 +954,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3776513043736243707, guid: f9e210b16c874ce4286fab56be23f552,
+        type: 3}
+      propertyPath: CloseButton
+      value: 
+      objectReference: {fileID: 1521044532}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e210b16c874ce4286fab56be23f552, type: 3}
 --- !u!1001 &261156748
@@ -4573,12 +4578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9922eaff18fe17746b9f2ae61a516759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: Enabled
-  DeviceType: Light
   DeviceId: 5cd6e7e0dd8c63152c42f680
   StateIcons:
   - {fileID: 6055263028759454603, guid: 796e4e29ee8665441aaad34f83e0f27c, type: 3}
   - {fileID: 1421636258349712255, guid: adeff0819d214d14185436acc45efa9c, type: 3}
+  CurrentState: Enabled
+  DeviceType: Light
 --- !u!65 &1404217301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4881,7 +4886,7 @@ GameObject:
   - component: {fileID: 1521044533}
   - component: {fileID: 1521044532}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5930,6 +5935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426395874145827892, guid: f4edfe1c824188e489368ac66c14a2d6,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4edfe1c824188e489368ac66c14a2d6, type: 3}
