@@ -5,6 +5,8 @@ import VueResource from 'vue-resource';
 Vue.use(Vuex);
 Vue.use(VueResource);
 
+var api = 'https://smarthouseapii.azurewebsites.net/';
+
 export const store = new Vuex.Store({
     state:{
         menu:[
@@ -86,24 +88,24 @@ export const store = new Vuex.Store({
     },
     actions:{
         getDevices(context){
-            Vue.http.get('http://localhost:61635/api/GetAllSmartDevices').then(response => {
+            Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
                 context.commit('loadDevices',response.body);
             });
         },
         getActions(context){
-            Vue.http.get('http://localhost:61635/api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
+            Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
                 context.commit('loadActions',response.body);
                 context.commit('filterActionsForDevice');
                 context.commit('display',{to:'showActionsList',from:'showDevicesList'});
             });
         },
         getActualDeviceState(context){
-            Vue.http.get('http://localhost:61635/api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
+            Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
                 context.commit('loadActualDeviceState',response.body);
             });
         },
         changeDeviceState(context,newState){
-            Vue.http.post('http://localhost:61635/api/SetSpecificPropertyOfSingleSmartDevice?id='+context.getters.getActualDeviceId+'&propertyName=State&propertyValue='+newState)
+            Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+context.getters.getActualDeviceId+'&propertyName=State&propertyValue='+newState)
                 .then(()=>{
                 context.dispatch('getActualDeviceState');
             });
