@@ -12,7 +12,9 @@ export const store = new Vuex.Store({
             {id:2, name:'Dodaj urządzenie',image:'', display: true},
             {id:3, name:'Ustawienia',image:'', display: true},
         ],
+        showMenu: true,
         listOfDevices: [],
+        showDevicesList: false,
         categories: [],
         groups: []
     },
@@ -22,11 +24,33 @@ export const store = new Vuex.Store({
         },
         getListOfDevices(state){
             return state.listOfDevices;
+        },
+        getDisplayStatusForMenu(state){
+            return state.showMenu;
+        },
+        getDisplayStatusForDevicesList(state){
+            return state.showDevicesList;
         }
     },
     mutations:{
         loadDevices(state, listOfNewDevices){
             state.listOfDevices = listOfNewDevices;
+        },
+        displayMenu(state){
+            if(state.showMenu){
+                state.showMenu = false;
+            }
+            else{
+                state.showMenu = true;
+            }
+        },
+        displayListOfDevices(state){
+            if(state.showDevicesList){
+                state.showDevicesList = false;
+            }
+            else{
+                state.showDevicesList = true;
+            }
         }
     },
     actions:{
