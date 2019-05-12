@@ -27,7 +27,7 @@ http://localhost:61635/api/DeleteSmartDeviceFromCollection?id=5caa6502dd8c673398
 ###
 http://localhost:61635/api/GetStateOfSingleSmartDevice?id=5caa6502dd8c67339839ebab
 ###
-http://localhost:61635/api/SetStateOfSingleSmartDevice?id=5cab1c91147378a8581099cf&state=Nie_działa
+http://localhost:61635/api/SetStateOfSingleSmartDevice?id=5cd6e7f0dd8c63152c42f681&state=Enable
 ###
 http://localhost:61635/api/SetTypeOfSingleSmartDevice?id=5cab1c91147378a8581099cf&type=Światło
 ###
