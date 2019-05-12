@@ -27,9 +27,11 @@ http://localhost:61635/api/DeleteSmartDeviceFromCollection?id=5caa6502dd8c673398
 ###
 http://localhost:61635/api/GetStateOfSingleSmartDevice?id=5cc76761dd8c634d442bc77a
 ###
-http://localhost:61635/api/SetStateOfSingleSmartDevice?id=5cd6e7f0dd8c63152c42f681&state=Enable
+http://localhost:61635/api/SetStateOfSingleSmartDevice?id=5cc76761dd8c634d442bc77a&state=Enabled
 ###
 http://localhost:61635/api/SetTypeOfSingleSmartDevice?id=5cab1c91147378a8581099cf&type=Światło
 ###
 http://localhost:61635/api/SetSpecificPropertyOfSingleSmartDevice?id=5cab1c91147378a8581099cf&propertyName=Name&propertyValue=TEST
+###
+POST http://localhost:61635/api/SetSpecificPropertyOfSingleSmartDevice?id=5cc76761dd8c634d442bc77a&propertyName=State&propertyValue=Enable
 ###
