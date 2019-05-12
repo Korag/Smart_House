@@ -20,6 +20,8 @@ public class DeviceState : MonoBehaviour
     private float deviceStatePositionY;
     private void Start()
     {
+        DeviceType = api.GetDeviceTypeById(DeviceId);
+
         ActiveDeviceState = transform.Find("DeviceState");
 
         SetDeviceState();

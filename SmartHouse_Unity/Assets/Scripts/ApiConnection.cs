@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using UnityEngine;
 
 public class ApiConnection
 {
@@ -42,6 +43,19 @@ public class ApiConnection
         return deviceActions.ToList();
     }
 
+    public string GetDeviceTypeById(string id)
+    {
+
+        HttpWebRequest request =
+          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetSingleSmartDevice/?id={id}");
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        StreamReader reader = new StreamReader(response.GetResponseStream());
+
+        var smartDevice = JsonUtility.FromJson<DeviceModel>(reader.ReadToEnd());
+
+        return smartDevice.Type;
+    }
+
     public string GetDeviceState(string deviceName)
     {
 
@@ -58,19 +72,6 @@ public class ApiConnection
     }
     public void ChangeDeviceState(string id, string deviceState)
     {
-
-        //WWWForm form = new WWWForm();
-        //form.AddField("id", id);
-        //form.AddField("propertyName", "State");
-        //form.AddField("propertyValue", deviceState);
-
-        //UnityWebRequest unityWebRequest = UnityWebRequest
-        //    .Post
-        //    ($"{_getmartDevicesApiUrl}/SetSpecificPropertyOfSingleSmartDevice/",
-        //    $"?id={id}&propertyName=State&propertyValue={deviceState}");
-        //unityWebRequest.SendWebRequest();
-
-
         WebClient wc = new WebClient();
 
         wc.QueryString.Add("id", id);
