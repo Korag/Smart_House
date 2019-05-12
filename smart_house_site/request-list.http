@@ -25,7 +25,7 @@ http://localhost:61635/api/CheckIfSingleSmartDeviceIsDisabledAndSwitchOn?id=5cab
 ####
 http://localhost:61635/api/DeleteSmartDeviceFromCollection?id=5caa6502dd8c67339839ebab
 ###
-http://localhost:61635/api/GetStateOfSingleSmartDevice?id=5caa6502dd8c67339839ebab
+http://localhost:61635/api/GetStateOfSingleSmartDevice?id=5cc76761dd8c634d442bc77a
 ###
 http://localhost:61635/api/SetStateOfSingleSmartDevice?id=5cd6e7f0dd8c63152c42f681&state=Enable
 ###

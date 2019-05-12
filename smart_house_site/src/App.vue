@@ -3,13 +3,15 @@
     <TopBar></TopBar>
     <Menu></Menu>
     <DevicesList></DevicesList>
+    <ActionsMenu></ActionsMenu>
   </div>
 </template>
 
 <script>
 import Menu from './components/Menu.vue';
 import DevicesList from './components/DevicesList.vue';
-import TopBar from './components/TopBar.vue'
+import TopBar from './components/TopBar.vue';
+import ActionsMenu from './components/ActionsMenu.vue';
 
 
 export default {
@@ -17,7 +19,8 @@ export default {
   components: {
     Menu,
     DevicesList,
-    TopBar
+    TopBar,
+    ActionsMenu
   }
 }
 </script>

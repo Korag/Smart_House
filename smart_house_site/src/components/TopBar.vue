@@ -1,6 +1,6 @@
 <template>
     <div class="topBar" v-on:click="goBack" >
-        <img v-if="!this.$store.getters.getDisplayStatusForMenu" class="arrow" :src="require('@/assets/arrow.svg')">
+        <img v-if="!this.$store.getters.getDisplayStatus.showMenu" class="arrow" :src="require('@/assets/arrow.svg')">
         Smart House</div>
 </template>
 
@@ -8,8 +8,7 @@
 export default {
     methods:{
         goBack: function(){
-            this.$store.commit('displayListOfDevices');
-            this.$store.commit('displayMenu');
+            this.$store.commit('goBack');
         }
     }
 }
