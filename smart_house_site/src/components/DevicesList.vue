@@ -1,7 +1,6 @@
 <template>
-    <div id="menu">
-        <div class="menu" v-for="device in devices" v-bind:key="device.id">
-            <div>{{device.Localization}}</div>
+    <div v-show="this.$store.getters.getDisplayStatus.showDevicesList">
+        <div class="menuItem" v-for="device in devices" v-bind:key="device.id" v-on:click="DisplayActions(device.Type,device.Id)">
             <div>{{device.Name}}</div>
             <div>{{device.State}}</div>
             <div>{{device.Type}}</div>
@@ -17,24 +16,27 @@ export default {
         }
     },
     methods:{
+        DisplayActions(deviceType,deviceId){
+            this.$store.commit('changeActualDevice',{deviceType: deviceType,deviceId: deviceId});
+            this.$store.dispatch('getActions');
+            this.$store.dispatch('getActualDeviceState');
+        }
     }
 }
 </script>
 
 <style scoped>
-.menu {
-    border: 2px solid blue;
-    border-radius: 5px;
-    height: 45vh;
-    width: 45vw;
+.menuItem {
+    height: 20vh;
+    width: 46vw;
+    border-style: solid;
+    border-color: white;
+    border-width: 2vw;
     float: left;
-    margin: 1vh 1vh;
     position: relative;
-}
-.menuText{
-    position: absolute;
-    bottom: 10vh;
-    right: 15vw;
-    
+    background: #166fff;
+    font-size: 20px;
+    text-align: center;
+    color: white;
 }
 </style>
