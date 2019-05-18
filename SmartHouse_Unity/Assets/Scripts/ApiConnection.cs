@@ -10,7 +10,7 @@ public class ApiConnection
 
     public ApiConnection()
     {
-        _getmartDevicesApiUrl = "http://localhost:61635/api";
+        _getmartDevicesApiUrl = "https://smarthouseapii.azurewebsites.net/api";
     }
 
     public List<string> GetDeviceActions(string deviceName)
