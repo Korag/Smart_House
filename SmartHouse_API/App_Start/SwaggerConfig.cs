@@ -101,7 +101,7 @@ namespace SmartHouse_API
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        c.IncludeXmlComments(GetXmlCommentsPath());
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -251,9 +251,9 @@ namespace SmartHouse_API
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
         }
-        //private static string GetXmlCommentsPath()
-        //{
-        //    return System.AppDomain.CurrentDomain.BaseDirectory + @"\bin\PersonWebAPI.xml";
-        //}
+        private static string GetXmlCommentsPath()
+        {
+            return System.AppDomain.CurrentDomain.BaseDirectory + @"\bin\SmartHouse_API.xml";
+        }
     }
 }

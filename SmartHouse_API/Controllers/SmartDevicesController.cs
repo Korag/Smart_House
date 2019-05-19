@@ -18,6 +18,9 @@ namespace SmartHouse_API.Controllers
 
         #region SingleDevice
 
+        /// <summary>
+        /// This function returns bool "Disabled" property of SmartDevice which id was passed as an argument. 
+        /// </summary>
         [System.Web.Mvc.Authorize]
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabled")]
