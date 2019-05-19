@@ -7,10 +7,17 @@ using System.Web.Http;
 
 namespace SmartHouse_API.Controllers
 {
+
+    /// <summary>
+    /// SmartDevicesController provides an actions to add/modify/check MongoDB documents such as Localization/TypeActions/SmartDevice.
+    /// </summary>
     public class SmartDevicesController : ApiController
     {
         private IDbOperative _context;
 
+        /// <summary>
+        /// Standard Constructor which initializes instance of DbContext class.
+        /// </summary>
         public SmartDevicesController(IDbOperative context)
         {
             _context = context;
@@ -18,7 +25,10 @@ namespace SmartHouse_API.Controllers
 
         #region SingleDevice
 
-        //[System.Web.Mvc.Authorize]
+        /// <summary>
+        /// This function returns bool "Disabled" property of SmartDevice which id was passed as an argument. 
+        /// </summary>
+        [System.Web.Mvc.Authorize]
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabled")]
         public bool CheckIfSingleSmartDeviceIsDisabled(string id)
@@ -28,6 +38,9 @@ namespace SmartHouse_API.Controllers
             return sd.Disabled;
         }
 
+        /// <summary>
+        /// This function returns string "State" property of SmartDevice which id was passed as an argument.
+        /// </summary>
         [HttpGet]
         [Route("api/GetStateOfSingleSmartDevice")]
         public string GetStateOfSingleSmartDevice(string id)
@@ -37,6 +50,10 @@ namespace SmartHouse_API.Controllers
             return sd.State;
         }
 
+        /// <summary>
+        /// This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+        /// If conditions have been fulfilled this property would have given property "Disabled" value false.
+        /// </summary>
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabledAndSwitchOn")]
         public void CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(string id)
@@ -49,6 +66,10 @@ namespace SmartHouse_API.Controllers
             }
         }
 
+        /// <summary>
+        /// This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+        /// If conditions have been fulfilled this property would have given property "Disabled" value false.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableLocalizations")]
         public ICollection<string> GetAvailableLocalizations()
@@ -57,6 +78,9 @@ namespace SmartHouse_API.Controllers
             return Localizations;
         }
 
+        /// <summary>
+        /// This function adds new Localization to DictionaryCollection called Localizations which stores available places in house to locate SmartDevice.
+        /// </summary>
         [HttpPost]
         [Route("api/AddNewLocalization")]
         public void AddNewLocalization(string name)
@@ -64,6 +88,9 @@ namespace SmartHouse_API.Controllers
             _context.AddNewLocalization(name);
         }
 
+        /// <summary>
+        /// This function gives opportunity to delete Localization from DictionaryCollection called Localizations.
+        /// </summary>
         [HttpPost]
         [Route("api/DeleteLocalization")]
         public void DeleteLocalization(string name)
@@ -71,6 +98,9 @@ namespace SmartHouse_API.Controllers
             _context.DeleteLocalization(name);
         }
 
+        /// <summary>
+        /// This function gets Key-Value pairs of "Types" of SmartDevices with "AvailableActions" which they can perform.
+        /// </summary>
         [HttpGet]
         [Route("api/GetTypesOfSmartDevicesWithAvailableActions")]
         public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
@@ -79,6 +109,9 @@ namespace SmartHouse_API.Controllers
             return TypesOfSmartDevicesWithActions;
         }
 
+        /// <summary>
+        /// This function gets Key-Value pair of "Type" of SmartDevice with "AvailableActions" but only for one "Type" passed as an argument.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableActionsOfSingleTypeSmartDevice")]
         public ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
@@ -87,6 +120,10 @@ namespace SmartHouse_API.Controllers
             return AvailableActions;
         }
 
+
+        /// <summary>
+        /// This function gets "Types" of SmartDevices which are stored in database.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableTypes")]
         public ICollection<string> GetAvailableTypes()
@@ -95,6 +132,9 @@ namespace SmartHouse_API.Controllers
             return Type;
         }
 
+        /// <summary>
+        /// This function deletes "Type" property value passed as an argument with linked array of "AvailableActions".
+        /// </summary>
         [HttpPost]
         [Route("api/DeletePairTypeAvailableActions")]
         public void DeletePairTypeAvailableActions(string type)
@@ -102,6 +142,9 @@ namespace SmartHouse_API.Controllers
             _context.DeletePairTypeAvailableActions(type);
         }
 
+        /// <summary>
+        /// This function adds "Type" property with linked array of "AvailableActions".
+        /// </summary>
         [HttpPost]
         [Route("api/AddNewPairTypeAvailableActions")]
         public void AddNewPairTypeAvailableActions(string type, [FromUri]ICollection<string> availableActions)
@@ -109,6 +152,10 @@ namespace SmartHouse_API.Controllers
             _context.AddNewPairTypeAvailableActions(type, availableActions);
         }
 
+
+        /// <summary>
+        /// This function adds "Type" property with linked array of "AvailableActions".
+        /// </summary>
         [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
@@ -118,6 +165,9 @@ namespace SmartHouse_API.Controllers
             return sd;
         }
 
+        /// <summary>
+        /// This function adds new SmartDevice object to database with propety values defined in arguments.
+        /// </summary>
         [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
@@ -134,6 +184,9 @@ namespace SmartHouse_API.Controllers
             _context.AddSmartDeviceToCollection(sd);
         }
 
+        /// <summary>
+        /// This function remove concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+        /// </summary>
         [HttpPost]
         [Route("api/DeleteSmartDeviceFromCollection")]
         public void DeleteSmartDevice(string id)
@@ -142,6 +195,9 @@ namespace SmartHouse_API.Controllers
             _context.DeleteSmartDeviceFromCollection(_id);
         }
 
+        /// <summary>
+        /// This function removes concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+        /// </summary>
         [HttpPost]
         [Route("api/SetSpecificPropertyOfSingleSmartDevice")]
         public void SetSpecificPropertyOfSingleSmartDevice(string id, string propertyName, string propertyValue)
@@ -156,6 +212,9 @@ namespace SmartHouse_API.Controllers
 
         #region CollectionOfSmartDevices
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database. Passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAllSmartDevices")]
         public List<SmartDevice> GetAllSmartDevices(string propertyName = "Type")
@@ -164,6 +223,9 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database which currently have value true in boolean property "Disabled". Passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAllSmartDevicesWhichAreDisabled")]
         public List<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName)
@@ -172,6 +234,9 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database. List will contain only devices which currently have the same value of given property passed as an argument (propertyName) and (propertyValue). The last passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetCollectionOfSmartDevicesWithSameProperty")]
         public List<SmartDevice> GetCollectionOfSingleSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder)

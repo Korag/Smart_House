@@ -6,51 +6,89 @@ using UnityEngine;
 
 public class ApiConnection
 {
-    private string _getmartDevicesApiUrl;
+    private string _smartDeviceApiUrl;
+    private WarningApiText apiWarning;
 
     public ApiConnection()
     {
-        _getmartDevicesApiUrl = "http://localhost:61635/api";
+        _smartDeviceApiUrl = "https://smarthouseapii.azurewebsites.net/api";
     }
 
     public List<string> GetDeviceActions(string deviceName)
     {
-        //GetAvailableActionsOfSingleTypeSmartDevice
-        HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
+        apiWarning = GameObject.FindObjectOfType<WarningApiText>();
+        List<string> deviceActions = new List<string>();
 
-        string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
-        var deviceActions = JsonHelper.FromJson<string>(jsonResponse);
+        try
+        {
+           apiWarning.HideWarning();
 
-        return deviceActions.ToList();
+            HttpWebRequest request =
+                (HttpWebRequest)WebRequest.Create($"{_smartDeviceApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+
+            string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
+            deviceActions = JsonHelper.FromJson<string>(jsonResponse).ToList();
+        }
+        catch (System.Exception)
+        {
+            apiWarning.ShowWarning();
+        }
+
+        return deviceActions;
     }
 
     public string GetDeviceTypeById(string id)
     {
+        apiWarning = GameObject.FindObjectOfType<WarningApiText>();
+        string deviceType = string.Empty;
 
-        HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetSingleSmartDevice/?id={id}");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
+        try
+        {
+            apiWarning.HideWarning();
 
-        var smartDevice = JsonUtility.FromJson<DeviceModel>(reader.ReadToEnd());
+            HttpWebRequest request =
+                (HttpWebRequest)WebRequest.Create($"{_smartDeviceApiUrl}/GetSingleSmartDevice/?id={id}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
 
-        return smartDevice.Type;
+            deviceType = JsonUtility.FromJson<DeviceModel>(reader.ReadToEnd()).Type;
+        }
+        catch (System.Exception)
+        {
+            apiWarning.ShowWarning();
+        }
+
+        return deviceType;
     }
 
     public string GetDeviceState(string id)
     {
+        apiWarning = GameObject.FindObjectOfType<WarningApiText>();
+        string deviceState = string.Empty;
 
-        HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetStateOfSingleSmartDevice/?id={id}");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
+        try
+        {
+            apiWarning.HideWarning();
 
-        var deviceState = reader.ReadToEnd();
+            HttpWebRequest request =
+              (HttpWebRequest)WebRequest.Create($"{_smartDeviceApiUrl}/GetStateOfSingleSmartDevice/?id={id}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+
+            deviceState = reader.ReadToEnd();
+        }
+        catch (System.Exception)
+        {
+            apiWarning.ShowWarning();
+        }
+
         return deviceState.Replace("\"", "");
     }
+
+
     public void ChangeDeviceState(string id, string deviceState)
     {
         WebClient wc = new WebClient();
@@ -59,8 +97,7 @@ public class ApiConnection
         wc.QueryString.Add("propertyName", "State");
         wc.QueryString.Add("propertyValue", deviceState);
 
-        var data = wc.UploadValues($"{_getmartDevicesApiUrl}/SetSpecificPropertyOfSingleSmartDevice", "POST", wc.QueryString);
-
+        var data = wc.UploadValues($"{_smartDeviceApiUrl}/SetSpecificPropertyOfSingleSmartDevice", "POST", wc.QueryString);
     }
 
 }

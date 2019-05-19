@@ -8,19 +8,21 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SmartHouse_API.Models;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace SmartHouse_API.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
         public AccountController()
         {
          
         }
-
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -203,3 +205,4 @@ namespace SmartHouse_API.Controllers
         #endregion
     }
 }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
