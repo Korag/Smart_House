@@ -165,6 +165,9 @@ namespace SmartHouse_API.Controllers
             return sd;
         }
 
+        /// <summary>
+        /// This function adds new SmartDevice object to database with propety values defined in arguments.
+        /// </summary>
         [HttpPost]
         [Route("api/AddSmartDevice")]
         public void AddSmartDevice(string type, string name, string state, string localization, bool disabled)
@@ -181,6 +184,9 @@ namespace SmartHouse_API.Controllers
             _context.AddSmartDeviceToCollection(sd);
         }
 
+        /// <summary>
+        /// This function remove concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+        /// </summary>
         [HttpPost]
         [Route("api/DeleteSmartDeviceFromCollection")]
         public void DeleteSmartDevice(string id)
@@ -189,6 +195,9 @@ namespace SmartHouse_API.Controllers
             _context.DeleteSmartDeviceFromCollection(_id);
         }
 
+        /// <summary>
+        /// This function removes concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+        /// </summary>
         [HttpPost]
         [Route("api/SetSpecificPropertyOfSingleSmartDevice")]
         public void SetSpecificPropertyOfSingleSmartDevice(string id, string propertyName, string propertyValue)
@@ -203,6 +212,9 @@ namespace SmartHouse_API.Controllers
 
         #region CollectionOfSmartDevices
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database. Passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAllSmartDevices")]
         public List<SmartDevice> GetAllSmartDevices(string propertyName = "Type")
@@ -211,6 +223,9 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database which currently have value true in boolean property "Disabled". Passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAllSmartDevicesWhichAreDisabled")]
         public List<SmartDevice> GetAllSmartDevicesWhichAreDisabled(string propertyName)
@@ -219,6 +234,9 @@ namespace SmartHouse_API.Controllers
             return SmartDevicesList;
         }
 
+        /// <summary>
+        /// This function returns list of all SmartDevices stored in database. List will contain only devices which currently have the same value of given property passed as an argument (propertyName) and (propertyValue). The last passed argument is used as property by which the result list will be ordered.
+        /// </summary>
         [HttpGet]
         [Route("api/GetCollectionOfSmartDevicesWithSameProperty")]
         public List<SmartDevice> GetCollectionOfSingleSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder)
