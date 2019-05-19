@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.Application;
 
 namespace SmartHouse_API
 {
@@ -17,7 +18,7 @@ namespace SmartHouse_API
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-            var corsAttr = new EnableCorsAttribute("http://localhost:8080", "*","*");
+            var corsAttr = new EnableCorsAttribute("http://localhost:8080", "*", "*");
             config.EnableCors(corsAttr);
 
             var json = config.Formatters.JsonFormatter;
@@ -28,6 +29,13 @@ namespace SmartHouse_API
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                 name: "Swagger UI",
+                 routeTemplate: "",
+                 defaults: null,
+                 constraints: null,
+                 handler: new RedirectHandler(SwaggerDocsConfig.DefaultRootUrlResolver, "swagger/ui/index#/SmartDevices"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

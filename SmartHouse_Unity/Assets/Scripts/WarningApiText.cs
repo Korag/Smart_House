@@ -26,6 +26,5 @@ public class WarningApiText : MonoBehaviour
         textColor.a = 1;
         gameObject.GetComponent<Text>().color = textColor;
         animator.enabled = false;
-
     }
 }

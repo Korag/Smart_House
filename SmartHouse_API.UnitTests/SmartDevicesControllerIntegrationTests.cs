@@ -18,7 +18,7 @@ namespace SmartHouse_API.UnitTests
         private DbContext _mongoConfig;
         private IDbOperative _context;
 
-        private ObjectId _existingDeviceId = ObjectId.Parse("5cab1c91147378a8581099cf");
+        private ObjectId _existingDeviceId = ObjectId.Parse("5caa623cdd8c6533985073bd");
 
         [SetUp]
         public void SetUp()
@@ -79,11 +79,11 @@ namespace SmartHouse_API.UnitTests
         }
 
         [Test]
-        public void AddSmartDeviceToCollection__CheckIfSmartDeviceIsAddedToDatabase()
+        public void AddSmartDeviceToCollection_CheckIfSmartDeviceIsAddedToDatabase()
         {
             SmartDevice smartDevice = new SmartDevice
             {
-                Id = ObjectId.Parse("5cab1c95187378a2581069cf"),
+                Id = ObjectId.Parse("5cab1c95187374a2581069cf"),
                 Name = "TEST"
             };
 
@@ -96,6 +96,181 @@ namespace SmartHouse_API.UnitTests
             _context.DeleteSmartDeviceFromCollection(smartDevice.Id);
         }
 
-        //the same as here but in situation where we create a duplicate of Id
+        [Test]
+        public void AddSmartDeviceToCollection_WhenDeviceWithSuchIdExistsInDatabase_ThrowsMongoDriverWriteException()
+        {
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = _existingDeviceId,
+                Name = "TEST"
+            };
+
+            
+            var result = _context.GetSmartDevicesCollection("Name");
+            var addedSmartDevice = result.Where(z => z.Id == smartDevice.Id).FirstOrDefault();
+
+            Assert.That(() => _context.AddSmartDeviceToCollection(smartDevice),
+              Throws.TypeOf<MongoDB.Driver.MongoWriteException>());
+        }
+
+        [Test]
+        public void ChangeSmartDeviceState_WhenStateIsNull_ResultIsEqual()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c93187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+                State = null
+            };
+
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+            _context.ChangeSmartDeviceState(smartDevice, "TEST");
+
+            var result = _context.GetSingleSmartDeviceFromCollection(newId);
+
+            var resultState = result.State;
+            Assert.AreEqual(resultState, "TEST");
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
+
+        [Test]
+        public void ChangeSmartDeviceState_WhenDuringOperationsSmartDeviceWasDeleted_ResultIsEqual()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+                State = null
+            };
+
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+
+            Assert.DoesNotThrow(() => _context.ChangeSmartDeviceState(smartDevice, "TEST"));
+        }
+
+        [Test]
+        public void GetSingleSmartDeviceFromCollection_WhenSmartDeviceDoestExists_DoesNotThrow()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94187778a2581069cf");
+
+            Assert.DoesNotThrow(() => _context.GetSingleSmartDeviceFromCollection(newId));
+        }
+
+        [Test]
+        public void SmartDeviceSwitchOne_WhenDisabledPropertyIsNotDeclared_ResultIsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5aab1c94187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SmartDeviceSwitchOne(smartDevice);
+
+            Assert.AreEqual(smartDevice.Disabled, false);
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
+
+        [Test]
+        public void SmartDeviceSwitchOne_WhenDisabledPropertyIsTrue_ResultIsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5aab1c94187378a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SmartDeviceSwitchOne(smartDevice);
+
+            Assert.AreEqual(smartDevice.Disabled, false);
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
+
+        [Test]
+        public void DeleteSmartDeviceFromCollection_WhenToDeleteSmartDeviceDoesntExistInDatabase_DoesNotThrow()
+        {
+            ObjectId newId = ObjectId.Parse("5aab1c94187375a2581069cf");
+
+            Assert.DoesNotThrow(() =>_context.DeleteSmartDeviceFromCollection(newId));
+        }
+
+        [Test]
+        public void DeleteSmartDeviceFromCollection_WhenToDeleteSmartDeviceExistInDatabase_DoesNotThrow()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94117778a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            Assert.DoesNotThrow(() => _context.DeleteSmartDeviceFromCollection(newId));
+        }
+
+
+        [Test]
+        public void SetSpecificPropertyOfSingleSmartDevice_WhenPropertIsUnset_ResultIsAsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5cab1c94117728a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SetPropertyOfSingleSmartDevice(smartDevice, "Type", "TestType");
+
+            string newType = _context.GetSingleSmartDeviceFromCollection(newId).Type;
+            Assert.AreEqual(newType, "TestType");
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
+
+        [Test]
+        public void SetSpecificPropertyOfSingleSmartDevice_WhenPropertyIsNull_ResultIsAsExpected()
+        {
+            ObjectId newId = ObjectId.Parse("5cac1c94117728a2581069cf");
+
+            SmartDevice smartDevice = new SmartDevice
+            {
+                Id = newId,
+                Name = "TEST",
+                Type = null
+            };
+
+            _context.AddSmartDeviceToCollection(smartDevice);
+
+            _context.SetPropertyOfSingleSmartDevice(smartDevice, "Type", "TestType");
+
+            string newType = _context.GetSingleSmartDeviceFromCollection(newId).Type;
+            Assert.AreEqual(newType, "TestType");
+
+            _context.DeleteSmartDeviceFromCollection(newId);
+        }
     }
 }

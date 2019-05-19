@@ -1,8 +1,8 @@
 <template>
-    <div id="menu">
-        <div v-on:click="test" class="menu" v-for="option in menu" v-bind:key="option.id">
+    <div v-show="this.$store.getters.getDisplayStatus.showMenu">
+        <div v-on:click="showDevicesList" class="menuItem" v-for="option in menu" v-bind:key="option.id">
             <img :src=option.image>
-            <div class="menuText">{{option.name}}</div>
+            <div>{{option.name}}</div>
         </div>
     </div>
 </template>
@@ -11,31 +11,31 @@
 export default {
     computed:{
         menu(){
-            return this.$store.getters.menuOptions;
+            return this.$store.getters.getMenuOptions;
         }
     },
     methods:{
-        test: function(){
+        showDevicesList: function(){
             this.$store.dispatch('getDevices');
+            this.$store.commit('display',{to:'showDevicesList',from:'showMenu'});
         }
     }
 }
 </script>
 
 <style scoped>
-.menu {
-    border: 2px solid blue;
-    border-radius: 5px;
-    height: 45vh;
-    width: 45vw;
+.menuItem {
+    height: 20vh;
+    width: 46vw;
+    border-style: solid;
+    border-color: white;
+    border-width: 2vw;
     float: left;
-    margin: 1vh 1vh;
     position: relative;
+    background: #166fff;
+    font-size: 30px;
+    text-align: center;
+    color: white;
 }
-.menuText{
-    position: absolute;
-    bottom: 10vh;
-    right: 15vw;
-    
-}
+
 </style>

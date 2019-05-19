@@ -25,6 +25,7 @@ public class ApiConnection
 
             HttpWebRequest request =
                 (HttpWebRequest)WebRequest.Create($"{_smartDeviceApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
 
@@ -85,6 +86,8 @@ public class ApiConnection
 
         return deviceState.Replace("\"", "");
     }
+
+
     public void ChangeDeviceState(string id, string deviceState)
     {
         WebClient wc = new WebClient();
