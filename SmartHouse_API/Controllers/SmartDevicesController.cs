@@ -98,6 +98,9 @@ namespace SmartHouse_API.Controllers
             _context.DeleteLocalization(name);
         }
 
+        /// <summary>
+        /// This function gets Key-Value pairs of "Types" of SmartDevices with "AvailableActions" which they can perform.
+        /// </summary>
         [HttpGet]
         [Route("api/GetTypesOfSmartDevicesWithAvailableActions")]
         public ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions()
@@ -106,6 +109,9 @@ namespace SmartHouse_API.Controllers
             return TypesOfSmartDevicesWithActions;
         }
 
+        /// <summary>
+        /// This function gets Key-Value pair of "Type" of SmartDevice with "AvailableActions" but only for one "Type" passed as an argument.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableActionsOfSingleTypeSmartDevice")]
         public ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type)
@@ -114,6 +120,10 @@ namespace SmartHouse_API.Controllers
             return AvailableActions;
         }
 
+
+        /// <summary>
+        /// This function gets "Types" of SmartDevices which are stored in database.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableTypes")]
         public ICollection<string> GetAvailableTypes()
@@ -122,6 +132,9 @@ namespace SmartHouse_API.Controllers
             return Type;
         }
 
+        /// <summary>
+        /// This function deletes "Type" property value passed as an argument with linked array of "AvailableActions".
+        /// </summary>
         [HttpPost]
         [Route("api/DeletePairTypeAvailableActions")]
         public void DeletePairTypeAvailableActions(string type)
@@ -129,6 +142,9 @@ namespace SmartHouse_API.Controllers
             _context.DeletePairTypeAvailableActions(type);
         }
 
+        /// <summary>
+        /// This function adds "Type" property with linked array of "AvailableActions".
+        /// </summary>
         [HttpPost]
         [Route("api/AddNewPairTypeAvailableActions")]
         public void AddNewPairTypeAvailableActions(string type, [FromUri]ICollection<string> availableActions)
@@ -136,6 +152,10 @@ namespace SmartHouse_API.Controllers
             _context.AddNewPairTypeAvailableActions(type, availableActions);
         }
 
+
+        /// <summary>
+        /// This function adds "Type" property with linked array of "AvailableActions".
+        /// </summary>
         [HttpGet]
         [Route("api/GetSingleSmartDevice")]
         public SmartDevice GetSingleSmartDevice(string id)
