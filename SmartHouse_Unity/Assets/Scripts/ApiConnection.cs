@@ -7,7 +7,7 @@ using UnityEngine;
 public class ApiConnection
 {
     private string _getmartDevicesApiUrl;
-
+    private WarningApiText apiWarning;
     public ApiConnection()
     {
         _getmartDevicesApiUrl = "http://localhost:61635/api";
@@ -15,14 +15,15 @@ public class ApiConnection
 
     public List<string> GetDeviceActions(string deviceName)
     {
-        //GetAvailableActionsOfSingleTypeSmartDevice
+        apiWarning = GameObject.FindObjectOfType<WarningApiText>();
+        apiWarning.HideWarning();
         HttpWebRequest request =
-          (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
+              (HttpWebRequest)WebRequest.Create($"{_getmartDevicesApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
 
-        string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
-        var deviceActions = JsonHelper.FromJson<string>(jsonResponse);
+            string jsonResponse = "{\"Items\":" + reader.ReadToEnd() + "}";
+             var deviceActions = JsonHelper.FromJson<string>(jsonResponse);
 
         return deviceActions.ToList();
     }
