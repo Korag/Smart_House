@@ -253,7 +253,7 @@ namespace SmartHouse_API
         }
         private static string GetXmlCommentsPath()
         {
-            return System.AppDomain.CurrentDomain.BaseDirectory + @"\bin\SmartHouse_API.xml";
+            return @"D:\home\SmartHouse_API.xml";
         }
     }
 }
