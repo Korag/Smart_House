@@ -11,7 +11,7 @@ public class ApiConnection
 
     public ApiConnection()
     {
-        _smartDeviceApiUrl = "http://localhost:61635/api";
+        _smartDeviceApiUrl = "https://smarthouseapii.azurewebsites.net/api";
     }
 
     public List<string> GetDeviceActions(string deviceName)
@@ -21,7 +21,7 @@ public class ApiConnection
 
         try
         {
-            apiWarning.HideWarning();
+           apiWarning.HideWarning();
 
             HttpWebRequest request =
                 (HttpWebRequest)WebRequest.Create($"{_smartDeviceApiUrl}/GetAvailableActionsOfSingleTypeSmartDevice/?type={deviceName}");
@@ -68,6 +68,7 @@ public class ApiConnection
     {
         apiWarning = GameObject.FindObjectOfType<WarningApiText>();
         string deviceState = string.Empty;
+
         try
         {
             apiWarning.HideWarning();
