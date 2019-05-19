@@ -7,10 +7,17 @@ using System.Web.Http;
 
 namespace SmartHouse_API.Controllers
 {
+
+    /// <summary>
+    /// SmartDevicesController provides an actions to add/modify/check MongoDB documents such as Localization/TypeActions/SmartDevice.
+    /// </summary>
     public class SmartDevicesController : ApiController
     {
         private IDbOperative _context;
 
+        /// <summary>
+        /// Standard Constructor which initializes instance of DbContext class.
+        /// </summary>
         public SmartDevicesController(IDbOperative context)
         {
             _context = context;
@@ -31,6 +38,9 @@ namespace SmartHouse_API.Controllers
             return sd.Disabled;
         }
 
+        /// <summary>
+        /// This function returns string "State" property of SmartDevice which id was passed as an argument.
+        /// </summary>
         [HttpGet]
         [Route("api/GetStateOfSingleSmartDevice")]
         public string GetStateOfSingleSmartDevice(string id)
@@ -40,6 +50,10 @@ namespace SmartHouse_API.Controllers
             return sd.State;
         }
 
+        /// <summary>
+        /// This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+        /// If conditions have been fulfilled this property would have given property "Disabled" value false.
+        /// </summary>
         [HttpGet]
         [Route("api/CheckIfSingleSmartDeviceIsDisabledAndSwitchOn")]
         public void CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(string id)
@@ -52,6 +66,10 @@ namespace SmartHouse_API.Controllers
             }
         }
 
+        /// <summary>
+        /// This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+        /// If conditions have been fulfilled this property would have given property "Disabled" value false.
+        /// </summary>
         [HttpGet]
         [Route("api/GetAvailableLocalizations")]
         public ICollection<string> GetAvailableLocalizations()
@@ -60,6 +78,9 @@ namespace SmartHouse_API.Controllers
             return Localizations;
         }
 
+        /// <summary>
+        /// This function adds new Localization to DictionaryCollection called Localizations which stores available places in house to locate SmartDevice.
+        /// </summary>
         [HttpPost]
         [Route("api/AddNewLocalization")]
         public void AddNewLocalization(string name)
@@ -67,6 +88,9 @@ namespace SmartHouse_API.Controllers
             _context.AddNewLocalization(name);
         }
 
+        /// <summary>
+        /// This function gives opportunity to delete Localization from DictionaryCollection called Localizations.
+        /// </summary>
         [HttpPost]
         [Route("api/DeleteLocalization")]
         public void DeleteLocalization(string name)
