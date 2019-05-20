@@ -2,7 +2,7 @@
 
 public class HideObject : MonoBehaviour
 {
-    public Transform camera;
+    public new Transform camera;
     public float HideDistance = 50f;
     // Start is called before the first frame update
     private void Start()

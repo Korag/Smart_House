@@ -97,7 +97,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SmartDevicesControllerTests.cs" />
+    <Compile Include="SmartDevicesControllerIntegrationTests.cs" />
+    <Compile Include="SmartDevicesControllerUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
