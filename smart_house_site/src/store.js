@@ -24,8 +24,9 @@ export const store = new Vuex.Store({
         actualDeviceId:"",
         actualDeviceState:"",
         categories: [],
-        groups: [],
-        localizations:[]
+        localizations:[],
+        groups: {}
+
     },
     getters:{
         getMenuOptions(state){
@@ -52,6 +53,12 @@ export const store = new Vuex.Store({
         },
         getActualDeviceId(state){
             return state.actualDeviceId;
+        },
+        getListOfLocalizations(state){
+            return state.localizations;
+        },
+        getGroups(state){
+            return state.groups;
         }
         
     },
@@ -88,12 +95,33 @@ export const store = new Vuex.Store({
             state.actualListOfAction = state.listOfAvailableActionsForAllTypes.find((element)=>{
                 return element.Type == state.actualDeviceType;
             }).AvailableActions;
+        },
+        createGroups(state){
+            state.localizations.forEach(function(loc){
+                state.groups[loc] = state.listOfDevices.filter(function(device){
+                    return device.Localization == loc;
+                })
+            })
+            state.groups['Other'] = state.listOfDevices.filter(function(device){
+                for(var loc of state.localizations){
+                    if(loc == device.Localization){
+                        return false
+                    }
+                }
+                return true
+            })
+            for(var group in state.groups){
+                if(state.groups[group].length == 0){
+                    delete state.groups[group]
+                }
+            }
         }
     },
     actions:{
         getDevices(context){
             Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
                 context.commit('loadDevices',response.body);
+                context.dispatch('getLocalizations');
             });
         },
         getActions(context){
@@ -111,6 +139,7 @@ export const store = new Vuex.Store({
         getLocalizations(context){
             Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
                 context.commit('loadLocalizations',response.body);
+                context.commit('createGroups');
             })
         },
         changeDeviceState(context,newState){
