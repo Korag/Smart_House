@@ -1,7 +1,14 @@
 <template>
-    <div class="topBar" v-on:click="goBack" >
-        <img v-if="!this.$store.getters.getDisplayStatus.showMenu" class="arrow" :src="require('@/assets/arrow.svg')">
-        Smart House</div>
+  <v-toolbar class="blue darken-1">
+    <v-btn flat color="black" fab right v-on:click="goBack" v-if="!this.$store.getters.getDisplayStatus.showMenu">
+        <v-icon large>arrow_back</v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
+    <v-toolbar-title class="white--text display-2 text-uppercase">
+        <span class="font-weight-light font-italic">Smart</span> House
+    </v-toolbar-title>
+    <v-spacer></v-spacer>
+  </v-toolbar>
 </template>
 
 <script>
