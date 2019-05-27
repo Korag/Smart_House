@@ -1,18 +1,50 @@
 <template>
-    <div v-show="this.$store.getters.getDisplayStatus.showDevicesList">
-        <div class="menuItem" v-for="device in devices" v-bind:key="device.id" v-on:click="DisplayActions(device.Type,device.Id)">
-            <div>{{device.Name}}</div>
-            <div>{{device.State}}</div>
-            <div>{{device.Type}}</div>
-        </div>
-    </div>
+<v-container v-show="this.$store.getters.getDisplayStatus.showDevicesList">
+    <v-layout column>
+        <v-flex py-2 v-for ="(value,name) in groups" :key="name" >
+            <v-card flat style="border-left: 4px solid #9575CD">
+                <v-chip small label text-color='white' color="#9575CD" >
+                <v-avatar>
+                    <v-icon>meeting_room</v-icon>
+                </v-avatar>
+                {{name}}
+                </v-chip>
+                <v-layout row wrap >
+                    <v-flex px-3 py-2 xs12 sm6 lg4 v-for ="device in value" :key="device.id">
+                        <v-card class="text-xs-center white--text headline" color="blue" v-on:click="DisplayActions(device.Type,device.Id)">
+                            <v-card-text>
+                            {{device.Type}}
+                            {{device.Name}}
+                            </v-card-text>
+                            <v-card-actions>
+                              <v-btn small fab class="success">ON</v-btn>
+                              <v-btn small fab color="error">OFF</v-btn>
+                              <v-btn small fab color="warning">Working</v-btn>
+                              <v-spacer></v-spacer>
+                              <v-btn small fab>
+                                  <v-icon color="Grey">notes</v-icon>
+                              </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-card>
+        </v-flex>
+    </v-layout>
+</v-container>
+
 </template>
 
 <script>
 export default {
+    data:function(){
+        return {
+            list: {}
+        }
+    },
     computed:{
-        devices(){
-            return this.$store.getters.getListOfDevices;
+        groups(){
+            return this.$store.getters.getGroups;
         }
     },
     methods:{
@@ -25,18 +57,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.menuItem {
-    height: 20vh;
-    width: 46vw;
-    border-style: solid;
-    border-color: white;
-    border-width: 2vw;
-    float: left;
-    position: relative;
-    background: #166fff;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-}
+<style>
+
+
+
 </style>
+
+
+
