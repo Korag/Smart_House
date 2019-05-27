@@ -1,4 +1,5 @@
 <template>
+<v-container v-show="this.$store.getters.getDisplayStatus.showMenu">
     <v-layout row wrap v-show="this.$store.getters.getDisplayStatus.showMenu">
         <v-flex px-3 py-2 xs12 sm6 lg4 v-for ="option in menu" :key="option.id" v-on:click="showDevicesList">
             <v-card class="text-xs-center white--text headline" color="blue">
@@ -9,6 +10,7 @@
             </v-card>
         </v-flex>
     </v-layout>
+</v-container>
 </template>
 
 <script>
@@ -20,7 +22,6 @@ export default {
     },
     methods:{
         showDevicesList: function(){
-            this.$store.dispatch("getLocalizations");
             this.$store.dispatch('getDevices');
             this.$store.commit('display',{to:'showDevicesList',from:'showMenu'});
         }
