@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175643459223228656}
   - component: {fileID: 8957188896091270392}
+  - component: {fileID: 2679364099156983943}
   m_Layer: 0
   m_Name: lampa
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
+--- !u!65 &2679364099156983943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175643459223325904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.850277, y: 6.346842, z: 2.9366422}
+  m_Center: {x: 0.8537624, y: 2.673421, z: -0.22415769}
 --- !u!1 &1175643459223325906
 GameObject:
   m_ObjectHideFlags: 0
