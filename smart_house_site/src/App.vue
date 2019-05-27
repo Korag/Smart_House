@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <v-app>
     <TopBar></TopBar>
-    <Menu></Menu>
-    <DevicesList></DevicesList>
-    <ActionsMenu></ActionsMenu>
-  </div>
+    <v-content>
+      <Menu></Menu>
+      <DevicesList></DevicesList>
+      <ActionsMenu></ActionsMenu>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -13,7 +15,6 @@ import DevicesList from './components/DevicesList.vue';
 import TopBar from './components/TopBar.vue';
 import ActionsMenu from './components/ActionsMenu.vue';
 
-
 export default {
   name: 'app',
   components: {
@@ -21,9 +22,15 @@ export default {
     DevicesList,
     TopBar,
     ActionsMenu
+  },
+  data () {
+    return {
+      //
+    }
   }
 }
 </script>
+
 
 <style>
 
