@@ -27,19 +27,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.menuItem {
-    height: 20vh;
-    width: 46vw;
-    border-style: solid;
-    border-color: white;
-    border-width: 2vw;
-    float: left;
-    position: relative;
-    background: #166fff;
-    font-size: 30px;
-    text-align: center;
-    color: white;
-}
-
-</style>
