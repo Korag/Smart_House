@@ -1,5 +1,9 @@
 # Smart_House
 
+## Diagram of dependencies between system modules
+
+![alt text](https://raw.githubusercontent.com/Korag/Smart_House/master/SmartHouse_API/Diagrams/smarthouse_components_diagram.png "Diagram of modules dependencies")
+
 ## Authorization MongoDB provider
 
 ## Application Interface
