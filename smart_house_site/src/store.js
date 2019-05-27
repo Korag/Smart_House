@@ -24,7 +24,8 @@ export const store = new Vuex.Store({
         actualDeviceId:"",
         actualDeviceState:"",
         categories: [],
-        groups: []
+        groups: [],
+        localizations:[]
     },
     getters:{
         getMenuOptions(state){
@@ -63,6 +64,9 @@ export const store = new Vuex.Store({
         },
         loadActualDeviceState(state,actualState){
             state.actualDeviceState = actualState;
+        },
+        loadLocalizations(state,listOfLocalizations){
+            state.localizations = listOfLocalizations;
         },
         display(state,{to,from}){
             state.displayStatus[to] = true;
@@ -103,6 +107,11 @@ export const store = new Vuex.Store({
             Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
                 context.commit('loadActualDeviceState',response.body);
             });
+        },
+        getLocalizations(context){
+            Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
+                context.commit('loadLocalizations',response.body);
+            })
         },
         changeDeviceState(context,newState){
             Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+context.getters.getActualDeviceId+'&propertyName=State&propertyValue='+newState)
