@@ -5,14 +5,14 @@ import VueResource from 'vue-resource';
 Vue.use(Vuex);
 Vue.use(VueResource);
 
-var api = 'https://smarthouseapii.azurewebsites.net/';
+var api = 'http://localhost:61635/';
 
 export const store = new Vuex.Store({
     state:{
         menu:[
-            {id:1, name:'Lista urządzeń',image:'', display: true},
-            {id:2, name:'Dodaj urządzenie',image:'', display: true},
-            {id:3, name:'Ustawienia',image:'', display: true},
+            {id:1, name:'Lista urządzeń',icon:'list_alt', display: true},
+            {id:2, name:'Dodaj urządzenie',icon:'add_to_queue', display: true},
+            {id:3, name:'Ustawienia',icon:'settings', display: true},
         ],
         displayStatus: {showMenu:true,showDevicesList:false,showActionsList:false},
         lastPages:[],
