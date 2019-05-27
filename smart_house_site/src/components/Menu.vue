@@ -20,6 +20,7 @@ export default {
     },
     methods:{
         showDevicesList: function(){
+            this.$store.dispatch("getLocalizations");
             this.$store.dispatch('getDevices');
             this.$store.commit('display',{to:'showDevicesList',from:'showMenu'});
         }
