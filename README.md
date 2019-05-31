@@ -1,4 +1,31 @@
-# Smart_House
+# Smart House
+
+## Diagram of dependencies between system modules
+
+![alt text](https://raw.githubusercontent.com/Korag/Smart_House/master/SmartHouse_API/Diagrams/smarthouse_components_diagram.png "Diagram of modules dependencies")
+
+## Authorization MongoDB provider
+
+In order to support the authorization and identification, which includes the user's login, Asp.Identity was used. Our project uses a non-relational MongoDB database, which is why standard Asp.Identity mechanisms working with SQL database had to be modified to work with MongoDB. For this purpose, the "MongoDB.AspNet.Identity" provider created by the "maxiomtech" user was used. This provider enables the use of the benefits of the Asp.Identity package in combination with the use of MongoDB. Instead of using relational database tables to store identity and attribution data, collections of non-relational MongoDB database are used.
+
+Link to the project: 
+https://github.com/maxiomtech/MongoDB.AspNet.Identity
+
+## Application Interface
+
+The application interface is made in ASP.NET Framework MVC 5.2 Web Api. Individual methods of the SmartDevicesController are protected against unauthorized access by Asp.Identity using the MongoDB provider. Documentation of individual API methods is included in SwaggerUI, which was attached to the project. 
+
+The documentation can be found at the address: 
+https://smarthouseapiswagger.azurewebsites.net/swagger/ui/index#/SmartDevices
+
+## Technology used
+
+Overall in our project we used follownig nuget packages:
+
+- All of the preinstalled ASP.Net MVC packages
+- Mongo DB nuget packages v2.80
+
+There's probably more I missed so ...
 
 ## Contact us if you have any questions
 

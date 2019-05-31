@@ -30,11 +30,12 @@ namespace SmartHouse_API.DAL
             return _context.db.GetCollection<Localization>(_localizationsCollName).AsQueryable().Select(z=> z.Name).ToList();
         }
 
-        public void AddNewLocalization(string name)
+        public void AddNewLocalization(string name, string icon)
         {
             Localization localization = new Localization
             {
-                Name = name
+                Name = name,
+                Icon = icon
             };
 
             _context.db.GetCollection<Localization>(_localizationsCollName).InsertOne(localization);

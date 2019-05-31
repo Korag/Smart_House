@@ -28,7 +28,7 @@ namespace SmartHouse_API.DAL
         void SetPropertyOfSingleSmartDevice(SmartDevice sd, string propertyName, string propertyValue);
         IEnumerable<SmartDevice> GetCollectionOfSmartDevicesWithSameProperty(string propertyName, string propertyValue, string propertyOrder);
         ICollection<string> GetLocalizations();
-        void AddNewLocalization(string name);
+        void AddNewLocalization(string name, string icon);
         void DeleteLocalization(string name);
         ICollection<TypeActions> GetTypesOfSmartDevicesWithAvailableActions();
         ICollection<string> GetAvailableActionsOfSingleTypeSmartDevice(string type);
