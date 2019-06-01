@@ -38,7 +38,6 @@ export const store = new Vuex.Store({
         getDisplayStatus(state){
             return state.displayStatus;
         },
-
         getActionsForDevice(state){
             return state.actualListOfAction;
         },
@@ -130,11 +129,16 @@ export const store = new Vuex.Store({
             })
         },
         getActions(context){
-            Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
-                context.commit('loadActions',response.body);
-                context.commit('filterActionsForDevice');
-                context.commit('display',{to:'showActionsList',from:'showDevicesList'});
-            });
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
+                    context.commit('loadActions',response.body);
+                    resolve(response);
+                   // context.commit('filterActionsForDevice');
+                   // context.commit('display',{to:'showActionsList',from:'showDevicesList'});
+                },error =>{
+                    reject(error);
+                });
+            })
         },
         getActualDeviceState(context){
             Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
