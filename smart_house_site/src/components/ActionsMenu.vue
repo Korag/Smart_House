@@ -2,8 +2,10 @@
     <v-container v-if="this.$store.getters.getDisplayStatus.showActionsList">
         <v-layout>
             <v-flex>
-                <v-card flat color="grey lighten-3" class="text-xs-center">
-                    <div>Aktualny stan: {{actualDevice.State}}</div>
+                <v-card flat color="blue" class="text-xs-center">
+                    <v-chip class="white--text text-xs-center headline" :class="StatusColor(actualDevice)">
+                        Aktualny stan: {{actualDevice.State}}
+                    </v-chip>
                 <v-card-actions>
                     <v-layout>
                         <v-flex v-for="action in listOfActions(actualDevice)" :key="action">
@@ -32,7 +34,14 @@ export default {
             return this.$store.getters.getListOfActionForDevice(actualDevice).filter((ele)=>{
                 return ele != actualDevice.State;
             });;
-        }
+        },
+        StatusColor(actualDevice){
+            return{
+                'success' : actualDevice.State == 'Enabled',
+                'error' : actualDevice.State == 'Disabled',
+                'warning' : actualDevice.State != 'Disabled' && actualDevice.State != 'Enabled'
+            }
+        },
     }
 }
 </script>
