@@ -41,9 +41,6 @@ export const store = new Vuex.Store({
         getActualPage(state){
             return state.actualPage;
         },
-        getActualDeviceState(state){
-            return state.actualDeviceState;
-        },
         getActualDeviceId(state){
             return state.actualDeviceId;
         },
