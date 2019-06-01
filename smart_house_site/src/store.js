@@ -19,7 +19,6 @@ export const store = new Vuex.Store({
         actualPage:[],
         listOfDevices: [],
         listOfAvailableActionsForAllTypes: [],
-        actualListOfAction:[],
         actualDevice:{},
         categories: [],
         localizations:[],
@@ -88,11 +87,6 @@ export const store = new Vuex.Store({
         changeActualDevice(state,device){
             state.actualDevice = device;
         },
-        filterActionsForDevice(state){
-            state.actualListOfAction = state.listOfAvailableActionsForAllTypes.find((element)=>{
-                return element.Type == state.actualDeviceType;
-            }).AvailableActions;
-        },
         createGroups(state){
             state.localizations.forEach(function(loc){
                 state.groups[loc.Name] = {List:state.listOfDevices.filter(function(device){
@@ -136,7 +130,6 @@ export const store = new Vuex.Store({
                     context.commit('loadActions',response.body);
                     resolve(response);
                    // context.commit('filterActionsForDevice');
-                   // context.commit('display',{to:'showActionsList',from:'showDevicesList'});
                 },error =>{
                     reject(error);
                 });
