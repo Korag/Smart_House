@@ -28,7 +28,7 @@
                               <v-btn v-if="device.State == 'Disabled'"  fab color="error" class="caption">OFF</v-btn>
                               <v-btn v-if="device.State != 'Disabled' && device.State != 'Enabled'"  fab color="warning" class="caption">Working</v-btn>
                               <v-spacer></v-spacer>
-                              <v-btn fab v-on:click="DisplayActions(device.Type,device.Id)">
+                              <v-btn fab v-on:click="DisplayActions(device)">
                                   <v-icon color="Grey">notes</v-icon>
                               </v-btn>
                             </v-card-actions>
@@ -36,7 +36,7 @@
                                 <v-layout row wrap justify-space-between>
                                     <v-flex py-1 v-for="action in GetListOfActions(device)" 
                                     :key="action"> 
-                                        <v-btn large v-on:click="changeState(device,action)">{{action}}</v-btn>
+                                        <v-btn large v-on:click="ChangeState(device,action)">{{action}}</v-btn>
                                     </v-flex>
                                 </v-layout>
                             </v-card-actions>
@@ -63,10 +63,11 @@ export default {
         }
     },
     methods:{
-        DisplayActions(deviceType,deviceId){
-            this.$store.commit('changeActualDevice',{deviceType: deviceType,deviceId: deviceId});
-            this.$store.dispatch('getActions');
-            this.$store.dispatch('getActualDeviceState');
+        DisplayActions(device){
+            this.$store.dispatch('getActualDeviceState',device).then(()=>{
+                this.$store.commit('changeActualDevice',device);
+                this.$store.commit('display',{to:'showActionsList',from:'showDevicesList'});
+            });
         },
         StatusColor(device){
             return{
@@ -80,7 +81,7 @@ export default {
                 return ele != device.State;
             });
         },
-        changeState(device,newState){
+        ChangeState(device,newState){
             this.$store.dispatch('changeDeviceState',{device,newState});
         }
     }
