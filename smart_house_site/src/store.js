@@ -120,6 +120,11 @@ export const store = new Vuex.Store({
                     delete state.groups[group]
                 }
             }
+        },
+        updateDeviceState(state,{device,newState}){
+            var index = state.groups[device.Localization]['List'].findIndex(dev=> dev.Id == device.Id);
+            console.log(index,device,newState);
+            state.groups[device.Localization]['List'][index].State = newState;
         }
     },
     actions:{
@@ -145,9 +150,9 @@ export const store = new Vuex.Store({
                 });
             })
         },
-        getActualDeviceState(context){
-            Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
-                context.commit('loadActualDeviceState',response.body);
+        getActualDeviceState(context,device){
+            Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+device.Id).then(response => {
+                context.commit('updateDeviceState',{dev:device,res: response.body});
             });
         },
         getLocalizations(context){
@@ -160,10 +165,12 @@ export const store = new Vuex.Store({
                 })
             })
         },
-        changeDeviceState(context,newState){
-            Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+context.getters.getActualDeviceId+'&propertyName=State&propertyValue='+newState)
-                .then(()=>{
-                context.dispatch('getActualDeviceState');
+        changeDeviceState(context,{device,newState}){
+            Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+device.Id+'&propertyName=State&propertyValue='+newState)
+                .then((response)=>{
+                    if(response.ok){
+                        context.commit('updateDeviceState',{device,newState});
+                    }
             });
         }
     }
