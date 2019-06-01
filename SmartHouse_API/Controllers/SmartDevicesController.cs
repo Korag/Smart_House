@@ -83,9 +83,9 @@ namespace SmartHouse_API.Controllers
         /// </summary>
         [HttpPost]
         [Route("api/AddNewLocalization")]
-        public void AddNewLocalization(string name)
+        public void AddNewLocalization(string name, string icon)
         {
-            _context.AddNewLocalization(name);
+            _context.AddNewLocalization(name, icon);
         }
 
         /// <summary>
