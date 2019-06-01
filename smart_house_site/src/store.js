@@ -35,9 +35,6 @@ export const store = new Vuex.Store({
         getDisplayStatus(state){
             return state.displayStatus;
         },
-        getActionsForActualDevice(state){
-            return state.actualListOfAction;
-        },
         getLastPage(state){
             return state.lastPage;
         },
