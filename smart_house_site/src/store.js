@@ -51,6 +51,9 @@ export const store = new Vuex.Store({
             return device => state.listOfAvailableActionsForAllTypes.find((element)=>{
                 return element.Type == device.Type;
             }).AvailableActions;
+        },
+        getActualDevice(state){
+            return state.actualDevice;
         }
         
     },
