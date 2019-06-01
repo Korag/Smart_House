@@ -141,8 +141,13 @@ export const store = new Vuex.Store({
             });
         },
         getLocalizations(context){
-            Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
-                context.commit('loadLocalizations',response.body);
+            return new Promise((resolve,reject) =>{
+                Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
+                    context.commit('loadLocalizations',response.body);
+                    resolve(response);
+                }, error =>{
+                    reject(error);
+                })
             })
         },
         changeDeviceState(context,newState){
