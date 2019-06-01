@@ -38,11 +38,18 @@ namespace SmartHouse_API.UnitTests
         public void AddNewLocalization_CheckIfLocalizationIsAddedToDatabase()
         {
             string name = "TEST";
+            string icon = "ICON";
 
-            _context.AddNewLocalization(name);
+            _context.AddNewLocalization(name, icon);
             var result =  _context.GetLocalizations();
 
-            Assert.That(() => result.Contains(name));
+            Localization testLocalization = new Localization
+            {
+                Name = "TEST",
+                Icon = "ICON"
+            };
+
+            Assert.That(() => result.Where(z=>z.Name==name && z.Icon == icon).Count() == 1);
 
             _context.DeleteLocalization(name);
         }

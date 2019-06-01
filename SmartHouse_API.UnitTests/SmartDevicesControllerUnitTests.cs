@@ -113,7 +113,11 @@ namespace SmartHouse_API.UnitTests
         public void GetAvailableLocalizations_WhenDbContainsLocalizations_DoesNotThrowException()
         {
             _contextDbMock.Setup(x => x.GetLocalizations())
-                .Returns(new List<string> { "Localization1","Localization2","Localization3" });
+                .Returns(new List<Localization> {
+                    new Localization{ Name="Localization1" },
+                       new Localization{ Name="Localization2" },
+                          new Localization{ Name="Localization3" }
+                });
 
             Assert.DoesNotThrow(() => _controller.GetAvailableLocalizations());
         }
@@ -122,7 +126,11 @@ namespace SmartHouse_API.UnitTests
         public void GetAvailableLocalizations_WhenDbContainsLocalizations_ResultIsNotEmpty()
         {
             _contextDbMock.Setup(x => x.GetLocalizations())
-                .Returns(new List<string> { "Localization1", "Localization2", "Localization3" });
+                     .Returns(new List<Localization> {
+                    new Localization{ Icon="Icon1" },
+                       new Localization{ Icon="Icon2" },
+                          new Localization{ Icon="Icon3" }
+                     });
 
             Assert.IsNotEmpty(_controller.GetAvailableLocalizations());
         }
@@ -132,7 +140,7 @@ namespace SmartHouse_API.UnitTests
         public void GetAvailableLocalizations_WhenDbDoesntContainsLocalizations_ResultIsEmpty()
         {
             _contextDbMock.Setup(x => x.GetLocalizations())
-                .Returns(new List<string> { });
+                .Returns(new List<Localization> { });
 
             Assert.IsEmpty(_controller.GetAvailableLocalizations());
         }

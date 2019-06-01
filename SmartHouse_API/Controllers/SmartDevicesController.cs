@@ -72,7 +72,7 @@ namespace SmartHouse_API.Controllers
         /// </summary>
         [HttpGet]
         [Route("api/GetAvailableLocalizations")]
-        public ICollection<string> GetAvailableLocalizations()
+        public ICollection<Localization> GetAvailableLocalizations()
         {
             var Localizations = _context.GetLocalizations();
             return Localizations;
