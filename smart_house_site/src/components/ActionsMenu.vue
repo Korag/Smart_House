@@ -9,7 +9,7 @@
                 <v-card-actions>
                     <v-layout>
                         <v-flex v-for="action in listOfActions(actualDevice)" :key="action">
-                            <v-btn>{{action}}</v-btn>
+                            <v-btn v-on:click="ChangeState(actualDevice,action)">{{action}}</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card-actions>
@@ -27,8 +27,8 @@ export default {
         }
     },
     methods:{
-        changeState(newState){
-            this.$store.dispatch('changeDeviceState',newState);
+        ChangeState(device,newState){
+            this.$store.dispatch('changeDeviceState',{device,newState});
         },
         listOfActions(actualDevice){
             return this.$store.getters.getListOfActionForDevice(actualDevice).filter((ele)=>{
