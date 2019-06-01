@@ -20,9 +20,7 @@ export const store = new Vuex.Store({
         listOfDevices: [],
         listOfAvailableActionsForAllTypes: [],
         actualListOfAction:[],
-        actualDeviceType:"",
-        actualDeviceId:"",
-        actualDeviceState:"",
+        actualDevice:{},
         categories: [],
         localizations:[],
         groups: {}
@@ -73,9 +71,6 @@ export const store = new Vuex.Store({
         loadActions(state,listOfNewActions){
             state.listOfAvailableActionsForAllTypes = listOfNewActions;
         },
-        loadActualDeviceState(state,actualState){
-            state.actualDeviceState = actualState;
-        },
         loadLocalizations(state,listOfLocalizations){
             state.localizations = listOfLocalizations;
         },
@@ -90,11 +85,9 @@ export const store = new Vuex.Store({
             state.actualPage = state.lastPages.pop();
             state.displayStatus[state.actualPage] = true;
         },
-        changeActualDevice(state,payload){
-            state.actualDeviceType = payload.deviceType;
-            state.actualDeviceId = payload.deviceId;
+        changeActualDevice(state,device){
+            state.actualDevice = device;
         },
-
         filterActionsForDevice(state){
             state.actualListOfAction = state.listOfAvailableActionsForAllTypes.find((element)=>{
                 return element.Type == state.actualDeviceType;
@@ -123,9 +116,8 @@ export const store = new Vuex.Store({
         },
         updateDeviceState(state,{device,newState}){
             var index = state.groups[device.Localization]['List'].findIndex(dev=> dev.Id == device.Id);
-            console.log(index,device,newState);
             state.groups[device.Localization]['List'][index].State = newState;
-        }
+        },
     },
     actions:{
         getDevices(context){
