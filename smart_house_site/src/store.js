@@ -41,9 +41,6 @@ export const store = new Vuex.Store({
         getActualPage(state){
             return state.actualPage;
         },
-        getActualDeviceId(state){
-            return state.actualDeviceId;
-        },
         getListOfLocalizations(state){
             return state.localizations;
         },
