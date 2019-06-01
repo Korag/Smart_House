@@ -18,7 +18,7 @@ namespace SmartHouse_API
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-            var corsAttr = new EnableCorsAttribute("https://smarthouseapii.azurewebsites.net", "*", "*");
+            var corsAttr = new EnableCorsAttribute("http://localhost:8080", "*", "*");
             config.EnableCors(corsAttr);
 
             var json = config.Formatters.JsonFormatter;
