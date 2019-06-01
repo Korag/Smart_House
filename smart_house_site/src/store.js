@@ -98,13 +98,13 @@ export const store = new Vuex.Store({
         },
         createGroups(state){
             state.localizations.forEach(function(loc){
-                state.groups[loc] = state.listOfDevices.filter(function(device){
-                    return device.Localization == loc;
+                state.groups[loc.Name] = state.listOfDevices.filter(function(device){
+                    return device.Localization == loc.Name;
                 })
             })
             state.groups['Other'] = state.listOfDevices.filter(function(device){
                 for(var loc of state.localizations){
-                    if(loc == device.Localization){
+                    if(loc.Name == device.Localization){
                         return false
                     }
                 }
