@@ -5,23 +5,25 @@
             <v-card flat color="grey lighten-3" style="border-left: 4px solid grey" class="text-xs-center">
                 <v-chip label text-color='white' color="grey" class="headline" >
                 <v-avatar>
-                    <v-icon>{{value.Icon}}</v-icon>
+                    <v-icon right>{{value.Icon}}</v-icon>
                 </v-avatar>
                 {{name}}
                 </v-chip>
                 <v-layout row wrap >
                     <v-flex px-3 py-2 xs12 sm6 lg4 v-for ="device in value.List" :key="device.id">
-                        <v-card class="text-xs-center white--text headline" color="blue" v-on:click="DisplayActions(device.Type,device.Id)">
+                        <v-card class="text-xs-center white--text headline" color="blue" >
                             <v-card-text>
-                            {{device.Type}}
+                                <p class="display-1">
+                                {{device.Type}}
+                                </p>
                             {{device.Name}}
                             </v-card-text>
-                            <v-card-actions>
-                              <v-btn small fab color="success">ON</v-btn>
-                              <v-btn small fab color="error">OFF</v-btn>
-                              <v-btn small fab color="warning">Working</v-btn>
+                            <v-card-actions class="hidden-lg-and-up">
+                              <v-btn v-if="device.State == 'Enabled'"  fab color="success" class="caption">ON</v-btn>
+                              <v-btn v-if="device.State == 'Disabled'"  fab color="error" class="caption">OFF</v-btn>
+                              <v-btn v-if="device.State != 'Disabled' && device.State != 'Enabled'"  fab color="warning" class="caption">Working</v-btn>
                               <v-spacer></v-spacer>
-                              <v-btn small fab>
+                              <v-btn fab v-on:click="DisplayActions(device.Type,device.Id)">
                                   <v-icon color="Grey">notes</v-icon>
                               </v-btn>
                             </v-card-actions>
