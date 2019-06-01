@@ -119,10 +119,14 @@ export const store = new Vuex.Store({
     },
     actions:{
         getDevices(context){
-            Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
-                context.commit('loadDevices',response.body);
-                context.dispatch('getLocalizations');
-            });
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
+                    context.commit('loadDevices',response.body);
+                    resolve(response);
+                },error =>{
+                    reject(error);
+                });
+            })
         },
         getActions(context){
             Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
@@ -139,7 +143,6 @@ export const store = new Vuex.Store({
         getLocalizations(context){
             Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
                 context.commit('loadLocalizations',response.body);
-                context.commit('createGroups');
             })
         },
         changeDeviceState(context,newState){
