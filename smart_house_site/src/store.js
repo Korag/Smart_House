@@ -38,7 +38,7 @@ export const store = new Vuex.Store({
         getDisplayStatus(state){
             return state.displayStatus;
         },
-        getActionsForDevice(state){
+        getActionsForActualDevice(state){
             return state.actualListOfAction;
         },
         getLastPage(state){
@@ -58,6 +58,11 @@ export const store = new Vuex.Store({
         },
         getGroups(state){
             return state.groups;
+        },
+        getListOfActionForDevice(state){
+            return device => state.listOfAvailableActionsForAllTypes.find((element)=>{
+                return element.Type == device.Type;
+            }).AvailableActions;
         }
         
     },
