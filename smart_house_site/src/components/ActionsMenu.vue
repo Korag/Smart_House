@@ -36,30 +36,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.menuItem {
-    height: 20vh;
-    width: 46vw;
-    border-style: solid;
-    border-color: white;
-    border-width: 2vw;
-    float: left;
-    position: relative;
-    background: #166fff;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-}
-.actualState{
-    height: 20vh;
-    width: 96vw;
-    background: #166fff;
-    border-style: solid;
-    border-color: white;
-    border-width: 2vw;
-    font-size: 40px;
-    text-align: center;
-    color: white;
-}
-</style>
