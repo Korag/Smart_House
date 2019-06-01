@@ -25,9 +25,9 @@ namespace SmartHouse_API.DAL
             return _smartDevices;
         }
 
-        public ICollection<string> GetLocalizations()
+        public ICollection<Localization> GetLocalizations()
         {
-            return _context.db.GetCollection<Localization>(_localizationsCollName).AsQueryable().Select(z=> z.Name).ToList();
+            return _context.db.GetCollection<Localization>(_localizationsCollName).AsQueryable().ToList();
         }
 
         public void AddNewLocalization(string name, string icon)
