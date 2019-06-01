@@ -22,7 +22,7 @@ export default {
     },
     methods:{
         showDevicesList: function(){
-            Promise.all([this.$store.dispatch('getDevices'),this.$store.dispatch('getLocalizations')]).then(()=>{
+            Promise.all([this.$store.dispatch('getDevices'),this.$store.dispatch('getLocalizations'),this.$store.dispatch('getActions')]).then(()=>{
                 this.$store.commit('createGroups');
                  this.$store.commit('display',{to:'showDevicesList',from:'showMenu'});
             })
