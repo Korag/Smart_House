@@ -2,7 +2,7 @@
 <v-container v-show="this.$store.getters.getDisplayStatus.showDevicesList">
     <v-layout column>
         <v-flex py-2 v-for ="(value,name) in groups" :key="name" >
-            <v-card flat color="grey lighten-3" style="border-left: 4px solid grey" class="text-xs-center">
+            <v-card flat color="grey lighten-3" class="text-xs-center">
                 <v-chip label text-color='white' color="grey" class="headline" >
                 <v-avatar>
                     <v-icon right>{{value.Icon}}</v-icon>
@@ -33,9 +33,12 @@
                               </v-btn>
                             </v-card-actions>
                             <v-card-actions class="hidden-md-and-down">
-                                <v-flex v-for="action in GetListOfActions(device)" :key="action" >
-                                    <v-btn>{{action}}</v-btn>
-                                </v-flex>
+                                <v-layout row wrap justify-space-between>
+                                    <v-flex py-1 v-for="action in GetListOfActions(device)" 
+                                    :key="action"> 
+                                        <v-btn large v-on:click="changeState(device,action)">{{action}}</v-btn>
+                                    </v-flex>
+                                </v-layout>
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -73,7 +76,12 @@ export default {
             }
         },
         GetListOfActions(device){
-            this.$store.getters.getListOfActionForDevice(device);
+            return this.$store.getters.getListOfActionForDevice(device).filter((ele)=>{
+                return ele != device.State;
+            });
+        },
+        changeState(device,newState){
+            this.$store.dispatch('changeDeviceState',{device,newState});
         }
     }
 }
