@@ -130,9 +130,15 @@ export const store = new Vuex.Store({
             })
         },
         getActualDeviceState(context,device){
-            Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+device.Id).then(response => {
-                context.commit('updateDeviceState',{dev:device,res: response.body});
-            });
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+device.Id).then(response => {
+                    context.commit('updateDeviceState',{device,newState:response.body});
+                    resolve(response);
+                },error=>{
+                    reject(error);
+                });
+            })
+
         },
         getLocalizations(context){
             return new Promise((resolve,reject) =>{
