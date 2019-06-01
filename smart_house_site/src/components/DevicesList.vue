@@ -2,8 +2,8 @@
 <v-container v-show="this.$store.getters.getDisplayStatus.showDevicesList">
     <v-layout column>
         <v-flex py-2 v-for ="(value,name) in groups" :key="name" >
-            <v-card flat style="border-left: 4px solid #9575CD">
-                <v-chip small label text-color='white' color="#9575CD" >
+            <v-card flat color="grey lighten-3" style="border-left: 4px solid grey" class="text-xs-center">
+                <v-chip  label text-color='white' color="grey" class="headline" >
                 <v-avatar>
                     <v-icon>meeting_room</v-icon>
                 </v-avatar>
@@ -17,7 +17,7 @@
                             {{device.Name}}
                             </v-card-text>
                             <v-card-actions>
-                              <v-btn small fab class="success">ON</v-btn>
+                              <v-btn small fab color="success">ON</v-btn>
                               <v-btn small fab color="error">OFF</v-btn>
                               <v-btn small fab color="warning">Working</v-btn>
                               <v-spacer></v-spacer>
