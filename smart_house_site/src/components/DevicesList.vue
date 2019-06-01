@@ -16,7 +16,12 @@
                                 <p class="display-1">
                                 {{device.Type}}
                                 </p>
-                            {{device.Name}}
+                                <p class="subheading">
+                                {{device.Name}}
+                                </p>
+                                <v-chip class="hidden-md-and-down white--text text-xs-center headline" :class="StatusColor(device)">
+                                    Status: {{device.State}}
+                                </v-chip>
                             </v-card-text>
                             <v-card-actions class="hidden-lg-and-up">
                               <v-btn v-if="device.State == 'Enabled'"  fab color="success" class="caption">ON</v-btn>
@@ -26,6 +31,11 @@
                               <v-btn fab v-on:click="DisplayActions(device.Type,device.Id)">
                                   <v-icon color="Grey">notes</v-icon>
                               </v-btn>
+                            </v-card-actions>
+                            <v-card-actions class="hidden-md-and-down">
+                                <v-flex v-for="action in GetListOfActions(device)" :key="action" >
+                                    <v-btn>{{action}}</v-btn>
+                                </v-flex>
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -54,6 +64,16 @@ export default {
             this.$store.commit('changeActualDevice',{deviceType: deviceType,deviceId: deviceId});
             this.$store.dispatch('getActions');
             this.$store.dispatch('getActualDeviceState');
+        },
+        StatusColor(device){
+            return{
+                'success' : device.State == 'Enabled',
+                'error' : device.State == 'Disabled',
+                'warning' : device.State != 'Disabled' && device.State != 'Enabled'
+            }
+        },
+        GetListOfActions(device){
+            this.$store.getters.getListOfActionForDevice(device);
         }
     }
 }
