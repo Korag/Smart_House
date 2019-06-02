@@ -12,11 +12,12 @@ export const store = new Vuex.Store({
         menu:[
             {id:1, name:'My House',icon:'home', display: true,action:'showMyHouse'},
             {id:2, name:'Devices Manager',icon:'important_devices', display: true,action:'showDevicesManager'},
-            {id:3, name:'Localizations Manager',icon:'location_searching', display: true,action:'s'},
+            {id:3, name:'Localizations Manager',icon:'location_searching', display: true,action:'showLocalizationsManager'},
             {id:4, name:'Actions Manager',icon:'filter_list', display: true,action:'d'}
         ],
         displayStatus: {showMenu:true,showMyHouse:false,showActionsList:false,
-                        showDevicesManager:false,showAddDevice:false,showEditDevice:false},
+                        showDevicesManager:false,showAddDevice:false,showEditDevice:false,
+                        showLocalizationsManager:false},
         lastPages:[],
         actualPage:[],
         listOfDevices: [],
@@ -204,6 +205,22 @@ export const store = new Vuex.Store({
                 }
                 
             }
+        },
+        deleteLocalizationFromDB(context,localization){
+            Vue.http.post(api+'api/DeleteLocalization?name='+localization.Name)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getDevices');
+                }
+            });
+        },
+        addLocalizationToDB(context,localization){
+            Vue.http.post(api+'api/AddNewLocalization?name='+localization.Name+'&icon='+location.Icon)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getDevices');
+                }
+            });
         }
     }
 });
