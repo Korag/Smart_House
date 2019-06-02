@@ -5,6 +5,6 @@
 
 @mytag
 Scenario: Get all smart devices from database
-	When Client sends get request in order to get all smart devices
+	When Client sent get request in order to get all smart devices
 	Then The client should not get empty list
 	Then The client should get list of smart devices

@@ -36,5 +36,6 @@ namespace SmartHouse_API.AcceptanceTests.Steps
             Assert.That(_result, Is.TypeOf<List<SmartDevice>>());
         }
 
+
     }
 }

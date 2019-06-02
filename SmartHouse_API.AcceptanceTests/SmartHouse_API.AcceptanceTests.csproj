@@ -23,6 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckIfSingleSmartDeviceIsDisabled.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\SmartDevicesControllerTests.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -31,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\SmartDevicesControllerTests.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SmartDevicesControllerTests.feature.cs</LastGenOutput>
