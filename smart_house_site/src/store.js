@@ -17,7 +17,7 @@ export const store = new Vuex.Store({
         ],
         displayStatus: {showMenu:true,showMyHouse:false,showActionsList:false,
                         showDevicesManager:false,showAddDevice:false,showEditDevice:false,
-                        showLocalizationsManager:false},
+                        showLocalizationsManager:false,showAddLocalization:false},
         lastPages:[],
         actualPage:[],
         listOfDevices: [],
@@ -180,12 +180,17 @@ export const store = new Vuex.Store({
             })
         },
         addDeviceToDB(context,device){
-            Vue.http.post(api+'api/AddSmartDevice?type='+device.Type+'&name='+device.Name+'&state='+device.State+'&disabled=true&localization='+device.Localization)
-            .then((response)=>{
-                if(response.ok){
-                    context.dispatch('getDevices');
-                }
-        });
+            return new Promise((resolve,reject)=>{
+                Vue.http.post(api+'api/AddSmartDevice?type='+device.Type+'&name='+device.Name+'&state='+device.State+'&disabled=true&localization='+device.Localization)
+                .then((response)=>{
+                    if(response.ok){
+                        context.dispatch('getDevices');
+                        resolve(response);
+                    }
+                 }),error=>{
+                     reject(error);
+                 };
+            })
         },
         deleteDeviceFromDB(context,device){
             Vue.http.post(api+'api/DeleteSmartDeviceFromCollection?id='+device.Id)
@@ -210,17 +215,22 @@ export const store = new Vuex.Store({
             Vue.http.post(api+'api/DeleteLocalization?name='+localization.Name)
             .then((response)=>{
                 if(response.ok){
-                    context.dispatch('getDevices');
+                    context.dispatch('getLocalizations');
                 }
             });
         },
         addLocalizationToDB(context,localization){
-            Vue.http.post(api+'api/AddNewLocalization?name='+localization.Name+'&icon='+location.Icon)
-            .then((response)=>{
-                if(response.ok){
-                    context.dispatch('getDevices');
-                }
-            });
+            return new Promise((resolve,reject)=>{
+                Vue.http.post(api+'api/AddNewLocalization?name='+localization.Name+'&icon='+localization.Icon)
+                .then((response)=>{
+                    if(response.ok){
+                        context.dispatch('getLocalizations');
+                        resolve(response);
+                    }
+                },error =>{
+                    reject(error);
+                });
+            })
         }
     }
 });

@@ -74,7 +74,11 @@ export default {
 
             }  
             if(this.$refs.addDeviceForm.validate()){
-                this.$store.dispatch('addDeviceToDB',device);
+                this.$store.dispatch('addDeviceToDB',device).then((response) => {
+                    if(response.ok){
+                        this.$refs.addDeviceForm.reset()
+                    }
+                })
             }
 
         }

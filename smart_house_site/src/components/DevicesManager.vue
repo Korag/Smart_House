@@ -24,7 +24,7 @@
             </v-card>
         </v-flex>
               <v-btn large  bottom right fixed fab color="green" v-on:click="showAddDevice">
-                <v-icon white>add</v-icon>
+                <v-icon color="white">add</v-icon>
               </v-btn>
     </v-layout>
 </v-container>
