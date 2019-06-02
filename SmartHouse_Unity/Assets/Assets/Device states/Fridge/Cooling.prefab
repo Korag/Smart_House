@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1882708261145513280}
   - component: {fileID: 3851262375225533128}
   m_Layer: 0
-  m_Name: "Ch\u0142od\u017A"
+  m_Name: Cooling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5352db733e3e3c24b84c29a08f1a54e8, type: 2}
+  - {fileID: 2100000, guid: 2ae235bbcba7b1f47930840de559e183, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
