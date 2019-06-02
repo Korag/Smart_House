@@ -28,6 +28,9 @@ export default {
             else if(name == 'showDevicesManager'){
                 this.showDeviceManager();
             }
+            else if(name == 'showLocalizationsManager'){
+                this.showLocalizationsManager();
+            }
         },
         showMyHouse: function(){
             Promise.all([this.$store.dispatch('getDevices'),this.$store.dispatch('getLocalizations'),this.$store.dispatch('getActions')]).then(()=>{
@@ -38,6 +41,10 @@ export default {
         showDeviceManager: function(){
             this.$store.dispatch('getDevices')
             this.$store.commit('display',{to:'showDevicesManager',from:'showMenu'});
+        },
+        showLocalizationsManager: function(){
+            this.$store.dispatch('getLocalizations');
+            this.$store.commit('display',{to:"showLocalizationsManager",from:'showMenu'})
         }
     }
 }
