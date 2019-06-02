@@ -10,11 +10,11 @@ var api = 'http://localhost:61635/';
 export const store = new Vuex.Store({
     state:{
         menu:[
-            {id:1, name:'Lista urządzeń',icon:'list_alt', display: true},
-            {id:2, name:'Dodaj urządzenie',icon:'add_to_queue', display: true},
-            {id:3, name:'Ustawienia',icon:'settings', display: true},
+            {id:1, name:'Lista urządzeń',icon:'list_alt', display: true,action:'showDevicesList'},
+            {id:2, name:'Dodaj urządzenie',icon:'add_to_queue', display: true,action:'showAddDevice'},
+            {id:3, name:'Ustawienia',icon:'settings', display: true,action:'d'},
         ],
-        displayStatus: {showMenu:true,showDevicesList:false,showActionsList:false},
+        displayStatus: {showMenu:true,showDevicesList:false,showActionsList:false,showAddDevice:false},
         lastPages:[],
         actualPage:[],
         listOfDevices: [],
