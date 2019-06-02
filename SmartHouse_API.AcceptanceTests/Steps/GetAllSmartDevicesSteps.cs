@@ -10,15 +10,15 @@ using TechTalk.SpecFlow;
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
     [Binding]
-    public class SmartDevicesControllerSteps
+    public class GetAllSmartDevicesSteps
     {
         private HttpClient _client = new HttpClient();
         private HttpResponseMessage _responseContent;
         private List<SmartDevice> _result;
 
 
-        [When(@"Client sends get request in order to get all smart devices")]
-        public void WhenClientSendsGetRequestInOrderToGetAllSmartDevices()
+        [When(@"Client sent get request in order to get all smart devices")]
+        public void WhenClientSentGetRequestInOrderToGetAllSmartDevices()
         {
             _responseContent = _client.GetAsync("https://smarthouseapii.azurewebsites.net/api/GetAllSmartDevices").Result;
             _result = JsonConvert.DeserializeObject<List<SmartDevice>>(_responseContent.Content.ReadAsStringAsync().Result);
@@ -28,6 +28,7 @@ namespace SmartHouse_API.AcceptanceTests.Steps
         public void ThenTheClientShouldNotGetEmptyList()
         {
             Assert.That(_result, Is.Not.Empty);
+
         }
 
         [Then(@"The client should get list of smart devices")]

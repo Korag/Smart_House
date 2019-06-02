@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.8.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="SpecFlow" Version="3.0.213" />
@@ -28,10 +26,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CheckIfSingleSmartDeviceIsDisabled.feature</DependentUpon>
     </Compile>
-    <Compile Update="Features\SmartDevicesControllerTests.feature.cs">
+    <Compile Update="Features\GetAllSmartDevices.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SmartDevicesControllerTests.feature</DependentUpon>
+      <DependentUpon>GetAllSmartDevices.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\GetAvailableLocalizations.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAvailableLocalizations.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -40,9 +43,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\SmartDevicesControllerTests.feature">
+    <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SmartDevicesControllerTests.feature.cs</LastGenOutput>
+      <LastGenOutput>GetAllSmartDevices.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\GetAvailableLocalizations.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableLocalizations.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

@@ -1,15 +1,13 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "c616d1baeb347550f9969f25d38ed6be1367887f"
+    "signature": "1aaf169cc7e1c97296019e465e6addb641099b72"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "SmartHouse_API.AcceptanceTests/1.0.0": {
         "dependencies": {
-          "MSTest.TestAdapter": "1.3.2",
-          "MSTest.TestFramework": "1.3.2",
           "Microsoft.NET.Test.Sdk": "15.9.0",
           "MongoDB.Bson": "2.8.1",
           "NUnit": "3.12.0",
@@ -132,8 +130,8 @@
           "System.ComponentModel.EventBasedAsync": "4.3.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Diagnostics.Process": "4.3.0",
-          "System.Diagnostics.TextWriterTraceListener": "4.3.0",
-          "System.Diagnostics.TraceSource": "4.3.0",
+          "System.Diagnostics.TextWriterTraceListener": "4.0.0",
+          "System.Diagnostics.TraceSource": "4.0.0",
           "System.Reflection.Metadata": "1.3.0",
           "System.Reflection.TypeExtensions": "4.3.0",
           "System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
@@ -423,23 +421,6 @@
           }
         }
       },
-      "MSTest.TestAdapter/1.3.2": {
-        "dependencies": {
-          "System.Diagnostics.TextWriterTraceListener": "4.3.0"
-        }
-      },
-      "MSTest.TestFramework/1.3.2": {
-        "runtime": {
-          "lib/netstandard1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll": {
-            "assemblyVersion": "14.0.0.0",
-            "fileVersion": "14.0.2505.1"
-          },
-          "lib/netstandard1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.dll": {
-            "assemblyVersion": "14.0.0.0",
-            "fileVersion": "14.0.2505.1"
-          }
-        }
-      },
       "Newtonsoft.Json/9.0.1": {
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
@@ -695,9 +676,9 @@
           }
         }
       },
-      "System.Diagnostics.TextWriterTraceListener/4.3.0": {
+      "System.Diagnostics.TextWriterTraceListener/4.0.0": {
         "dependencies": {
-          "System.Diagnostics.TraceSource": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.0.0",
           "System.Globalization": "4.3.0",
           "System.IO": "4.3.0",
           "System.Resources.ResourceManager": "4.3.0",
@@ -710,7 +691,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Diagnostics.TraceSource/4.3.0": {
+      "System.Diagnostics.TraceSource/4.0.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
@@ -1574,20 +1555,6 @@
       "path": "mongodb.bson/2.8.1",
       "hashPath": "mongodb.bson.2.8.1.nupkg.sha512"
     },
-    "MSTest.TestAdapter/1.3.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ZUof05vDwa2IMhzceN31KBR1wrnrpLf4mKGMCrnCaP7QjuxMdQjagBlIYzRJBS6OoBi8l/qj1S21Bo2qzqVl9w==",
-      "path": "mstest.testadapter/1.3.2",
-      "hashPath": "mstest.testadapter.1.3.2.nupkg.sha512"
-    },
-    "MSTest.TestFramework/1.3.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-RC0EruieQM+TNh5TfRtENgqorleO4s4XRyYasFZHDapuIFfeuy0BkPu4Qc5W0HKvLKwJdbb6WoSGxFRqmUA3Lg==",
-      "path": "mstest.testframework/1.3.2",
-      "hashPath": "mstest.testframework.1.3.2.nupkg.sha512"
-    },
     "Newtonsoft.Json/9.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1742,12 +1709,12 @@
       "path": "system.diagnostics.process/4.3.0",
       "hashPath": "system.diagnostics.process.4.3.0.nupkg.sha512"
     },
-    "System.Diagnostics.TextWriterTraceListener/4.3.0": {
+    "System.Diagnostics.TextWriterTraceListener/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-F11kHWeiwYjFWto+kr8tt9ULMH0k8MsT1XmdCGPTLYHhWgN+2g7JsIZiXDrxlFGccSNkbjfwQy4xIS38gzUiZA==",
-      "path": "system.diagnostics.textwritertracelistener/4.3.0",
-      "hashPath": "system.diagnostics.textwritertracelistener.4.3.0.nupkg.sha512"
+      "sha512": "sha512-w36Dr8yKy8xP150qPANe7Td+/zOI3G62ImRcHDIEW+oUXUuTKZHd4DHmqRx5+x8RXd85v3tXd1uhNTfsr+yxjA==",
+      "path": "system.diagnostics.textwritertracelistener/4.0.0",
+      "hashPath": "system.diagnostics.textwritertracelistener.4.0.0.nupkg.sha512"
     },
     "System.Diagnostics.Tools/4.0.1": {
       "type": "package",
@@ -1756,12 +1723,12 @@
       "path": "system.diagnostics.tools/4.0.1",
       "hashPath": "system.diagnostics.tools.4.0.1.nupkg.sha512"
     },
-    "System.Diagnostics.TraceSource/4.3.0": {
+    "System.Diagnostics.TraceSource/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VnYp1NxGx8Ww731y2LJ1vpfb/DKVNKEZ8Jsh5SgQTZREL/YpWRArgh9pI8CDLmgHspZmLL697CaLvH85qQpRiw==",
-      "path": "system.diagnostics.tracesource/4.3.0",
-      "hashPath": "system.diagnostics.tracesource.4.3.0.nupkg.sha512"
+      "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA==",
+      "path": "system.diagnostics.tracesource/4.0.0",
+      "hashPath": "system.diagnostics.tracesource.4.0.0.nupkg.sha512"
     },
     "System.Diagnostics.Tracing/4.1.0": {
       "type": "package",
