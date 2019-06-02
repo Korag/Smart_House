@@ -36,7 +36,7 @@ export default {
         listOfActions(actualDevice){
             return this.$store.getters.getListOfActionForDevice(actualDevice).filter((ele)=>{
                 return ele != actualDevice.State;
-            });;
+            });
         },
         StatusColor(actualDevice){
             return{

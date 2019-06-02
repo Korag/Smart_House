@@ -1,3 +1,4 @@
+
 <template>
 <v-container v-show="this.$store.getters.getDisplayStatus.showDevicesList">
     <v-layout column>

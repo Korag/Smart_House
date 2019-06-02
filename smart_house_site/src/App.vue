@@ -3,7 +3,7 @@
     <TopBar></TopBar>
     <v-content class="grey lighten-5">
       <Menu></Menu>
-      <DevicesList></DevicesList>
+      <MyHouse></MyHouse>
       <ActionsMenu></ActionsMenu>
       <addDevice></addDevice>
     </v-content>
@@ -12,7 +12,7 @@
 
 <script>
 import Menu from './components/Menu.vue';
-import DevicesList from './components/DevicesList.vue';
+import MyHouse from './components/MyHouse.vue';
 import TopBar from './components/TopBar.vue';
 import ActionsMenu from './components/ActionsMenu.vue';
 import AddDevice from './components/AddDevice.vue';
@@ -21,7 +21,7 @@ export default {
   name: 'app',
   components: {
     Menu,
-    DevicesList,
+    MyHouse,
     TopBar,
     ActionsMenu,
     AddDevice
