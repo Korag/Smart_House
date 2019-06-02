@@ -9,13 +9,25 @@
                 label="Localization Name"
                 required
                 ></v-text-field>
-                <v-text-field
-                v-model="localizationIcon"
-                :rules="localizationIconRules"
-                label="Localization Icon"
-                required
-                ></v-text-field>
-
+                <div class="">Icon:</div>
+                <v-item-group v-model="activeIcon" mandatory>
+                    <v-layout row wrap>
+                        <v-flex
+                        v-for="(icon,index) in iconsList"
+                        :key="index"
+                        md1 lg1 xl1 py-1 px-1
+                        >
+                        <v-item>
+                            <v-card class="text-xs-center" 
+                            slot-scope="{ active, toggle }"
+                            :color="active ? 'blue' : 'white'"
+                            @click="toggle">
+                            <v-icon :color="active ? 'white' : ''" size="50px">{{icon}}</v-icon>
+                            </v-card>
+                        </v-item>
+                        </v-flex>
+                    </v-layout>
+                </v-item-group>
                 <v-btn
                 :disabled="!valid"
                 color="success"
@@ -36,16 +48,16 @@ export default {
         localizationNameRules:[
             v => !!v || 'Name is required'
         ],
-        localizationIcon: '',
-        localizationIconRules:[
-            v => !!v || 'Icon is required'
+        iconsList:['account_balance','assessment','accessibility','accessible','build','delete','extension','favorite','grade',
+        'accessible','change_history','verified_user','work','airplay','movie','radio'
         ],
+        activeIcon:'0'
     }),
     methods:{
         addLocalization(){
             var location = {
                 Name: this.localizationName,
-                Icon: this.localizationIcon
+                Icon: this.iconsList[this.activeIcon]
 
             }  
             if(this.$refs.addLocalizationForm.validate()){
