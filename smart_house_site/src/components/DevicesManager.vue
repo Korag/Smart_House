@@ -18,7 +18,7 @@
                     </v-flex>
                     <v-flex sm12 md12 lg2 offset-lg2  >
                         <v-btn large color="warning">Edit</v-btn>
-                        <v-btn large color="error">Delete</v-btn>
+                        <v-btn large color="error" v-on:click="deleteDeviceFromDB(device)">Delete</v-btn>
                     </v-flex>
                 </v-layout>
             </v-card>
@@ -42,10 +42,13 @@ export default {
         }
     },
     methods:{
-        showAddDevice: function(){
+        showAddDevice(){
             Promise.all([this.$store.dispatch('getDevicesTypes'),this.$store.dispatch('getLocalizations')]).then(()=>{
                 this.$store.commit('display',{to:'showAddDevice',from:'showDevicesManager'});
             })
+        },
+        deleteDeviceFromDB(device){
+            this.$store.dispatch('deleteDeviceFromDB',device);
         }
     }
 }
