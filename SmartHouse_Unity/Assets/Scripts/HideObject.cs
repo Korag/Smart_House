@@ -21,14 +21,12 @@ public class HideObject : MonoBehaviour
             color.a = 0.1f;
             GetComponent<MeshRenderer>().materials[0].color = color;
             GetComponent<MeshRenderer>().materials[1].color = color;
-            print(color);
         }
         else
         {
             color.a = 1f;
             GetComponent<MeshRenderer>().materials[0].color = color;
             GetComponent<MeshRenderer>().materials[1].color = color;
-            print(color);
 
         }
 
