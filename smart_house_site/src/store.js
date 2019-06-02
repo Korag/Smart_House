@@ -15,7 +15,8 @@ export const store = new Vuex.Store({
             {id:3, name:'Localizations Manager',icon:'location_searching', display: true,action:'s'},
             {id:4, name:'Actions Manager',icon:'filter_list', display: true,action:'d'}
         ],
-        displayStatus: {showMenu:true,showMyHouse:false,showActionsList:false,showDevicesManager:false,showAddDevice:false},
+        displayStatus: {showMenu:true,showMyHouse:false,showActionsList:false,
+                        showDevicesManager:false,showAddDevice:false,showEditDevice:false},
         lastPages:[],
         actualPage:[],
         listOfDevices: [],
@@ -125,6 +126,7 @@ export const store = new Vuex.Store({
                     reject(error);
                 });
             })
+            
         },
         getActions(context){
             return new Promise((resolve,reject)=>{
@@ -191,6 +193,17 @@ export const store = new Vuex.Store({
                     context.dispatch('getDevices');
                 }
             });
+        },
+        modifyDeviceInDB(context){
+            var device = context.getters.getActualDevice;
+            for (const property in device) {
+                if(property !== "Id" && property !=="Disabled" && property !=="State"){
+                    Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+device.Id+'&propertyName='+property+'&propertyValue='+device[property])
+                    .then((response)=>{
+                    }); 
+                }
+                
+            }
         }
     }
 });

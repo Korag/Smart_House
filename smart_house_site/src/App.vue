@@ -6,7 +6,8 @@
       <MyHouse></MyHouse>
       <ActionsMenu></ActionsMenu>
       <DevicesManager></DevicesManager>
-      <addDevice></addDevice>
+      <AddDevice></AddDevice>
+      <EditDevice></EditDevice>
     </v-content>
   </v-app>
 </template>
@@ -18,6 +19,7 @@ import TopBar from './components/TopBar.vue';
 import ActionsMenu from './components/ActionsMenu.vue';
 import AddDevice from './components/AddDevice.vue';
 import DevicesManager from './components/DevicesManager.vue';
+import EditDevice from './components/EditDevice.vue';
 
 export default {
   name: 'app',
@@ -27,7 +29,8 @@ export default {
     TopBar,
     ActionsMenu,
     AddDevice,
-    DevicesManager
+    DevicesManager,
+    EditDevice
   },
   data () {
     return {

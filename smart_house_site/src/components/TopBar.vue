@@ -21,15 +21,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.topBar{
-    background: #166fff;
-    height: 5vh;
-    text-align: center;
-    color: white;
-    font-size: 30px;
-}
-.arrow{
-    float: left;
-}
-</style>

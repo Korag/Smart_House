@@ -17,7 +17,7 @@
                         <div class="title">{{device.Localization}}</div>
                     </v-flex>
                     <v-flex sm12 md12 lg2 offset-lg2  >
-                        <v-btn large color="warning">Edit</v-btn>
+                        <v-btn large color="warning" v-on:click="showEditDevice(device)">Edit</v-btn>
                         <v-btn large color="error" v-on:click="deleteDeviceFromDB(device)">Delete</v-btn>
                     </v-flex>
                 </v-layout>
@@ -41,6 +41,9 @@ export default {
             return this.$store.getters.getListOfDevices;
         }
     },
+    beforeCreate(){
+        this.$store.dispatch('getDevices');
+    },
     methods:{
         showAddDevice(){
             Promise.all([this.$store.dispatch('getDevicesTypes'),this.$store.dispatch('getLocalizations')]).then(()=>{
@@ -49,6 +52,12 @@ export default {
         },
         deleteDeviceFromDB(device){
             this.$store.dispatch('deleteDeviceFromDB',device);
+        },
+        showEditDevice(device){
+            Promise.all([this.$store.dispatch('getDevicesTypes'),this.$store.dispatch('getLocalizations')]).then(()=>{
+                this.$store.commit('changeActualDevice',device);
+                this.$store.commit('display',{to:'showEditDevice',from:'showDevicesManager'});
+            })
         }
     }
 }

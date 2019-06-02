@@ -1,17 +1,17 @@
 <template>
-<v-container v-show="this.$store.getters.getDisplayStatus.showAddDevice">
+<v-container v-show="this.$store.getters.getDisplayStatus.showEditDevice">
     <v-layout>
         <v-flex>
             <v-form ref="addDeviceForm" v-model="valid" lazy-validation >
                 <v-text-field
-                v-model="deviceName"
+                v-model="actualDevice.Name"
                 :rules="deviceNameRules"
                 label="Device Name"
                 required
                 ></v-text-field>
 
                 <v-select
-                v-model="deviceType"
+                v-model="actualDevice.Type"
                 :items="this.$store.getters.getListOfDevicesTypes"
                 :rules="deviceTypeRules"
                 label="Device Type"
@@ -19,7 +19,7 @@
                 ></v-select>
 
                 <v-select
-                v-model="deviceLocalization"
+                v-model="actualDevice.Localization"
                 :items="listOfLocalizations"
                 :rules="deviceLocalizationRules"
                 label="Device Localization"
@@ -27,9 +27,9 @@
                 ></v-select>
                 <v-btn
                 :disabled="!valid"
-                color="success"
-                v-on:click="addDevice">
-                Add
+                color="warning"
+                v-on:click="editDevice">
+                Edit
                 </v-btn>
             </v-form>
         </v-flex>
@@ -41,19 +41,15 @@
 export default {
     data: () =>({
         valid: true,
-        deviceName: '',
         deviceNameRules:[
             v => !!v || 'Name is required'
         ],
-        deviceType: '',
         deviceTypeRules: [
             v=> !!v || 'Type is required'
         ],
-        deviceLocalization: '',
         deviceLocalizationRules: [
             v=> !!v || 'Localization is required'
-        ],
-        deviceState: 'Disabled',
+        ]
     }),
     computed:{
         listOfLocalizations(){
@@ -63,18 +59,14 @@ export default {
             });
             return list;
         },
+        actualDevice(){
+            return this.$store.getters.getActualDevice;
+        }
     },
     methods:{
-        addDevice(){
-            var device = {
-                Name: this.deviceName,
-                Type: this.deviceType,
-                Localization: this.deviceLocalization,
-                State: this.deviceState
-
-            }  
+        editDevice(){
             if(this.$refs.addDeviceForm.validate()){
-                this.$store.dispatch('addDeviceToDB',device);
+                this.$store.dispatch('modifyDeviceInDB');
             }
 
         }
