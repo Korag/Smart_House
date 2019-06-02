@@ -22,7 +22,8 @@ export const store = new Vuex.Store({
         actualDevice:{},
         categories: [],
         localizations:[],
-        groups: {}
+        groups: {},
+        devicesTypes: []
 
     },
     getters:{
@@ -54,6 +55,9 @@ export const store = new Vuex.Store({
         },
         getActualDevice(state){
             return state.actualDevice;
+        },
+        getListOfDevicesTypes(state){
+            return state.devicesTypes;
         }
         
     },
@@ -106,6 +110,9 @@ export const store = new Vuex.Store({
             var index = state.groups[device.Localization]['List'].findIndex(dev=> dev.Id == device.Id);
             state.groups[device.Localization]['List'][index].State = newState;
         },
+        updateListOfDevicesTypes(state,newList){
+            state.devicesTypes = newList;
+        }
     },
     actions:{
         getDevices(context){
@@ -157,6 +164,11 @@ export const store = new Vuex.Store({
                         context.commit('updateDeviceState',{device,newState});
                     }
             });
+        },
+        getDevicesTypes(context){
+            Vue.http.get(api+'api/GetAvailableTypes').then(response=>{
+                context.commit('updateListOfDevicesTypes',response.body);
+            })
         }
     }
 });
