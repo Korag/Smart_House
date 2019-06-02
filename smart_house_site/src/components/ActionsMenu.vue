@@ -2,14 +2,17 @@
     <v-container v-if="this.$store.getters.getDisplayStatus.showActionsList">
         <v-layout>
             <v-flex>
-                <v-card flat color="blue" class="text-xs-center">
-                    <v-chip class="white--text text-xs-center headline" :class="StatusColor(actualDevice)">
+                <v-card flat color="blue" class="text-xs-center white--text">
+                    <p class="headline">Type: {{actualDevice.Type}}</p>
+                    <p class="headline">Localization: {{actualDevice.Localization}}</p>
+                    <p class="headline">Name: {{actualDevice.Name}}</p>
+                    <v-chip disabled class="white--text text-xs-center headline" :class="StatusColor(actualDevice)">
                         Aktualny stan: {{actualDevice.State}}
                     </v-chip>
                 <v-card-actions>
-                    <v-layout>
-                        <v-flex v-for="action in listOfActions(actualDevice)" :key="action">
-                            <v-btn v-on:click="ChangeState(actualDevice,action)">{{action}}</v-btn>
+                    <v-layout row wrap>
+                        <v-flex v-for="action in listOfActions(actualDevice)" :key="action" justify-space-between py-1 grow>
+                            <v-btn large v-on:click="ChangeState(actualDevice,action)">{{action}}</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card-actions>
