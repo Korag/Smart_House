@@ -9,6 +9,7 @@
       <AddDevice></AddDevice>
       <EditDevice></EditDevice>
       <LocalizationManager></LocalizationManager>
+      <AddLocalization></AddLocalization>
     </v-content>
   </v-app>
 </template>
@@ -22,6 +23,7 @@ import AddDevice from './components/AddDevice.vue';
 import DevicesManager from './components/DevicesManager.vue';
 import EditDevice from './components/EditDevice.vue';
 import LocalizationManager from "./components/LocalizationsManager.vue"
+import AddLocalization from "./components/AddLocalization.vue"
 
 export default {
   name: 'app',
@@ -33,7 +35,8 @@ export default {
     AddDevice,
     DevicesManager,
     EditDevice,
-    LocalizationManager
+    LocalizationManager,
+    AddLocalization
   },
   data () {
     return {

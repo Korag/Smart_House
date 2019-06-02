@@ -1,19 +1,25 @@
 <template>
-<v-container v-show="this.$store.getters.getDisplayStatus.showAddDevice">
+<v-container v-show="this.$store.getters.getDisplayStatus.showAddLocalization">
     <v-layout>
         <v-flex>
-            <v-form ref="addLocalizationForm" v-model="valid" lazy-validation >
+            <v-form ref="addLocalizationForm" v-model="valid" >
                 <v-text-field
                 v-model="localizationName"
                 :rules="localizationNameRules"
                 label="Localization Name"
                 required
                 ></v-text-field>
+                <v-text-field
+                v-model="localizationIcon"
+                :rules="localizationIconRules"
+                label="Localization Icon"
+                required
+                ></v-text-field>
 
                 <v-btn
                 :disabled="!valid"
                 color="success"
-                v-on:click="addDevice">
+                v-on:click="addLocalization">
                 Add
                 </v-btn>
             </v-form>
@@ -29,19 +35,25 @@ export default {
         localizationName: '',
         localizationNameRules:[
             v => !!v || 'Name is required'
-        ]
+        ],
+        localizationIcon: '',
+        localizationIconRules:[
+            v => !!v || 'Icon is required'
+        ],
     }),
     methods:{
         addLocalization(){
-            var device = {
-                Name: this.deviceName,
-                Type: this.deviceType,
-                Localization: this.deviceLocalization,
-                State: this.deviceState
+            var location = {
+                Name: this.localizationName,
+                Icon: this.localizationIcon
 
             }  
-            if(this.$refs.addDeviceForm.validate()){
-                this.$store.dispatch('addDeviceToDB',device);
+            if(this.$refs.addLocalizationForm.validate()){
+                this.$store.dispatch('addLocalizationToDB',location).then((response)=>{
+                    if(response.ok){
+                        this.$refs.addLocalizationForm.reset()
+                    }
+                })
             }
 
         }
