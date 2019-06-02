@@ -34,7 +34,6 @@ public class DeviceState : MonoBehaviour
 
     public void ChangeDeviceStateOnDemand(string state)
     {
-        print("Update from button");
         CurrentState = state;
         api.ChangeDeviceState(DeviceId, state);
         ChangeDeviceState();
@@ -42,7 +41,6 @@ public class DeviceState : MonoBehaviour
 
     private void UpdateDeviceState()
     {
-        print("Update from database");
         CurrentState = api.GetDeviceState(DeviceId);
         ChangeDeviceState();
 
@@ -93,12 +91,6 @@ public class DeviceState : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 
 }

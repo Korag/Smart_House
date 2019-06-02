@@ -5,26 +5,29 @@ import VueResource from 'vue-resource';
 Vue.use(Vuex);
 Vue.use(VueResource);
 
-var api = 'https://smarthouseapii.azurewebsites.net/';
+var api = 'http://localhost:61635/';
 
 export const store = new Vuex.Store({
     state:{
         menu:[
-            {id:1, name:'Lista urządzeń',image:'', display: true},
-            {id:2, name:'Dodaj urządzenie',image:'', display: true},
-            {id:3, name:'Ustawienia',image:'', display: true},
+            {id:1, name:'My House',icon:'home', display: true,action:'showMyHouse'},
+            {id:2, name:'Devices Manager',icon:'important_devices', display: true,action:'showDevicesManager'},
+            {id:3, name:'Localizations Manager',icon:'location_searching', display: true,action:'showLocalizationsManager'},
+            {id:4, name:'Actions Manager',icon:'filter_list', display: true,action:'d'}
         ],
-        displayStatus: {showMenu:true,showDevicesList:false,showActionsList:false},
+        displayStatus: {showMenu:true,showMyHouse:false,showActionsList:false,
+                        showDevicesManager:false,showAddDevice:false,showEditDevice:false,
+                        showLocalizationsManager:false,showAddLocalization:false},
         lastPages:[],
         actualPage:[],
         listOfDevices: [],
         listOfAvailableActionsForAllTypes: [],
-        actualListOfAction:[],
-        actualDeviceType:"",
-        actualDeviceId:"",
-        actualDeviceState:"",
+        actualDevice:{},
         categories: [],
-        groups: []
+        localizations:[],
+        groups: {},
+        devicesTypes: []
+
     },
     getters:{
         getMenuOptions(state){
@@ -36,21 +39,28 @@ export const store = new Vuex.Store({
         getDisplayStatus(state){
             return state.displayStatus;
         },
-
-        getActionsForDevice(state){
-            return state.actualListOfAction;
-        },
         getLastPage(state){
             return state.lastPage;
         },
         getActualPage(state){
             return state.actualPage;
         },
-        getActualDeviceState(state){
-            return state.actualDeviceState;
+        getListOfLocalizations(state){
+            return state.localizations;
         },
-        getActualDeviceId(state){
-            return state.actualDeviceId;
+        getGroups(state){
+            return state.groups;
+        },
+        getListOfActionForDevice(state){
+            return device => state.listOfAvailableActionsForAllTypes.find((element)=>{
+                return element.Type == device.Type;
+            }).AvailableActions;
+        },
+        getActualDevice(state){
+            return state.actualDevice;
+        },
+        getListOfDevicesTypes(state){
+            return state.devicesTypes;
         }
         
     },
@@ -61,8 +71,8 @@ export const store = new Vuex.Store({
         loadActions(state,listOfNewActions){
             state.listOfAvailableActionsForAllTypes = listOfNewActions;
         },
-        loadActualDeviceState(state,actualState){
-            state.actualDeviceState = actualState;
+        loadLocalizations(state,listOfLocalizations){
+            state.localizations = listOfLocalizations;
         },
         display(state,{to,from}){
             state.displayStatus[to] = true;
@@ -75,40 +85,152 @@ export const store = new Vuex.Store({
             state.actualPage = state.lastPages.pop();
             state.displayStatus[state.actualPage] = true;
         },
-        changeActualDevice(state,payload){
-            state.actualDeviceType = payload.deviceType;
-            state.actualDeviceId = payload.deviceId;
+        changeActualDevice(state,device){
+            state.actualDevice = device;
         },
-
-        filterActionsForDevice(state){
-            state.actualListOfAction = state.listOfAvailableActionsForAllTypes.find((element)=>{
-                return element.Type == state.actualDeviceType;
-            }).AvailableActions;
+        createGroups(state){
+            state.localizations.forEach(function(loc){
+                state.groups[loc.Name] = {List:state.listOfDevices.filter(function(device){
+                    return device.Localization == loc.Name;
+                }),Icon: loc.Icon}
+            })
+            state.groups['Other'] ={List: state.listOfDevices.filter(function(device){
+                for(var loc of state.localizations){
+                    if(loc.Name == device.Localization){
+                        return false
+                    }
+                }
+                return true
+            }),Icon:'devices_other'}
+        
+            for(var group in state.groups){
+                if(state.groups[group]['List'].length == 0){
+                    delete state.groups[group]
+                }
+            }
+        },
+        updateDeviceState(state,{device,newState}){
+            var index = state.groups[device.Localization]['List'].findIndex(dev=> dev.Id == device.Id);
+            state.groups[device.Localization]['List'][index].State = newState;
+        },
+        updateListOfDevicesTypes(state,newList){
+            state.devicesTypes = newList;
         }
     },
     actions:{
         getDevices(context){
-            Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
-                context.commit('loadDevices',response.body);
-            });
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetAllSmartDevices').then(response => {
+                    context.commit('loadDevices',response.body);
+                    resolve(response);
+                },error =>{
+                    reject(error);
+                });
+            })
+            
         },
         getActions(context){
-            Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
-                context.commit('loadActions',response.body);
-                context.commit('filterActionsForDevice');
-                context.commit('display',{to:'showActionsList',from:'showDevicesList'});
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetTypesOfSmartDevicesWithAvailableActions').then(response => {
+                    context.commit('loadActions',response.body);
+                    resolve(response);
+                   // context.commit('filterActionsForDevice');
+                },error =>{
+                    reject(error);
+                });
+            })
+        },
+        getActualDeviceState(context,device){
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+device.Id).then(response => {
+                    context.commit('updateDeviceState',{device,newState:response.body});
+                    resolve(response);
+                },error=>{
+                    reject(error);
+                });
+            })
+
+        },
+        getLocalizations(context){
+            return new Promise((resolve,reject) =>{
+                Vue.http.get(api+'api/GetAvailableLocalizations').then(response=>{
+                    context.commit('loadLocalizations',response.body);
+                    resolve(response);
+                }, error =>{
+                    reject(error);
+                })
+            })
+        },
+        changeDeviceState(context,{device,newState}){
+            Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+device.Id+'&propertyName=State&propertyValue='+newState)
+                .then((response)=>{
+                    if(response.ok){
+                        context.commit('updateDeviceState',{device,newState});
+                    }
             });
         },
-        getActualDeviceState(context){
-            Vue.http.get(api+'api/GetStateOfSingleSmartDevice?id='+context.getters.getActualDeviceId).then(response => {
-                context.commit('loadActualDeviceState',response.body);
+        getDevicesTypes(context){
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetAvailableTypes').then(response=>{
+                    context.commit('updateListOfDevicesTypes',response.body);
+                    resolve(response);
+                },error=>{
+                    reject(error);
+                })
+            })
+        },
+        addDeviceToDB(context,device){
+            return new Promise((resolve,reject)=>{
+                Vue.http.post(api+'api/AddSmartDevice?type='+device.Type+'&name='+device.Name+'&state='+device.State+'&disabled=true&localization='+device.Localization)
+                .then((response)=>{
+                    if(response.ok){
+                        context.dispatch('getDevices');
+                        resolve(response);
+                    }
+                 }),error=>{
+                     reject(error);
+                 };
+            })
+        },
+        deleteDeviceFromDB(context,device){
+            Vue.http.post(api+'api/DeleteSmartDeviceFromCollection?id='+device.Id)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getDevices');
+                }
             });
         },
-        changeDeviceState(context,newState){
-            Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+context.getters.getActualDeviceId+'&propertyName=State&propertyValue='+newState)
-                .then(()=>{
-                context.dispatch('getActualDeviceState');
+        modifyDeviceInDB(context){
+            var device = context.getters.getActualDevice;
+            for (const property in device) {
+                if(property !== "Id" && property !=="Disabled" && property !=="State"){
+                    Vue.http.post(api+'api/SetSpecificPropertyOfSingleSmartDevice?id='+device.Id+'&propertyName='+property+'&propertyValue='+device[property])
+                    .then((response)=>{
+                    }); 
+                }
+                
+            }
+        },
+        deleteLocalizationFromDB(context,localization){
+            Vue.http.post(api+'api/DeleteLocalization?name='+localization.Name)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getLocalizations');
+                }
             });
+        },
+        addLocalizationToDB(context,localization){
+            return new Promise((resolve,reject)=>{
+                Vue.http.post(api+'api/AddNewLocalization?name='+localization.Name+'&icon='+localization.Icon)
+                .then((response)=>{
+                    if(response.ok){
+                        context.dispatch('getLocalizations');
+                        resolve(response);
+                    }
+                },error =>{
+                    reject(error);
+                });
+            })
         }
     }
 });

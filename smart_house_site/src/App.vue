@@ -1,29 +1,51 @@
 <template>
-  <div id="app">
+  <v-app>
     <TopBar></TopBar>
-    <Menu></Menu>
-    <DevicesList></DevicesList>
-    <ActionsMenu></ActionsMenu>
-  </div>
+    <v-content class="grey lighten-5">
+      <Menu></Menu>
+      <MyHouse></MyHouse>
+      <ActionsMenu></ActionsMenu>
+      <DevicesManager></DevicesManager>
+      <AddDevice></AddDevice>
+      <EditDevice></EditDevice>
+      <LocalizationManager></LocalizationManager>
+      <AddLocalization></AddLocalization>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 import Menu from './components/Menu.vue';
-import DevicesList from './components/DevicesList.vue';
+import MyHouse from './components/MyHouse.vue';
 import TopBar from './components/TopBar.vue';
 import ActionsMenu from './components/ActionsMenu.vue';
-
+import AddDevice from './components/AddDevice.vue';
+import DevicesManager from './components/DevicesManager.vue';
+import EditDevice from './components/EditDevice.vue';
+import LocalizationManager from "./components/LocalizationsManager.vue"
+import AddLocalization from "./components/AddLocalization.vue"
 
 export default {
   name: 'app',
   components: {
     Menu,
-    DevicesList,
+    MyHouse,
     TopBar,
-    ActionsMenu
+    ActionsMenu,
+    AddDevice,
+    DevicesManager,
+    EditDevice,
+    LocalizationManager,
+    AddLocalization
+  },
+  data () {
+    return {
+      //
+    }
   }
 }
 </script>
+
 
 <style>
 
