@@ -18,7 +18,7 @@
 
                 <v-select
                 v-model="deviceLocalizatin"
-                :items="this.$store.getters.getListOfLocalizations"
+                :items="listOfLocalizations"
                 label="Device Localization"
                 required
                 ></v-select>
@@ -44,9 +44,12 @@ export default {
     }),
     computed:{
         listOfLocalizations(){
-            return this.$store.getters.getListOfLocalizations.filter((ele)=>{
-                
+            var list = [];
+            this.$store.getters.getListOfLocalizations.forEach(element => {
+                list.push(element.Name);
             });
+            console.log(list);
+            return list;
         },
     },
     methods:{

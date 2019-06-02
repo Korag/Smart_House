@@ -167,8 +167,13 @@ export const store = new Vuex.Store({
             });
         },
         getDevicesTypes(context){
-            Vue.http.get(api+'api/GetAvailableTypes').then(response=>{
-                context.commit('updateListOfDevicesTypes',response.body);
+            return new Promise((resolve,reject)=>{
+                Vue.http.get(api+'api/GetAvailableTypes').then(response=>{
+                    context.commit('updateListOfDevicesTypes',response.body);
+                    resolve(response);
+                },error=>{
+                    reject(error);
+                })
             })
         }
     }

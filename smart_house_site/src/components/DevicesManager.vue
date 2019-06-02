@@ -43,8 +43,9 @@ export default {
     },
     methods:{
         showAddDevice: function(){
-            this.$store.dispatch('getDevicesTypes');
-            this.$store.commit('display',{to:'showAddDevice',from:'showDevicesManager'});
+            Promise.all([this.$store.dispatch('getDevicesTypes'),this.$store.dispatch('getLocalizations')]).then(()=>{
+                this.$store.commit('display',{to:'showAddDevice',from:'showDevicesManager'});
+            })
         }
     }
 }
