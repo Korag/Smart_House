@@ -59,7 +59,6 @@ public class RenderAction : MonoBehaviour
     {
 
         deviceState.ChangeDeviceStateOnDemand(actionName);
-        print(actionName);
     }
 
 }
