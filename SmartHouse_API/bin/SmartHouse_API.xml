@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartHouse_API</name>
+    </assembly>
+    <members>
+        <member name="T:SmartHouse_API.Controllers.SmartDevicesController">
+            <summary>
+            SmartDevicesController provides an actions to add/modify/check MongoDB documents such as Localization/TypeActions/SmartDevice.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.#ctor(SmartHouse_API.DAL.IDbOperative)">
+            <summary>
+            Standard Constructor which initializes instance of DbContext class.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.CheckIfSingleSmartDeviceIsDisabled(System.String)">
+            <summary>
+            This function returns bool "Disabled" property of SmartDevice which id was passed as an argument. 
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetStateOfSingleSmartDevice(System.String)">
+            <summary>
+            This function returns string "State" property of SmartDevice which id was passed as an argument.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.CheckIfSingleSmartDeviceIsDisabledAndSwitchOn(System.String)">
+            <summary>
+            This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+            If conditions have been fulfilled this property would have given property "Disabled" value false.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetAvailableLocalizations">
+            <summary>
+            This function finds out if instance of SmartDevice which id was passed as an argument has value true on property "Disabled".
+            If conditions have been fulfilled this property would have given property "Disabled" value false.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.AddNewLocalization(System.String)">
+            <summary>
+            This function adds new Localization to DictionaryCollection called Localizations which stores available places in house to locate SmartDevice.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.DeleteLocalization(System.String)">
+            <summary>
+            This function gives opportunity to delete Localization from DictionaryCollection called Localizations.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetTypesOfSmartDevicesWithAvailableActions">
+            <summary>
+            This function gets Key-Value pairs of "Types" of SmartDevices with "AvailableActions" which they can perform.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetAvailableActionsOfSingleTypeSmartDevice(System.String)">
+            <summary>
+            This function gets Key-Value pair of "Type" of SmartDevice with "AvailableActions" but only for one "Type" passed as an argument.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetAvailableTypes">
+            <summary>
+            This function gets "Types" of SmartDevices which are stored in database.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.DeletePairTypeAvailableActions(System.String)">
+            <summary>
+            This function deletes "Type" property value passed as an argument with linked array of "AvailableActions".
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.AddNewPairTypeAvailableActions(System.String,System.Collections.Generic.ICollection{System.String})">
+            <summary>
+            This function adds "Type" property with linked array of "AvailableActions".
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetSingleSmartDevice(System.String)">
+            <summary>
+            This function adds "Type" property with linked array of "AvailableActions".
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.AddSmartDevice(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            This function adds new SmartDevice object to database with propety values defined in arguments.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.DeleteSmartDevice(System.String)">
+            <summary>
+            This function remove concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.SetSpecificPropertyOfSingleSmartDevice(System.String,System.String,System.String)">
+            <summary>
+            This function removes concrete instance of SmartDevice from database by "Id" property value passed as an argument.  
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetAllSmartDevices(System.String)">
+            <summary>
+            This function returns list of all SmartDevices stored in database. Passed argument is used as property by which the result list will be ordered.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetAllSmartDevicesWhichAreDisabled(System.String)">
+            <summary>
+            This function returns list of all SmartDevices stored in database which currently have value true in boolean property "Disabled". Passed argument is used as property by which the result list will be ordered.
+            </summary>
+        </member>
+        <member name="M:SmartHouse_API.Controllers.SmartDevicesController.GetCollectionOfSingleSmartDevicesWithSameProperty(System.String,System.String,System.String)">
+            <summary>
+            This function returns list of all SmartDevices stored in database. List will contain only devices which currently have the same value of given property passed as an argument (propertyName) and (propertyValue). The last passed argument is used as property by which the result list will be ordered.
+            </summary>
+        </member>
+    </members>
+</doc>
