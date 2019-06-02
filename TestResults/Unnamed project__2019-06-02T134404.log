@@ -1,0 +1,129 @@
+﻿2019-06-02T13:44:04.0654213+02:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2019-06-02T13:44:04.0655341+02:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.0.346 in Framework netcore22 in x64 mode execution started
+2019-06-02T13:44:04.0655387+02:00;VSTestExecutionThread;Info;TestAdapter Location: C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2019-06-02T13:44:04.1168803+02:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SmartHouse_API.AcceptanceTests.dll
+2019-06-02T13:44:04.1174141+02:00;VSTestExecutionThread;Info;Output folder configured to "C:\Users\kamil\source\repos\Smart_House\TestResults" (default)
+2019-06-02T13:44:04.1175991+02:00;VSTestExecutionThread;Info;Profile: 
+2019-06-02T13:44:04.1900282+02:00;VSTestExecutionThread;Info;Log file path: C:\Users\kamil\source\repos\Smart_House\TestResults\Unnamed project__2019-06-02T134404.log
+2019-06-02T13:44:04.1936831+02:00;VSTestExecutionThread;Error;Invalid project license: The test assembly name must contain the licensed project name
+2019-06-02T13:44:04.2007539+02:00;VSTestExecutionThread;Info;SpecFlow+Runner Evaluation Mode: Please purchase at http://www.specflow.org/plus to remove test execution delay.
+2019-06-02T13:44:04.2113204+02:00;Thread#12;Info;Checking license
+2019-06-02T13:44:04.2118346+02:00;Thread#12;Error;Invalid project license: The test assembly name must contain the licensed project name
+2019-06-02T13:44:04.2141890+02:00;Thread#12;Error;Invalid project license: The test assembly name must contain the licensed project name
+2019-06-02T13:44:04.2480140+02:00;Thread#12;Info;Evaluation mode: test execution starts in 9 seconds... (this delay is removed in the registered version)
+2019-06-02T13:44:13.2491187+02:00;Thread#12;Info;Evaluation delay finished.
+2019-06-02T13:44:13.2637094+02:00;Thread#12;Info;License check completed
+2019-06-02T13:44:13.2639094+02:00;Thread#12;Info;starting test run
+2019-06-02T13:44:13.2753631+02:00;Thread#12;Info;Discovering target: Default
+2019-06-02T13:44:13.2757523+02:00;Thread#12;Info;Discovering tests from assembly: C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SmartHouse_API.AcceptanceTests.dll
+2019-06-02T13:44:13.3111807+02:00;Thread#12;Info;Discovered tests from assembly: C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SmartHouse_API.AcceptanceTests.dll
+2019-06-02T13:44:13.3135598+02:00:Test Suite Dump
+2019-06-02T13:44:13.3165183+02:00:#0: Unnamed project/ - 
+2019-06-02T13:44:13.3165500+02:00:#1: Default - 
+2019-06-02T13:44:13.3165612+02:00:#2: SmartHouse_API.AcceptanceTests - 
+2019-06-02T13:44:13.3165635+02:00:#3: SmartDevicesController - 
+2019-06-02T13:44:13.3166078+02:00:#4: Get all smart devices from database - TestAssembly:SmartHouse_API.AcceptanceTests/Feature:SmartDevicesController/Scenario:Get+all+smart+devices+from+database
+2019-06-02T13:44:13.3166899+02:00:End: Test Suite Dump
+2019-06-02T13:44:13.3478542+02:00:Thread#0:Scheduler: get next test for thread 0
+2019-06-02T13:44:13.3513520+02:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2019-06-02T13:44:13.3515249+02:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2019-06-02T13:44:13.3578601+02:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2019-06-02T13:44:13.3578792+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2019-06-02T13:44:13.3578848+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2019-06-02T13:44:13.3578899+02:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2019-06-02T13:44:13.3608736+02:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2019-06-02T13:44:13.3624588+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2019-06-02T13:44:13.3665710+02:00:Thread #0: creating new test thread executor for SmartHouse_API.AcceptanceTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2019-06-02T13:44:13.3698731+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2019-06-02T13:44:13.3708734+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2019-06-02T13:44:13.3715609+02:00:using TechTalk.SpecRun.Framework.Execution.OutOfProc.StreamJsonRPC.OutOfProcessTestAssemblyExecutorHost to execute tests
+2019-06-02T13:44:13.3942501+02:00:starting Out Of Process Executor
+2019-06-02T13:44:13.5681458+02:00:Executing test executor at 'C:\Program Files\dotnet\dotnet.exe' '"C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SpecFlowPlusRunner\netcoreapp2.2\TechTalk.SpecRun.Framework.Executor.anycpu.netcoreapp2_2.dll" 14300 2019-06-02T134404 "C:\Users\kamil\source\repos\Smart_House\TestResults"' in 'C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2'
+2019-06-02T13:44:13.5926152+02:00:Entering Memory Barrier for 14732
+2019-06-02T13:44:13.5926357+02:00:Leaving Memory Barrier for 14732
+2019-06-02T13:44:13.6027711+02:00:Out of Process Executor 14732 started
+2019-06-02T13:44:13.6121548+02:00:Waiting for endpoint
+2019-06-02T13:44:13.6144979+02:00:trying to connect to Out of Process Executor the 1 attempt
+2019-06-02T13:44:13.8955474+02:00:Connection to Out of Process Executor established in the 1 attempt
+2019-06-02T13:44:15.4950939+02:00:waiting for Connection of SpecRun.Executor.14732.Logger ended
+2019-06-02T13:44:15.9042621+02:00:waiting for Connection of SpecRun.Executor.14732.Callback ended
+2019-06-02T13:44:16.0501826+02:00:2019-06-02T13:44:15.9158845+02:00:OutOfProcessTestAssemblyExecutor: initialized for C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SmartHouse_API.AcceptanceTests.dll on test thread #0
+2019-06-02T13:44:16.0706409+02:00:Endpoint 14732 started
+2019-06-02T13:44:16.1169292+02:00:2019-06-02T13:44:16.1164473+02:00:OutOfProcessTestAssemblyExecutor: running tests...
+2019-06-02T13:44:16.2685585+02:00:Thread#0: Test #4/0 is started on thread #0
+2019-06-02T13:44:16.4699272+02:00:2019-06-02T13:44:16.4695874+02:00:Thread#0:T:-> Loading plugin C:\Users\kamil\source\repos\Smart_House\SmartHouse_API.AcceptanceTests\bin\Debug\netcoreapp2.2\SpecRun.Runtime.SpecFlowPlugin.dll
+2019-06-02T13:44:16.4787552+02:00:2019-06-02T13:44:16.4784229+02:00:Thread#0:T:-> Using default config
+2019-06-02T13:44:16.5572543+02:00:2019-06-02T13:44:16.5568832+02:00:Thread#0:B:When Client sends get request in order to get all smart devices
+2019-06-02T13:44:24.2378398+02:00:2019-06-02T13:44:24.2372040+02:00:Thread#0:T:error: Error converting value "5cc76761dd8c634d442bc77a" to type 'MongoDB.Bson.ObjectId'. Path '[0].Id', line 1, position 33.
+2019-06-02T13:44:24.2421230+02:00:2019-06-02T13:44:24.2416760+02:00:Thread#0:B:Then The client should not get empty list
+2019-06-02T13:44:24.2432679+02:00:2019-06-02T13:44:24.2429164+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.2448373+02:00:2019-06-02T13:44:24.2435783+02:00:Thread#0:B:Then The client should get list of smart devices
+2019-06-02T13:44:24.2471236+02:00:2019-06-02T13:44:24.2468001+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.2706785+02:00:Thread#0:TestItem#4:Scheduler: reschedule tests for testitem #4
+2019-06-02T13:44:24.2742075+02:00:Thread#0:Scheduler: get next test for thread 0
+2019-06-02T13:44:24.2743283+02:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #4
+2019-06-02T13:44:24.2743432+02:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2019-06-02T13:44:24.2743977+02:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2019-06-02T13:44:24.2744052+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2019-06-02T13:44:24.2744084+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2019-06-02T13:44:24.2744131+02:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2019-06-02T13:44:24.2744276+02:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2019-06-02T13:44:24.2744383+02:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2019-06-02T13:44:24.3484545+02:00:Thread#0: Test #4/0 is finished on thread #0 as Failed within 8,0788537 seconds
+2019-06-02T13:44:24.3530138+02:00:Thread#0: Test #4/1 is started on thread #0
+2019-06-02T13:44:24.3538882+02:00:2019-06-02T13:44:24.3535922+02:00:Thread#0:B:When Client sends get request in order to get all smart devices
+2019-06-02T13:44:24.5975254+02:00:2019-06-02T13:44:24.5971188+02:00:Thread#0:T:error: Error converting value "5cc76761dd8c634d442bc77a" to type 'MongoDB.Bson.ObjectId'. Path '[0].Id', line 1, position 33.
+2019-06-02T13:44:24.5979747+02:00:2019-06-02T13:44:24.5977636+02:00:Thread#0:B:Then The client should not get empty list
+2019-06-02T13:44:24.5984552+02:00:2019-06-02T13:44:24.5982143+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.5988598+02:00:2019-06-02T13:44:24.5986510+02:00:Thread#0:B:Then The client should get list of smart devices
+2019-06-02T13:44:24.5992789+02:00:2019-06-02T13:44:24.5990784+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.6011826+02:00:Thread#0:Scheduler: get next test for thread 0
+2019-06-02T13:44:24.6011952+02:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #4
+2019-06-02T13:44:24.6012078+02:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2019-06-02T13:44:24.6012325+02:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2019-06-02T13:44:24.6012357+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2019-06-02T13:44:24.6012376+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2019-06-02T13:44:24.6012395+02:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2019-06-02T13:44:24.6012488+02:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2019-06-02T13:44:24.6012586+02:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2019-06-02T13:44:24.6025921+02:00:Thread#0: Test #4/1 is finished on thread #0 as Failed within 0,2495285 seconds
+2019-06-02T13:44:24.6031710+02:00:Thread#0: Test #4/2 is started on thread #0
+2019-06-02T13:44:24.6038143+02:00:2019-06-02T13:44:24.6034586+02:00:Thread#0:B:When Client sends get request in order to get all smart devices
+2019-06-02T13:44:24.8385745+02:00:2019-06-02T13:44:24.8382114+02:00:Thread#0:T:error: Error converting value "5cc76761dd8c634d442bc77a" to type 'MongoDB.Bson.ObjectId'. Path '[0].Id', line 1, position 33.
+2019-06-02T13:44:24.8393772+02:00:2019-06-02T13:44:24.8389582+02:00:Thread#0:B:Then The client should not get empty list
+2019-06-02T13:44:24.8402544+02:00:2019-06-02T13:44:24.8399449+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.8406721+02:00:2019-06-02T13:44:24.8404446+02:00:Thread#0:B:Then The client should get list of smart devices
+2019-06-02T13:44:24.8411639+02:00:2019-06-02T13:44:24.8409271+02:00:Thread#0:T:skipped because of previous errors
+2019-06-02T13:44:24.8429179+02:00:Thread#0:Scheduler: get next test for thread 0
+2019-06-02T13:44:24.8429318+02:00:Thread#:Scheduler: at the end of normal test queue
+2019-06-02T13:44:24.8429472+02:00:Thread#0:Scheduler: enumerator for thread is at end
+2019-06-02T13:44:24.8429496+02:00:Thread#0:Scheduler: No more tests for thread
+2019-06-02T13:44:24.8462405+02:00:Thread#0: Test #4/2 is finished on thread #0 as Failed within 0,243041 seconds
+2019-06-02T13:44:24.8664135+02:00:RPC Client disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Stream has been disposed
+Exception:<none>
+2019-06-02T13:44:24.9087393+02:00:Unable to stop executor process: System.InvalidOperationException: No process is associated with this object.
+   at System.Diagnostics.Process.EnsureState(State state)
+   at System.Diagnostics.Process.get_HasExited()
+   at TechTalk.SpecRun.Framework.Execution.OutOfProc.OutProcExecutorManager.StopExecutorProcess(Process executorProcess)
+2019-06-02T13:44:24.9235654+02:00:Thread#-1:Scheduler: get next test for thread -1
+2019-06-02T13:44:24.9235868+02:00:Thread#:Scheduler: at the end of normal test queue
+2019-06-02T13:44:24.9235915+02:00:Thread#-1:Scheduler: enumerator for thread is at end
+2019-06-02T13:44:24.9363778+02:00;Thread#12;Info;test run finished
+2019-06-02T13:44:24.9366379+02:00;Thread#12;Info;publishing test results
+2019-06-02T13:44:24.9371092+02:00;Thread#12;Info;Not publishing results.
+2019-06-02T13:44:24.9372760+02:00;Thread#12;Info;test results published
+2019-06-02T13:44:24.9374429+02:00;Thread#12;Info;generating reports
+2019-06-02T13:44:25.0678255+02:00;Thread#12;Info;Starting external report generation process
+2019-06-02T13:44:28.0660822+02:00;Thread#12;Info;Successfully generated reports.
+2019-06-02T13:44:28.0695354+02:00;Thread#12;Info;Successfully generated reports
+2019-06-02T13:44:28.0900594+02:00:Total: 1 (test executions: 3)
+2019-06-02T13:44:28.0937147+02:00:Succeeded: 0
+2019-06-02T13:44:28.0946022+02:00:Ignored: 0
+2019-06-02T13:44:28.0954058+02:00:Pending: 0
+2019-06-02T13:44:28.0954161+02:00:Skipped: 0
+2019-06-02T13:44:28.0962206+02:00:Failed: 1
+2019-06-02T13:44:28.1097495+02:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2019-06-02T13:44:28.1100566+02:00;VSTestExecutionThread;Info;adding Test Execution Report 'C:\Users\kamil\source\repos\Smart_House\TestResults\Unnamed project__2019-06-02T134404.html'
+========== End of log file ==========
