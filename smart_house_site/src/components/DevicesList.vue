@@ -12,21 +12,21 @@
                 <v-layout row wrap >
                     <v-flex px-3 py-2 xs12 sm6 lg4 v-for ="device in value.List" :key="device.id">
                         <v-card class="text-xs-center white--text headline" color="blue" >
-                            <v-card-text>
+                            <v-card-text class="text-xs-center">
                                 <p class="display-1">
                                 {{device.Type}}
                                 </p>
                                 <p class="subheading">
                                 {{device.Name}}
                                 </p>
-                                <v-chip class="hidden-md-and-down white--text text-xs-center headline" :class="StatusColor(device)">
+                                <v-chip disabled class="hidden-md-and-down white--text text-xs-center headline" :class="StatusColor(device)">
                                     Status: {{device.State}}
                                 </v-chip>
                             </v-card-text>
                             <v-card-actions class="hidden-lg-and-up">
-                              <v-btn v-if="device.State == 'Enabled'"  fab color="success" class="caption">ON</v-btn>
-                              <v-btn v-if="device.State == 'Disabled'"  fab color="error" class="caption">OFF</v-btn>
-                              <v-btn v-if="device.State != 'Disabled' && device.State != 'Enabled'"  fab color="warning" class="caption">Working</v-btn>
+                              <v-chip disabled v-if="device.State == 'Enabled'"  color="success" class="white--text headline">ON</v-chip>
+                              <v-chip disabled v-if="device.State == 'Disabled'"   color="error" class="white--text headline">OFF</v-chip>
+                              <v-chip disabled v-if="device.State != 'Disabled' && device.State != 'Enabled'"  color="warning" class="white--text headline">Working</v-chip>
                               <v-spacer></v-spacer>
                               <v-btn fab v-on:click="DisplayActions(device)">
                                   <v-icon color="Grey">notes</v-icon>
