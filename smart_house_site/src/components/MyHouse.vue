@@ -1,6 +1,6 @@
 
 <template>
-<v-container v-show="this.$store.getters.getDisplayStatus.showDevicesList">
+<v-container v-show="this.$store.getters.getDisplayStatus.showMyHouse">
     <v-layout column>
         <v-flex py-2 v-for ="(value,name) in groups" :key="name" >
             <v-card flat color="grey lighten-3" class="text-xs-center">
@@ -67,7 +67,7 @@ export default {
         DisplayActions(device){
             this.$store.dispatch('getActualDeviceState',device).then(()=>{
                 this.$store.commit('changeActualDevice',device);
-                this.$store.commit('display',{to:'showActionsList',from:'showDevicesList'});
+                this.$store.commit('display',{to:'showActionsList',from:'showMyHouse'});
             });
         },
         StatusColor(device){

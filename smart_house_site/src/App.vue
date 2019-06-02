@@ -5,6 +5,7 @@
       <Menu></Menu>
       <MyHouse></MyHouse>
       <ActionsMenu></ActionsMenu>
+      <DevicesManager></DevicesManager>
       <addDevice></addDevice>
     </v-content>
   </v-app>
@@ -16,6 +17,7 @@ import MyHouse from './components/MyHouse.vue';
 import TopBar from './components/TopBar.vue';
 import ActionsMenu from './components/ActionsMenu.vue';
 import AddDevice from './components/AddDevice.vue';
+import DevicesManager from './components/DevicesManager.vue';
 
 export default {
   name: 'app',
@@ -24,7 +26,8 @@ export default {
     MyHouse,
     TopBar,
     ActionsMenu,
-    AddDevice
+    AddDevice,
+    DevicesManager
   },
   data () {
     return {
