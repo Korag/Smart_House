@@ -175,6 +175,22 @@ export const store = new Vuex.Store({
                     reject(error);
                 })
             })
+        },
+        addDeviceToDB(context,device){
+            Vue.http.post(api+'api/AddSmartDevice?type='+device.Type+'&name='+device.Name+'&state='+device.State+'&disabled=true&localization='+device.Localization)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getDevices');
+                }
+        });
+        },
+        deleteDeviceFromDB(context,device){
+            Vue.http.post(api+'api/DeleteSmartDeviceFromCollection?id='+device.Id)
+            .then((response)=>{
+                if(response.ok){
+                    context.dispatch('getDevices');
+                }
+            });
         }
     }
 });
