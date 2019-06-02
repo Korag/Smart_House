@@ -18,7 +18,6 @@ public class WarningApiText : MonoBehaviour
         textColor.a = 0;
         gameObject.GetComponent<Text>().color = textColor;
         animator.enabled = false;
-        print("hide me");
     }
 
     public void ShowWarning()
@@ -26,7 +25,5 @@ public class WarningApiText : MonoBehaviour
         textColor.a = 1;
         gameObject.GetComponent<Text>().color = textColor;
         animator.enabled = true;
-        print("ahow me");
-
     }
 }
