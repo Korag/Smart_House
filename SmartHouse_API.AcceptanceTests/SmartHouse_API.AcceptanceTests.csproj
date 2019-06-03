@@ -25,16 +25,64 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CheckIfSingleSmartDeviceIsDisabled.feature</DependentUpon>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckIfSingleSmartDeviceIsDisabled.feature.cs</DependentUpon>
     </Compile>
     <Compile Update="Features\GetAllSmartDevices.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>GetAllSmartDevices.feature</DependentUpon>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAllSmartDevices.feature.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Features\GetAllSmartDevices.feature.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAllSmartDevices.feature.cs</DependentUpon>
     </Compile>
     <Compile Update="Features\GetAvailableLocalizations.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>GetAvailableLocalizations.feature</DependentUpon>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableLocalizations.feature.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Features\GetAvailableLocalizations.feature.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAvailableLocalizations.feature.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Steps\CheckIfSmartDeviceIsDisabledSteps.cs">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckIfSmartDeviceIsDisabledSteps.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Steps\CheckIfSmartDeviceIsDisabledSteps.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckIfSmartDeviceIsDisabledSteps.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Steps\GetAllSmartDevicesSteps.cs">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAllSmartDevicesSteps.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Steps\GetAllSmartDevicesSteps.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAllSmartDevicesSteps.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Steps\GetAvailableLocalizationsSteps.cs">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableLocalizationsSteps.feature.cs</LastGenOutput>
+    </Compile>
+    <Compile Update="Steps\GetAvailableLocalizationsSteps.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAvailableLocalizationsSteps.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

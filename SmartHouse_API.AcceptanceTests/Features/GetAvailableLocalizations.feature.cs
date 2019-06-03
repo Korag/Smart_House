@@ -71,11 +71,11 @@ namespace SmartHouse_API.AcceptanceTests.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Get available localization", new string[] {
-                "mytag"}, SourceLine=6)]
+                "mytag2"}, SourceLine=6)]
         public virtual void GetAvailableLocalization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get available localization", null, new string[] {
-                        "mytag"});
+                        "mytag2"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
