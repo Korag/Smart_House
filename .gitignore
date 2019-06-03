@@ -4,7 +4,8 @@ Obj/
 Build/
 Builds/
 Logs/
-
+TestResults/
+.bin/
 # Never ignore Asset meta data
 !Assets/**/*.meta
 
@@ -52,6 +53,7 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
 
 # Created by https://www.gitignore.io/api/visualstudio
 # Edit at https://www.gitignore.io/?templates=visualstudio
@@ -313,9 +315,6 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
-
-#AcceptanceTests
-TestResults/
 
 # Business Intelligence projects
 *.rdl.data
