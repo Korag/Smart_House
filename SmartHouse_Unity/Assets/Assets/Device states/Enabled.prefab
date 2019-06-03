@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551b0c6779c07224aa372dd8963c6b1d, type: 2}
+  - {fileID: 2100000, guid: 8b12cb561e718874d8e8a84d2b3c6513, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4290016472980559116}
   - component: {fileID: 290858016850440560}
   m_Layer: 0
-  m_Name: cogs
+  m_Name: Enabled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551b0c6779c07224aa372dd8963c6b1d, type: 2}
+  - {fileID: 2100000, guid: 8b12cb561e718874d8e8a84d2b3c6513, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
