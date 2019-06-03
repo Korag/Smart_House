@@ -50,11 +50,11 @@ If you would like to develop our project and add new functionalities, we are ope
 We are a group of students currently consisting of 4 members. 
 
 
-+ Kamil (`KaHa`): Unity / Backend developer [Unity scripts / Unit testing specialist]
-+ Łukasz (`Korag`): Web Api / Backend developer [MongoDB / API / Azure deployment specialist / API Testing]
++ Kamil (`KaHa`): Unity / Backend developer [Unity scripts / BDD testing specialist]
++ Łukasz (`Korag`): Web Api / Backend developer [MongoDB / API / Azure deployment specialist / UnitTests and IntegrationTests]
 + Konrad(`Whoudini`): Graphic / Frontend developer [Unity modelling]
-+ Bartosz(`Owner`): Frontend developer [Vue.js scripting specialis / Structure of website]
++ Bartosz(`Owner`): Frontend developer [Vue.js scripting specialist / Structure of website]
 
-Project was finished in less then x weeks. Despite the tasking much of work was done interchangable beetween team members.
+Project was finished in less then 2 months. Despite the tasking much of work was done interchangable beetween team members.
 
 _Vertisio Team 2019_
