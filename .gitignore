@@ -5,7 +5,7 @@ Build/
 Builds/
 Logs/
 TestResults/
-.bin/
+
 # Never ignore Asset meta data
 !Assets/**/*.meta
 
@@ -26,7 +26,6 @@ ExportedObj/
 .consulo/
 SmartHouse_Unity/*.csproj
 *.unityproj
-*.sln
 *.suo
 *.tmp
 *.user
