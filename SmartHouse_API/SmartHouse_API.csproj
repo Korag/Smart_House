@@ -263,6 +263,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Diagrams\smarthouse_components_diagram.png" />
+    <Content Include="Diagrams\smarthouse_database_diagram.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -270,6 +272,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Diagrams\smarthouse_components_diagram.vsdx" />
+    <Content Include="Diagrams\smarthouse_database_diagram.vsdx" />
     <None Include="Properties\PublishProfiles\SmartHouseApii - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
