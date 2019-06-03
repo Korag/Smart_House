@@ -1,5 +1,9 @@
 # Smart House
 
+## Project Objectives
+
+We were taske to create a complete and fully functional web based project with database intacted. The project was to cover two months period of development in four people group. After initial brainstorming we settled to create a smarthouse app allowing the user to directly monitor and change smat device states of real life devices. User should be able to access the app both through mobile app and website. As the project continued we chose to implement virtual house model in Unity to better ensure control over devices and to freely change and update their states.
+
 ## Diagram of dependencies between system modules
 
 ![alt text](https://raw.githubusercontent.com/Korag/Smart_House/master/SmartHouse_API/Diagrams/smarthouse_components_diagram.png "Diagram of modules dependencies")
