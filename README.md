@@ -8,6 +8,10 @@ We were taske to create a complete and fully functional web based project with d
 
 ![alt text](https://raw.githubusercontent.com/Korag/Smart_House/master/SmartHouse_API/Diagrams/smarthouse_components_diagram.png "Diagram of modules dependencies")
 
+## Diagram of database collections
+
+![alt text](https://github.com/Korag/Smart_House/blob/master/SmartHouse_API/Diagrams/smarthouse_database_diagram.png "Diagram of database collections")
+
 ## Authorization MongoDB provider
 
 In order to support the authorization and identification, which includes the user's login, Asp.Identity was used. Our project uses a non-relational MongoDB database, which is why standard Asp.Identity mechanisms working with SQL database had to be modified to work with MongoDB. For this purpose, the "MongoDB.AspNet.Identity" provider created by the "maxiomtech" user was used. This provider enables the use of the benefits of the Asp.Identity package in combination with the use of MongoDB. Instead of using relational database tables to store identity and attribution data, collections of non-relational MongoDB database are used.
