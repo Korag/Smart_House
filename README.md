@@ -25,6 +25,10 @@ Overall in our project we used follownig nuget packages:
 - All of the preinstalled ASP.Net MVC packages
 - Mongo DB nuget packages v2.80
 
+Apart from visual packeges to create virtual house model and visualisation we used:
+- Blender 2.8 for modelling assets
+- Unity 2018.3.9f1 for visualisation
+
 There's probably more I missed so ...
 
 ## Contact us if you have any questions
