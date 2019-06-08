@@ -104,6 +104,17 @@ namespace SmartHouse_API.UnitTests
         }
 
         [Test]
+        public void GetStateOfSingleSmartDevice_WhenStateIsNotNull_ReturnItsState_Oven()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceOvenId))
+                .Returns(new Models.SmartDevice { Id = _deviceOvenId, Name = "DeviceName", State = "Warming" });
+
+            var result = _controller.GetStateOfSingleSmartDevice(_deviceOvenId.ToString());
+
+            Assert.That(result, Is.EqualTo("Warming"));
+        }
+
+        [Test]
         public void GetStateOfSingleSmartDevice_WhenObjectWithSuchIdDoesNotExists_ThrowNullReferenceExceptionException()
         {
             string wrongId = "5dda438add8c6316e4b491cc";
