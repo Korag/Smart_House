@@ -60,6 +60,17 @@ namespace SmartHouse_API.UnitTests
         }
 
         [Test]
+        public void CheckIfSingleSmartDeviceIsDisabled_WhenThereIsNotADisabledDevice_ReturnItsState_Oven()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceOvenId))
+                .Returns(new Models.SmartDevice { Id = _deviceOvenId, Name = "DeviceName", Disabled = false });
+
+            var result = _controller.CheckIfSingleSmartDeviceIsDisabled(_deviceOvenId.ToString());
+
+            Assert.That(result, Is.EqualTo(false));
+        }
+
+        [Test]
         public void CheckIfSingleSmartDeviceIsDisabled_WhenIdIsWrong_ThrowNullReferenceExceptionException()
         {
             string wrongId = "5dda438add8c6316e4b491cc";
