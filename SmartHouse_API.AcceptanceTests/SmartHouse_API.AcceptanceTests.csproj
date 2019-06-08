@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -89,15 +89,12 @@
   <ItemGroup>
     <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetAllSmartDevices.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAvailableLocalizations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetAvailableLocalizations.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

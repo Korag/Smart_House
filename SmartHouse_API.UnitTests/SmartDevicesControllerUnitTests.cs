@@ -15,6 +15,7 @@ namespace SmartHouse_API.UnitTests
         private SmartDevicesController _controller;
         private Mock<IDbOperative> _contextDbMock;
         private ObjectId _deviceId;
+        private ObjectId _deviceOvenId;
         [SetUp]
         public void SetUp()
         {
@@ -22,6 +23,7 @@ namespace SmartHouse_API.UnitTests
             _controller = new SmartDevicesController(_contextDbMock.Object);
             //5caa438add8c6316e4b491cc is random Id
             _deviceId = ObjectId.Parse("5caa438add8c6316e4b491cc");
+            _deviceOvenId = ObjectId.Parse("5cd6e8bedd8c63152c42f683");
         }
 
         [Test]
@@ -31,6 +33,17 @@ namespace SmartHouse_API.UnitTests
                 .Returns(new Models.SmartDevice { Id = _deviceId, Name = "DeviceName", Disabled = true });
 
             var result = _controller.CheckIfSingleSmartDeviceIsDisabled(_deviceId.ToString());
+
+            Assert.That(result, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void CheckIfSingleSmartDeviceIsDisabled_WhenThereIsADisabledDevice_ReturnItsState_Oven()
+        {
+            _contextDbMock.Setup(x => x.GetSingleSmartDeviceFromCollection(_deviceOvenId))
+                .Returns(new Models.SmartDevice { Id = _deviceOvenId, Name = "DeviceName", Disabled = true });
+
+            var result = _controller.CheckIfSingleSmartDeviceIsDisabled(_deviceOvenId.ToString());
 
             Assert.That(result, Is.EqualTo(true));
         }
