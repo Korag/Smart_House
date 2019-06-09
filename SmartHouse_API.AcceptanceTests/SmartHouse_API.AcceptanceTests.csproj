@@ -66,6 +66,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GetAvailableActionsOfSingleTypeSmartDevice.feature</DependentUpon>
     </Compile>
+    <Compile Update="Features\GetAvailableTypes.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAvailableTypes.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\GetTypesOfSmartDevicesWithAvailableActions.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -141,6 +146,10 @@
     <SpecFlowFeatureFiles Update="Features\GetAvailableActionsOfSingleTypeSmartDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAvailableActionsOfSingleTypeSmartDevice.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\GetAvailableTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableTypes.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetTypesOfSmartDevicesWithAvailableActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
