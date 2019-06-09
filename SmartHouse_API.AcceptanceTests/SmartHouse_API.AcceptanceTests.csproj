@@ -96,6 +96,9 @@
     <SpecFlowFeatureFiles Update="Features\GetAvailableLocalizations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
     </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\GetStateOfSingleSmartDevice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
