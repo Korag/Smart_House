@@ -33,6 +33,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CheckIfSingleSmartDeviceIsDisabled.feature.cs</DependentUpon>
     </Compile>
+    <Compile Update="Features\CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\GetAllSmartDevices.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -95,6 +100,10 @@
     <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

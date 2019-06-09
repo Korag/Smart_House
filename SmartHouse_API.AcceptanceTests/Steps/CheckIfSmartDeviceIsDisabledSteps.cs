@@ -32,7 +32,7 @@ namespace SmartHouse_API.AcceptanceTests.Steps
         [Then(@"Client should get true or false as response")]
         public void ThenClientShouldGetTrueOrFalseAsResponse()
         {
-            Assert.That(_result, Is.EqualTo(true).Or.EqualTo(false));
+            Assert.That(_result, Is.EqualTo(false).Or.EqualTo(false));
         }
 
 
