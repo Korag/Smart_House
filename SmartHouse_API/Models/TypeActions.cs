@@ -10,6 +10,7 @@ namespace SmartHouse_API.Models
     public class TypeActions
     {
         [BsonId]
+        [JsonConverter(typeof(ObjectIdConverter))]
         public ObjectId Id { get; set; }
         public string Type { get; set; }
 
