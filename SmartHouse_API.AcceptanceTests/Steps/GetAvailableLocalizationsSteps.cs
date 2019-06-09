@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
-    [Binding, Scope(Tag = "mytag2")]
+    [Binding, Scope(Tag = "GetAvailableLocalizations")]
     public class GetAvailableLocalizationsSteps
     {
         private HttpClient _client = new HttpClient();

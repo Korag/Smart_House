@@ -17,10 +17,10 @@ namespace SmartHouse_API.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("GetAvailableLocalization", Description="\tIn order to get available localizations from database\r\n\tClient should send get r" +
+    [TechTalk.SpecRun.FeatureAttribute("GetAvailableLocalizations", Description="\tIn order to get available localizations from database\r\n\tClient should send get r" +
         "equest to web API\r\n\tAs a result of this web request client gets all available lo" +
         "calizations from database", SourceFile="Features\\GetAvailableLocalizations.feature", SourceLine=0)]
-    public partial class GetAvailableLocalizationFeature
+    public partial class GetAvailableLocalizationsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -32,7 +32,7 @@ namespace SmartHouse_API.AcceptanceTests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAvailableLocalization", "\tIn order to get available localizations from database\r\n\tClient should send get r" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAvailableLocalizations", "\tIn order to get available localizations from database\r\n\tClient should send get r" +
                     "equest to web API\r\n\tAs a result of this web request client gets all available lo" +
                     "calizations from database", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
@@ -71,11 +71,11 @@ namespace SmartHouse_API.AcceptanceTests.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Get available localization", new string[] {
-                "mytag2"}, SourceLine=6)]
+                "GetAvailableLocalizations"}, SourceLine=6)]
         public virtual void GetAvailableLocalization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get available localization", null, new string[] {
-                        "mytag2"});
+                        "GetAvailableLocalizations"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

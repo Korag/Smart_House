@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
-    [Binding]
+    [Binding, Scope(Tag = "CheckIfSingleSmartDeviceIsDisabled")]
     public class CheckIfSmartDeviceIsDisabledSteps
     {
         private HttpClient _client = new HttpClient();

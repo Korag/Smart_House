@@ -71,11 +71,11 @@ namespace SmartHouse_API.AcceptanceTests.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Get state of single smart device", new string[] {
-                "mytag2"}, SourceLine=6)]
+                "GetStateOfSingleSmartDevice"}, SourceLine=6)]
         public virtual void GetStateOfSingleSmartDevice()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get state of single smart device", null, new string[] {
-                        "mytag2"});
+                        "GetStateOfSingleSmartDevice"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

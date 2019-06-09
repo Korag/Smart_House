@@ -94,12 +94,15 @@
   <ItemGroup>
     <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabled.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckIfSingleSmartDeviceIsDisabled.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAllSmartDevices.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAvailableLocalizations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableLocalizations.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetStateOfSingleSmartDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

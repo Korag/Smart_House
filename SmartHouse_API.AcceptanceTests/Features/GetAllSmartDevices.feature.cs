@@ -17,10 +17,10 @@ namespace SmartHouse_API.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("SmartDevicesController", Description="\tIn order to get smart devices from database\r\n\tClient should send get request to " +
+    [TechTalk.SpecRun.FeatureAttribute("GetAllSmartDevices", Description="\tIn order to get smart devices from database\r\n\tClient should send get request to " +
         "web API\r\n\tAs a result of this web request client gets all smart devices from dat" +
         "abase", SourceFile="Features\\GetAllSmartDevices.feature", SourceLine=0)]
-    public partial class SmartDevicesControllerFeature
+    public partial class GetAllSmartDevicesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -32,7 +32,7 @@ namespace SmartHouse_API.AcceptanceTests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SmartDevicesController", "\tIn order to get smart devices from database\r\n\tClient should send get request to " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAllSmartDevices", "\tIn order to get smart devices from database\r\n\tClient should send get request to " +
                     "web API\r\n\tAs a result of this web request client gets all smart devices from dat" +
                     "abase", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
@@ -71,11 +71,11 @@ namespace SmartHouse_API.AcceptanceTests.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Get all smart devices from database", new string[] {
-                "mytag"}, SourceLine=6)]
+                "GetAllSmartDevices"}, SourceLine=6)]
         public virtual void GetAllSmartDevicesFromDatabase()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all smart devices from database", null, new string[] {
-                        "mytag"});
+                        "GetAllSmartDevices"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
