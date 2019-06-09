@@ -61,6 +61,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GetAllSmartDevices.feature.cs</DependentUpon>
     </Compile>
+    <Compile Update="Features\GetAvailableActionsOfSingleTypeSmartDevice.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetAvailableActionsOfSingleTypeSmartDevice.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\GetAvailableLocalizations.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -127,6 +132,10 @@
     <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAllSmartDevices.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\GetAvailableActionsOfSingleTypeSmartDevice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAvailableActionsOfSingleTypeSmartDevice.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAvailableLocalizations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
