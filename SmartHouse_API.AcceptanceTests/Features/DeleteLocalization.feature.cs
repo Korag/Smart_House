@@ -17,24 +17,24 @@ namespace SmartHouse_API.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("AddNewLocalization", Description="\tIn order to add localization\r\n\tClient should send post request with localization" +
-        " name and icon\r\n\tAs a result of this request in database should be new localizat" +
-        "ion", SourceFile="Features\\AddNewLocalization.feature", SourceLine=0)]
-    public partial class AddNewLocalizationFeature
+    [TechTalk.SpecRun.FeatureAttribute("DeleteLocalization", Description="\tIn order to delete localization\r\n\tClient should send post request with localizat" +
+        "ion name\r\n\tAs a result of this request in database should not be lozalization wi" +
+        "th entered name", SourceFile="Features\\DeleteLocalization.feature", SourceLine=0)]
+    public partial class DeleteLocalizationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AddNewLocalization.feature"
+#line 1 "DeleteLocalization.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddNewLocalization", "\tIn order to add localization\r\n\tClient should send post request with localization" +
-                    " name and icon\r\n\tAs a result of this request in database should be new localizat" +
-                    "ion", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DeleteLocalization", "\tIn order to delete localization\r\n\tClient should send post request with localizat" +
+                    "ion name\r\n\tAs a result of this request in database should not be lozalization wi" +
+                    "th entered name", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +70,21 @@ namespace SmartHouse_API.AcceptanceTests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Add new localization", new string[] {
-                "AddNewLocalization"}, SourceLine=6)]
-        public virtual void AddNewLocalization()
+        [TechTalk.SpecRun.ScenarioAttribute("Delete localization", new string[] {
+                "DeleteLocalization"}, SourceLine=6)]
+        public virtual void DeleteLocalization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new localization", null, new string[] {
-                        "AddNewLocalization"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete localization", null, new string[] {
+                        "DeleteLocalization"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("Client entered localization name and icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Client entered localization name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.When("Client sent post request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("In database should be new localization with entered name and icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("In database should not be localization with entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

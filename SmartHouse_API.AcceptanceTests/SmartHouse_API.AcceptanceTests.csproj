@@ -44,6 +44,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature</DependentUpon>
     </Compile>
+    <Compile Update="Features\DeleteLocalization.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeleteLocalization.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\GetAllSmartDevices.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -114,6 +119,10 @@
     <SpecFlowFeatureFiles Update="Features\CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckIfSingleSmartDeviceIsDisabledAndSwitchOn.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\DeleteLocalization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteLocalization.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetAllSmartDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
