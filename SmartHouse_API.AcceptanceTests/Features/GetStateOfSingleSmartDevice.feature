@@ -1,11 +1,10 @@
 ﻿Feature: GetStateOfSingleSmartDevice
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	In order to get state of single smart device
+	Client should send get request to web API with id of selected smart device
+	As a result of this web request client gets state of single smart device as string
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+@mytag2
+Scenario: Get state of single smart device
+	Given Client entered smart device id
+	When Client sent get request in order to get state of single smart device
+	Then The client should not get empty string

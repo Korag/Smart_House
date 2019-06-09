@@ -57,6 +57,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GetAvailableLocalizations.feature.cs</DependentUpon>
     </Compile>
+    <Compile Update="Features\GetStateOfSingleSmartDevice.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GetStateOfSingleSmartDevice.feature</DependentUpon>
+    </Compile>
     <Compile Update="Steps\CheckIfSmartDeviceIsDisabledSteps.cs">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckIfSmartDeviceIsDisabledSteps.feature.cs</LastGenOutput>
@@ -98,6 +103,7 @@
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\GetStateOfSingleSmartDevice.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetStateOfSingleSmartDevice.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 
