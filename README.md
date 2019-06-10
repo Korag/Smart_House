@@ -42,6 +42,11 @@ Apart from visual packeges to create virtual house model and visualisation we us
 - Blender 2.8 for modelling assets
 - Unity 2018.3.9f1 for visualisation
 
+In FrontEnd Part
+- Vue.js
+- Vuetify
+- Vuex
+
 There's probably more I missed so ...
 
 ## Contact us if you have any questions
