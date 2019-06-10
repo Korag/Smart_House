@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
-    [Binding]
+    [Binding, Scope(Tag = "GetAllSmartDevices")]
     public class GetAllSmartDevicesSteps
     {
         private HttpClient _client = new HttpClient();

@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using SmartHouse_API.App_Start.JsonConverterConfigs;
 
 namespace SmartHouse_API.Models
 {

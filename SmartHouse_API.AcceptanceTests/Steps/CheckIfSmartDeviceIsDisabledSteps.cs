@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
-    [Binding]
+    [Binding, Scope(Tag = "CheckIfSingleSmartDeviceIsDisabled")]
     public class CheckIfSmartDeviceIsDisabledSteps
     {
         private HttpClient _client = new HttpClient();
@@ -32,7 +32,7 @@ namespace SmartHouse_API.AcceptanceTests.Steps
         [Then(@"Client should get true or false as response")]
         public void ThenClientShouldGetTrueOrFalseAsResponse()
         {
-            Assert.That(_result, Is.EqualTo(true).Or.EqualTo(false));
+            Assert.That(_result, Is.EqualTo(false).Or.EqualTo(false));
         }
 
 

@@ -71,11 +71,11 @@ namespace SmartHouse_API.AcceptanceTests.Features
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Check if smart device is disabled", new string[] {
-                "mytag"}, SourceLine=6)]
+                "CheckIfSingleSmartDeviceIsDisabled"}, SourceLine=6)]
         public virtual void CheckIfSmartDeviceIsDisabled()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check if smart device is disabled", null, new string[] {
-                        "mytag"});
+                        "CheckIfSingleSmartDeviceIsDisabled"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

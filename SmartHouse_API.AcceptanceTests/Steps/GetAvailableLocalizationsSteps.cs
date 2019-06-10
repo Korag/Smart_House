@@ -9,17 +9,18 @@ using TechTalk.SpecFlow;
 
 namespace SmartHouse_API.AcceptanceTests.Steps
 {
-    [Binding, Scope(Tag = "mytag2")]
+    [Binding, Scope(Tag = "GetAvailableLocalizations")]
     public class GetAvailableLocalizationsSteps
     {
         private HttpClient _client = new HttpClient();
         private HttpResponseMessage _responseContent;
         private List<Localization> _result;
 
+
         [When(@"Client sent get request in order to get available localization")]
         public void WhenClientSentGetRequestInOrderToGetAvailableLocalization()
         {
-            _responseContent = _client.GetAsync("https://smarthouseapii.azurewebsites.net/api/GetAvailableLocalizations").Result;
+            _responseContent = _client.GetAsync($"https://smarthouseapii.azurewebsites.net/api/GetAvailableLocalizations").Result;
             _result = JsonConvert.DeserializeObject<List<Localization>>(_responseContent.Content.ReadAsStringAsync().Result);
         }
 

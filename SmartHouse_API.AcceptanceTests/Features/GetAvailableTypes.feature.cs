@@ -17,24 +17,22 @@ namespace SmartHouse_API.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("GetAvailableLocalizations", Description="\tIn order to get available localizations from database\r\n\tClient should send get r" +
-        "equest to web API\r\n\tAs a result of this web request client gets all available lo" +
-        "calizations from database", SourceFile="Features\\GetAvailableLocalizations.feature", SourceLine=0)]
-    public partial class GetAvailableLocalizationsFeature
+    [TechTalk.SpecRun.FeatureAttribute("GetAvailableTypes", Description="\tIn order to get available smart devices types\r\n\tClient should send get request\r\n" +
+        "\tAs a result of this request client gets all available smart devices types", SourceFile="Features\\GetAvailableTypes.feature", SourceLine=0)]
+    public partial class GetAvailableTypesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GetAvailableLocalizations.feature"
+#line 1 "GetAvailableTypes.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAvailableLocalizations", "\tIn order to get available localizations from database\r\n\tClient should send get r" +
-                    "equest to web API\r\n\tAs a result of this web request client gets all available lo" +
-                    "calizations from database", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAvailableTypes", "\tIn order to get available smart devices types\r\n\tClient should send get request\r\n" +
+                    "\tAs a result of this request client gets all available smart devices types", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +68,19 @@ namespace SmartHouse_API.AcceptanceTests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Get available localization", new string[] {
-                "GetAvailableLocalizations"}, SourceLine=6)]
-        public virtual void GetAvailableLocalization()
+        [TechTalk.SpecRun.ScenarioAttribute("Get available types", new string[] {
+                "GetAvailableTypes"}, SourceLine=6)]
+        public virtual void GetAvailableTypes()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get available localization", null, new string[] {
-                        "GetAvailableLocalizations"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get available types", null, new string[] {
+                        "GetAvailableTypes"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.When("Client sent get request in order to get available localization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Client sent get request in order to get available smart devices types", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.Then("The client should not get empty list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
- testRunner.Then("The client should get list of available localization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
