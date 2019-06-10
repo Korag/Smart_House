@@ -46,7 +46,7 @@ describe('TopBar.vue',()=>{
     it('getter getDisplayStatus returns true',() =>{
         expect(getters.getDisplayStatus()).toBe(true)
     })
-    it('should display site name on tope',()=>{
+    it('should display site name on top',()=>{
         expect(wrapper.find('.site-title').exists()).toBe(true)
     })
 })
