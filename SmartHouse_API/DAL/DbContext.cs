@@ -9,11 +9,11 @@ namespace SmartHouse_API.DAL
 
         public DbContext()
         {
-            string _user = "Admin";
-            string _password = "vg8Jj6GPhnqS8Kf";
+            string _user = "OpenUser";
+            string _password = "FLbTnwrUSZ";
             string _database = "smarthouse";
 
-            string _connectionstring = $"mongodb://{_user}:{_password}@ds040309.mlab.com:40309/{_database}";
+            string _connectionstring = $"mongodb+srv://{_user}:{_password}@mongodbcluster.wqayz.azure.mongodb.net/{_database}?retryWrites=true&w=majority";
 
             _mongoClient = new MongoClient(_connectionstring);
             db = _mongoClient.GetDatabase(_database);
